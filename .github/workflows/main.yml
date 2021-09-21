@@ -1,0 +1,24 @@
+name: Staging Deploy
+
+on:
+  push:
+    branches: [ staging ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+      
+    - name: FTP Deploy to WP Engine (Staging)
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ftp.piro8556.odns.fr
+        ftp-username: Ankur@dashboard.impulsion-seo.com
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
