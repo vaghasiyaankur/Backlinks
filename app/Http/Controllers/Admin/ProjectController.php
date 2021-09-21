@@ -8,8 +8,8 @@ use App\Models\ProjectType;
 use App\Models\Project;
 use Illuminate\Support\Facades\Redirect; 
 use Mail; 
-use File;
 use Carbon\Carbon;
+use File;
 use ZipArchive;
 
 class ProjectController extends Controller
@@ -39,22 +39,39 @@ class ProjectController extends Controller
         $project->save();
         
 
-        $public_dir=public_path();
-        $zipFileName = Carbon::now().'.zip';
-        $zip = new ZipArchive;
-        if ($zip->open($public_dir . '/' . $zipFileName, ZipArchive::CREATE) === TRUE) {    
-            $zip->addFile('file_path','file_name');        
-             $zip->close();
-        }
-         $headers = array(
-                'Content-Type' => 'application/octet-stream',
-            );
-        $filetopath=$public_dir.'/'.$zipFileName;
-        dd($filetopath);
-        if(file_exists($filetopath)){
-            return response()->download($filetopath,$zipFileName,$headers);
-        }
-        return ['status'=>'file does not exist'];
+
+        // $html = view('users.edit', compact('user'))->render();
+
+        
+        // $data = json_encode(['Element 1','Element 2','Element 3','Element 4','Element 5']);
+        // $file = time() .rand(). '_file.json';
+        // $destinationPath=public_path()."/upload/";
+        // if (!is_dir($destinationPath)) {  mkdir($destinationPath,0777,true);  }
+        // File::put($destinationPath.$file,$data);
+        // return response()->download($destinationPath.$file);
+
+
+
+
+
+        
+        // $zip = new ZipArchive;
+   
+        // $fileName = 'myNewFile.zip';
+   
+        // if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        // {   
+        //     $files = File::files(public_path('myFiles'));
+   
+        //     foreach ($files as $key => $value) {
+        //         $relativeNameInZipFile = basename($value);
+        //         $zip->addFile($value, $relativeNameInZipFile);
+        //     }
+             
+        //     $zip->close();
+        // }
+        // return response()->download(public_path($fileName));
+
 
 
 
@@ -67,18 +84,45 @@ class ProjectController extends Controller
         
         if(!is_dir($path)){
             File::makeDirectory($path);
-            $randomNumber = random_int(100000, 999999);
-            $subpath = $path .'/'.$randomNumber;
-            if(!is_dir($subpath)){
-                File::makeDirectory($subpath);
-            }
-        }else{
-            $randomNumber = random_int(100000, 999999);
-            $subpath = $path .'/'.$randomNumber;
-            if(!is_dir($subpath)){
-                File::makeDirectory($subpath);
-            }
+        }   
+        $randomNumber = random_int(100000, 999999).'.csv';
+
+        $subpath = $path .'/'.$randomNumber;
+
+        if(!is_dir($subpath)){
+            File::makeDirectory($subpath);  
         }
+
+        $fileName = 'tasks.csv';
+     
+             $headers = array(
+                 "Content-type"        => "text/csv",
+                 "Content-Disposition" => "attachment; filename=$fileName",
+                 "Pragma"              => "no-cache",
+                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                 "Expires"             => "0"
+             );
+     
+             $columns = array('Title', 'Assign', 'Description', 'Start Date', 'Due Date');
+     
+             $callback = function() use($columns) {
+                 $file = fopen('php://output', 'w');
+                 fputcsv($file, $columns);
+     
+                     $row['Title']  = '$task->title';
+                     $row['Assign']    = '$task->assign->name';
+                     $row['Description']    = '$task->description';
+                     $row['Start Date']  = '$task->start_at';
+                     $row['Due Date']  = '$task->end_at';
+     
+                     fputcsv($file, array($row['Title'], $row['Assign'], $row['Description'], $row['Start Date'], $row['Due Date']));
+                 
+     
+                 fclose($file);
+                 
+             }; 
+
+            //  return response()->stream($callback, 200, $headers);
 
         // $file = public_path($project->name);
 
