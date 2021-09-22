@@ -1,4 +1,14 @@
 @extends('admin.layouts.app')
+@section('style')
+<style>
+.title_project{
+
+  float: left;
+  width: 85%;
+
+}
+</style>
+@endsection
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -8,14 +18,12 @@
           <div class="col-lg-10 col-md-10">
             <h3> Project </h3>
           </div>
-          <div class="col-lg-2 col-md-2 mb-4">
-           <a href="{{ route('admin.project.add') }}" class="btn btn-primary"> Add New Project</a>
-          </div>
         
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Project List</h4>
+                <h4 class="card-title title_project">Project Data List</h4>
+                <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
               <div class="table-responsive pt-3">
                 <table class="table table-bordered">
                   <thead>
@@ -24,56 +32,67 @@
                         #
                       </th>
                       <th>
-                        Name
+                        URL
                       </th>
                       <th>
-                        Website
+                        Ancre
                       </th>
                       <th>
-                        Email
+                        Url Spot
                       </th>
                       <th>
-                        Number of Month 
+                        Prestataire 
                       </th>
                       <th>
                         Price
                       </th>
                       <th>
-                        Show Project
+                        Edit
+                      </th>
+                      <th>
+                        save
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($ProjectList as $pl)
+                   
                     <tr>
                       <td>
-                        {{$pl->id}}
+                        1
                       </td>
                       <td>
-                        {{$pl->name}}
+                       1
                       </td>
                       <td>
-                        {{$pl->website}}
+                      1
                       </td>
                       <td>
-                        {{$pl->email}}
+                       1
                       </td>
                       <td>
-                        {{$pl->month}}
+                        1
                       </td>
                       <td>
-                        {{$pl->price}}
+                        1
                       </td>
                       <td>
-                       <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id, '1'])}}">Show</a>
+                       <a class="btn btn-primary" href="#">Edit</a>
+                       {{-- <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id])}}">Show</a> --}}
                       </td>
+                      <td>
+                        <a class="btn btn-success" href="#">save</a>
+                        {{-- <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id])}}">Show</a> --}}
+                       </td>
                     </tr>
-                    @endforeach
                    
                   </tbody>
                 </table>
               </div>
             </div>
+            <div class="col-lg-2 float-start">
+                <button class="btn btn-primary">Month</button>
+            </div>
+           
           </div>
         </div>
       </div>
@@ -82,4 +101,10 @@
  
   </div>
 
+  @endsection
+
+  @section('script')
+  <script>
+  $("#propject_tab").addClass('active');
+ </script>
   @endsection

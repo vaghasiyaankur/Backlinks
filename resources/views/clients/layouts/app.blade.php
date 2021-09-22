@@ -28,7 +28,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    @include('admin.layouts.header')
+    @include('clients.layouts.header')
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
@@ -202,7 +202,7 @@
       </div>
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
-      @include('admin.layouts.sidebar')
+      @include('clients.layouts.sidebar')
       <!-- partial -->
      @yield('content')
       <!-- main-panel ends -->

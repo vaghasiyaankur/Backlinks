@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProjectType;
 use App\Models\Project;
+use App\Models\ProjectData;
 use Illuminate\Support\Facades\Redirect; 
 use Mail; 
 use Carbon\Carbon;
@@ -28,7 +29,11 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-     
+        
+        $count = Project::where('name',$request->name)->count();
+        if($count){
+            return Redirect::back()->withErrors(['msg' => 'This Project Name Already Exits']);
+        }
         $project = new Project();
         $project->name = $request->name;
         $project->website = $request->website ;
@@ -38,6 +43,59 @@ class ProjectController extends Controller
         $project->project_type_id = $request->projectType;
         $project->save();
         
+
+        // $path = public_path().'/'.$project->name;
+        $path = storage_path('app/public/'.$request->name);
+
+        
+        if(!is_dir($path)){
+            File::makeDirectory($path);
+        }   
+
+        $subpath = $path .'/Communication';
+
+        if(!is_dir($subpath)){
+            File::makeDirectory($subpath);  
+        }
+
+        // $user = Auth::user();
+
+        // $path = storage_path('app/public/docs/user_docs/'.$user->id);
+        $csvfiles = [];
+        for($i = 1;$i<=$request->month;$i++)
+        {
+            $fileName = $i.'.csv';
+    
+            $file = fopen($subpath.'/'.$fileName, 'w');
+        
+            $columns = array('No','URL', 'Ancre', 'Spot Url', 'Num of Month', 'Prestataire','price');
+        
+            fputcsv($file, $columns);
+        
+                $data = [
+                    'No' => '',  
+                    'URL' => '',  
+                    'Ancre' => '',  
+                    'Spot Url' => '',  
+                    'Num of Month' => '',    
+                    'Prestataire' => '',    
+                    'price' => '',    
+                ];
+        
+        
+            fputcsv($file, $data);
+        
+            fclose($file);
+
+            array_push($csvfiles, $subpath.'/'.$fileName);
+        }
+    
+        // $symlink = $subpath.'/';
+    
+        // $fileModel = new UserDocument;
+        // $fileModel->name = 'csv';
+        // $fileModel->file_path = $symlink.$fileName;
+        // $fileModel->save();
 
 
         // $html = view('users.edit', compact('user'))->render();
@@ -59,14 +117,14 @@ class ProjectController extends Controller
    
         // $fileName = 'myNewFile.zip';
    
-        // if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        // if ($zip->open(public_path($ ), ZipArchive::CREATE) === TRUE)
         // {   
         //     $files = File::files(public_path('myFiles'));
    
         //     foreach ($files as $key => $value) {
         //         $relativeNameInZipFile = basename($value);
         //         $zip->addFile($value, $relativeNameInZipFile);
-        //     }
+        //     }adminadmin
              
         //     $zip->close();
         // }
@@ -79,61 +137,82 @@ class ProjectController extends Controller
 
 
 
-        $path = public_path().'/'.$project->name;
+        // $path = public_path().'/'.$project->name;
 
         
-        if(!is_dir($path)){
-            File::makeDirectory($path);
-        }   
-        $randomNumber = random_int(100000, 999999).'.csv';
+        // if(!is_dir($path)){
+        //     File::makeDirectory($path);
+        // }   
+        // $randomNumber = random_int(100000, 999999).'.csv';
 
-        $subpath = $path .'/'.$randomNumber;
+        // $subpath = $path .'/'.$randomNumber;
 
-        if(!is_dir($subpath)){
-            File::makeDirectory($subpath);  
-        }
+        // if(!is_dir($subpath)){
+        //     File::makeDirectory($subpath);  
+        // }
 
-        $fileName = 'tasks.csv';
+        // $fileName = 'tasks.csv';
      
-             $headers = array(
-                 "Content-type"        => "text/csv",
-                 "Content-Disposition" => "attachment; filename=$fileName",
-                 "Pragma"              => "no-cache",
-                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                 "Expires"             => "0"
-             );
+        //      $headers = array(
+        //          "Content-type"        => "text/csv",
+        //          "Content-Disposition" => "attachment; filename=$fileName",
+        //          "Pragma"              => "no-cache",
+        //          "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+        //          "Expires"             => "0"
+        //      );
      
-             $columns = array('Title', 'Assign', 'Description', 'Start Date', 'Due Date');
+        //      $columns = array('Title', 'Assign', 'Description', 'Start Date', 'Due Date');
      
-             $callback = function() use($columns) {
-                 $file = fopen('php://output', 'w');
-                 fputcsv($file, $columns);
+        //      $callback = function() use($columns) {
+        //          $file = fopen('php://output', 'w');
+        //          fputcsv($file, $columns);
      
-                     $row['Title']  = '$task->title';
-                     $row['Assign']    = '$task->assign->name';
-                     $row['Description']    = '$task->description';
-                     $row['Start Date']  = '$task->start_at';
-                     $row['Due Date']  = '$task->end_at';
+        //              $row['Title']  = '$task->title';
+        //              $row['Assign']    = '$task->assign->name';
+        //              $row['Description']    = '$task->description';
+        //              $row['Start Date']  = '$task->start_at';
+        //              $row['Due Date']  = '$task->end_at';
      
-                     fputcsv($file, array($row['Title'], $row['Assign'], $row['Description'], $row['Start Date'], $row['Due Date']));
+        //              fputcsv($file, array($row['Title'], $row['Assign'], $row['Description'], $row['Start Date'], $row['Due Date']));
                  
      
-                 fclose($file);
+        //          fclose($file);
                  
-             }; 
+        //      }; 
 
             //  return response()->stream($callback, 200, $headers);
 
         // $file = public_path($project->name);
+        
+        // for($i = 1;$i<=$request->month;$i++)
 
-
-        // Mail::send('admin.project.mail', ['project' => $project], function($message) use($request){
-        //     $message->to($request->email);
-        //     $message->subject('Crate A Project');
-        // });
+        Mail::send('admin.project.mail', ['project' => $project], function($message) use($request,$csvfiles){
+            $message->to($request->email);
+            $message->subject('Crate A Project');
+            foreach ($csvfiles as $cf){
+                $message->attach($cf);
+            }
+        });
 
 
         return Redirect::to('/admin/project');
+    }
+
+    public function show(Request $request, $id, $month)
+    {
+
+        return view('admin.project.project_show', compact('id', 'month'));
+    }
+
+    public function showDataMonthViseForm(Request $request, $id, $month)
+    {
+        return view('admin.project.project_data_add', compact('id', 'month'));
+    }
+
+    public function addDataEntryMonthVise(Request $request)
+    {
+    //    $projectData
+        dd($request);
     }
 
     public function edit(Request $request)

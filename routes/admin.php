@@ -1,7 +1,8 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +16,30 @@ use App\Http\Controllers\Admin\ProjectController;
 */
 
 Route::namespace('Admin')->group(function () {
-    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login.show');
-    Route::post('/login', 'Auth\LoginController@login')->name('admin.login');
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login.show');
+    Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
 
 
     
     
     
-    Route::get('/project', [ProjectController::class, 'list'])->name('admin.project.list');
-    Route::get('/project/add', [ProjectController::class, 'add'])->name('admin.project.add');
-    Route::post('/project/add', [ProjectController::class, 'store'])->name('admin.project.store');
-    Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
+    
+    Route::middleware('auth:admin')->group(function () {  
+        
+        Route::get('/dashboard', function(){
+            return view('admin.welcome');
+        })->name('admin.dashboard');  
 
-    Route::middleware('auth:admin')->group(function () {
+        Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+        Route::get('/project', [ProjectController::class, 'list'])->name('admin.project.list');
+        Route::get('/project/add', [ProjectController::class, 'add'])->name('admin.project.add');
+        Route::post('/project/add', [ProjectController::class, 'store'])->name('admin.project.store');
+        Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
+        Route::get('/project/show/{id}/{month}', [ProjectController::class, 'show'])->name('admin.project.show');
+        Route::get('/project/data/add/{id}/{month}', [ProjectController::class, 'showDataMonthViseForm'])->name('admin.add.data');
+        Route::post('/project/add', [ProjectController::class, 'addDataEntryMonthVise'])->name('admin.project.data.store');
+        
 
 
     });

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('clients.layouts.app')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -7,9 +7,6 @@
         
           <div class="col-lg-10 col-md-10">
             <h3> Project </h3>
-          </div>
-          <div class="col-lg-2 col-md-2 mb-4">
-           <a href="{{ route('admin.project.add') }}" class="btn btn-primary"> Add New Project</a>
           </div>
         
         <div class="col-lg-12 grid-margin stretch-card">
@@ -24,56 +21,42 @@
                         #
                       </th>
                       <th>
-                        Name
+                        URL
                       </th>
                       <th>
-                        Website
+                        Ancre
                       </th>
                       <th>
-                        Email
-                      </th>
-                      <th>
-                        Number of Month 
-                      </th>
-                      <th>
-                        Price
-                      </th>
-                      <th>
-                        Show Project
+                        Url Spot
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($ProjectList as $pl)
+                   
                     <tr>
                       <td>
-                        {{$pl->id}}
+                        1
                       </td>
                       <td>
-                        {{$pl->name}}
+                       1
                       </td>
                       <td>
-                        {{$pl->website}}
+                      1
                       </td>
                       <td>
-                        {{$pl->email}}
+                       1
                       </td>
-                      <td>
-                        {{$pl->month}}
-                      </td>
-                      <td>
-                        {{$pl->price}}
-                      </td>
-                      <td>
-                       <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id, '1'])}}">Show</a>
-                      </td>
+                      
                     </tr>
-                    @endforeach
                    
                   </tbody>
                 </table>
               </div>
             </div>
+            <div class="col-lg-2 float-start">
+                <button class="btn btn-primary">Month</button>
+            </div>
+           
           </div>
         </div>
       </div>
@@ -82,4 +65,10 @@
  
   </div>
 
+  @endsection
+
+  @section('script')
+  <script>
+  $("#propject_tab").addClass('active');
+ </script>
   @endsection

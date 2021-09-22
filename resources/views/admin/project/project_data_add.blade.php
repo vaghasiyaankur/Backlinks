@@ -20,43 +20,32 @@
                     </div>
                     @endif
 
-                    <form class="forms-sample" action="{{ route('admin.project.store') }}" method="post">
+                    <form class="forms-sample" action="{{ route('admin.project.data.store') }}" method="post">
                       @csrf
-                        <div class="form-group row"> 
-                            <label class="col-sm-3 col-form-label">Project Type</label>
-                            @foreach($ProjectType as $pt)
-                            <div class="col-sm-3">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="projectType" id="{{ $pt->type}}" value="{{$pt->id}}" @if($pt->id == '1') checked : "" @endif>
-                                  {{ $pt->type}}
-                                <i class="input-helper"></i></label>
-                              </div>
-                            </div>
-                            @endforeach
-                        </div> 
+                        <input type="hidden" value="{{$id}}" name="id"/>
+                        <input type="hidden" value="{{$month}}" name="month"/>
                       <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Name</label>
+                        <label for="name" class="col-sm-3 col-form-label">Url</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="name" placeholder="Name" name="name" Required>
+                          <input type="text" class="form-control" id="url" placeholder="Url" name="url" Required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="website" class="col-sm-3 col-form-label">Website</label>
+                        <label for="Ancre" class="col-sm-3 col-form-label">Ancre</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="website" placeholder="Website" name="website" Required> 
+                          <input type="text" class="form-control" id="ancre" placeholder="Ancre" name="ancre" Required> 
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <label for="Url Spot" class="col-sm-3 col-form-label">Url Spot</label>
                         <div class="col-sm-9">
-                          <input type="email" class="form-control" id="email" placeholder="Email" name="email" Required>
+                          <input type="text" class="form-control" id="url_spot" placeholder="Url Spot" name="url_spot" Required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="month" class="col-sm-3 col-form-label">Number Of Months</label>
+                        <label for="Prestataire" class="col-sm-3 col-form-label">Prestataire</label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" id="month" placeholder=" Number Of Month" name="month"  min="1" max="12" Required>
+                          <input type="text" class="form-control" id="prestataire" placeholder="Prestataire" name="prestataire" Required>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -66,7 +55,7 @@
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary me-2">Submit</button>
-                      <button class="btn btn-light"><a href="{{ route('admin.project.list') }}" class="text-decoration-none">Cancel</a></button>
+                     <a class="btn btn-light" href="{{ route('admin.project.show', [$id, $month] ) }}" class="text-decoration-none">Cancel</a>
                     </form>
                   </div>
                 </div>
