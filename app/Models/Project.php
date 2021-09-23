@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProjectType;
 use App\Models\ProjectData;
+use App\Models\ProjectMonth;
 
 class Project extends Model
 {
@@ -21,6 +22,11 @@ class Project extends Model
     public function project()
     {
         $this->belongsTo(ProjectData::class);
+    }
+
+    public function projectMonths()
+    {
+        return $this->hasOne(ProjectMonth::class);
     }
     
 }

@@ -28,7 +28,8 @@ Route::middleware(['auth','web'])->group(function () {
         return view('clients.welcome');
     })->name('client.dashboard');
 
-    Route::get('/project', [ProjectController::class, 'show'])->name('client.project.show');
+    Route::get('/project/{id}/{month}', [ProjectController::class, 'show'])->name('client.project.show');
+    Route::get('/project/csv/{id}/{month}', [ProjectController::class, 'csvddownload'])->name('client.project.csv');
 
    
 

@@ -7,6 +7,9 @@
   width: 85%;
 
 }
+.card .card-body .table-div{
+  min-height: 550px;
+}
 </style>
 @endsection
 @section('content')
@@ -24,7 +27,7 @@
             <div class="card-body">
                 <h4 class="card-title title_project">Project Data List</h4>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
-              <div class="table-responsive pt-3">
+              <div class="table-responsive pt-3 table-div">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -37,7 +40,7 @@
                       <th>
                         Ancre
                       </th>
-                      <th>
+                      <th @if($notexitsdomain == '0') style="background-color:red" @endif>
                         Url Spot
                       </th>
                       <th>
@@ -49,48 +52,51 @@
                       <th>
                         Edit
                       </th>
-                      <th>
+                      {{-- <th>
                         save
-                      </th>
+                      </th> --}}
                     </tr>
                   </thead>
                   <tbody>
-                   
+                   @foreach($projectdata as $pd)
                     <tr>
                       <td>
-                        1
+                        {{$pd->id}}
                       </td>
                       <td>
-                       1
+                       {{$pd->url}}
                       </td>
                       <td>
-                      1
+                      {{$pd->ancre}}
+                      </td>
+                      <td @if($notexitsdomain == '0') style="background-color:red" @endif>
+                       {{$pd->url_spot}}
                       </td>
                       <td>
-                       1
+                        {{$pd->prestataire}}
                       </td>
                       <td>
-                        1
+                        {{$pd->price}}
                       </td>
                       <td>
-                        1
-                      </td>
-                      <td>
-                       <a class="btn btn-primary" href="#">Edit</a>
+                       <a class="btn btn-primary" href="{{ route('admin.edit.data', [$id, $month,$pd->id])}}">Edit</a>
                        {{-- <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id])}}">Show</a> --}}
                       </td>
-                      <td>
-                        <a class="btn btn-success" href="#">save</a>
+                      {{-- <td>
+                        <a class="btn btn-success" href="#">save</a> --}}
                         {{-- <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id])}}">Show</a> --}}
-                       </td>
+                       {{-- </td> --}}
                     </tr>
+                    @endforeach
                    
                   </tbody>
                 </table>
               </div>
             </div>
-            <div class="col-lg-2 float-start">
-                <button class="btn btn-primary">Month</button>
+            <div class="col-lg-12 float-start">
+            @for ($i = 1; $i <= $datamonths->months; $i++)
+                    <a href="{{ route('admin.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
+           @endfor
             </div>
            
           </div>

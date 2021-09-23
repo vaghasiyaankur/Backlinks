@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProjectType;
 use App\Models\Project;
 use App\Models\ProjectData;
+use App\Models\ProjectMonth;
 use Illuminate\Support\Facades\Redirect; 
 use Mail; 
 use Carbon\Carbon;
@@ -42,6 +43,11 @@ class ProjectController extends Controller
         $project->price = $request->price ;
         $project->project_type_id = $request->projectType;
         $project->save();
+
+        $projectdata = new ProjectMonth();
+        $projectdata->months = $request->month;
+        $projectdata->project_id = $project->id;
+        $projectdata->save();
         
 
         // $path = public_path().'/'.$project->name;
@@ -200,10 +206,32 @@ class ProjectController extends Controller
 
     public function show(Request $request, $id, $month)
     {
+        $projectdata = ProjectData::where('month',$month)->where('project_id',$id)->get();
+        
+        $datamonths = ProjectMonth::where('project_id',$id)->first();
+        
+        $project = Project::where('id', $id)->first();
 
-        return view('admin.project.project_show', compact('id', 'month'));
+        $ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$project->website."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
+		curl_setopt($ch, CURLOPT_POST, 1);
+
+		
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$server_output = curl_exec($ch);
+
+		curl_close ($ch);
+        if($server_output == 'Validation Error : target'){
+            $notexitsdomain = 1;
+        }else{
+            $notexitsdomain = 0;
+        }
+
+        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain'));
     }
-
+    
     public function showDataMonthViseForm(Request $request, $id, $month)
     {
         return view('admin.project.project_data_add', compact('id', 'month'));
@@ -211,8 +239,42 @@ class ProjectController extends Controller
 
     public function addDataEntryMonthVise(Request $request)
     {
-    //    $projectData
-        dd($request);
+        // dd($request->all());
+       $projectdata = new ProjectData();
+       $projectdata->url = $request->url;
+       $projectdata->ancre = $request->ancre;
+       $projectdata->url_spot = $request->url_spot;
+       $projectdata->prestataire = $request->prestataire;
+       $projectdata->price = $request->price;
+       $projectdata->month= $request->month;
+       $projectdata->project_id= $request->id;
+       $projectdata->save();
+
+       return Redirect::to('admin/project/show/'.$request->id.'/'.$request->month);
+
+
+    }
+
+    public function editDataMonthViseForm(Request $request, $id, $month, $dataid)
+    {
+       $projectdata = ProjectData::where('id',$dataid)->first();
+
+       return view('admin.project.project_data_edit', compact('id','month','dataid','projectdata'));
+    }
+
+    public function updateDataMonthViseForm(Request $request)
+    {
+       $projectdata = ProjectData::where('id',$request->dataid)->first();
+       $projectdata->url = $request->url;
+       $projectdata->ancre = $request->ancre;
+       $projectdata->url_spot = $request->url_spot;
+       $projectdata->prestataire = $request->prestataire;
+       $projectdata->price = $request->price;
+       $projectdata->month= $request->month;
+       $projectdata->project_id= $request->id;
+       $projectdata->save();
+
+       return Redirect::to('admin/project/show/'.$request->id.'/'.$request->month);
     }
 
     public function edit(Request $request)

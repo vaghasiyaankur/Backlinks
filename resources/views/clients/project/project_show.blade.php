@@ -1,4 +1,17 @@
 @extends('clients.layouts.app')
+@section('style')
+<style>
+.title_project{
+
+  float: left;
+  width: 85%;
+
+}
+.card .card-body .table-div{
+  min-height: 550px;
+}
+</style>
+@endsection
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -12,8 +25,9 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Project List</h4>
-              <div class="table-responsive pt-3">
+              <h4 class="card-title title_project">Project List</h4>
+              <a class="btn btn-success" href="{{ route('client.project.csv', [$id, $month])}}">Download Csv File</a>
+              <div class="table-responsive pt-3 table-div">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -26,36 +40,39 @@
                       <th>
                         Ancre
                       </th>
-                      <th>
+                      <th @if($notexitsdomain == '0') style="background-color:red" @endif>
                         Url Spot
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                    
+                    @foreach($projectdata as $pd)
                     <tr>
                       <td>
-                        1
+                        {{$pd->id}}
                       </td>
                       <td>
-                       1
+                       {{$pd->url}}
                       </td>
                       <td>
-                      1
+                      {{$pd->ancre}}
                       </td>
-                      <td>
-                       1
+                      <td  @if($notexitsdomain == '0') style="background-color:red" @endif>
+                       {{$pd->url_spot}}
                       </td>
-                      
                     </tr>
+                    @endforeach
                    
                   </tbody>
                 </table>
               </div>
             </div>
-            <div class="col-lg-2 float-start">
-                <button class="btn btn-primary">Month</button>
-            </div>
+            <div class="col-lg-12 float-start">
+              @for ($i = 1; $i <= $datamonths->months; $i++)
+                      <a href="{{ route('client.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
+             @endfor
+              </div>
            
           </div>
         </div>
