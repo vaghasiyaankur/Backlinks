@@ -4,7 +4,7 @@
 .title_project{
 
   float: left;
-  width: 85%;
+  width: 75%;
 
 }
 .card .card-body .table-div{
@@ -26,6 +26,7 @@
           <div class="card">
             <div class="card-body">
                 <h4 class="card-title title_project">Project Data List</h4>
+                <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">save</a>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
               <div class="table-responsive pt-3 table-div">
                 <table class="table table-bordered">
