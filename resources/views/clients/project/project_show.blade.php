@@ -22,9 +22,11 @@
             <h3> Project </h3>
           </div>
         
+          {{-- @if() --}}
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="min-height: 550px">
+              @if($saved == '1')
               <h4 class="card-title title_project">Project List</h4>
               <a class="btn btn-success" href="{{ route('client.project.csv', [$id, $month])}}">Download Csv File</a>
               <div class="table-responsive pt-3 table-div">
@@ -67,6 +69,7 @@
                   </tbody>
                 </table>
               </div>
+              @endif
             </div>
             <div class="col-lg-12 float-start">
               @for ($i = 1; $i <= $datamonths->months; $i++)

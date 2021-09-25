@@ -20,5 +20,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
         ftp-server: ftp.piro8556.odns.fr
-        ftp-username: Ankur@dashboard.impulsion-seo.com
+        ftp-username: piro8556@ankur.linkplateforme.com.piro8556.odns.fr
         ftp-password: ${{ secrets.FTP_PASSWORD }}

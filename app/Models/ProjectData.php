@@ -10,7 +10,7 @@ class ProjectData extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['url', 'ancre','url_spot','prestataire','price', 'month', 'project_id'];
+    protected $fillable = ['url', 'ancre','url_spot','prestataire','price', 'month', 'project_id', 'saved'];
 
     public function projectType()
     {

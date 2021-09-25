@@ -37,7 +37,22 @@ class ProjectController extends Controller
         }else{
             $notexitsdomain = 0;
         }
-        return view('clients.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain'));
+
+
+        $projectdatasaved = ProjectData::where('month',$month)->where('project_id',$project->id)->first();
+        if($projectdatasaved){
+
+            if($projectdatasaved->saved == '1'){
+                $saved = 1;
+            }else{
+                $saved = 0;
+            }
+        }else{
+            $saved = 0;
+        }
+
+
+        return view('clients.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain','saved'));
     }
 
     public function csvddownload(Request $request, $id, $month)

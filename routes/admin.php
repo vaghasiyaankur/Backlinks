@@ -38,6 +38,7 @@ Route::namespace('Admin')->group(function () {
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
         Route::get('/project/show/{id}/{month}', [ProjectController::class, 'show'])->name('admin.project.show');
         Route::get('/project/data/add/{id}/{month}', [ProjectController::class, 'showDataMonthViseForm'])->name('admin.add.data');
+        Route::get('/project/data/saved/{id}/{month}', [ProjectController::class, 'savedDataMonthVise'])->name('admin.project.saved');
         Route::post('/project/data/add', [ProjectController::class, 'addDataEntryMonthVise'])->name('admin.project.data.store');
         Route::get('/project/data/edit/{id}/{month}/{dataid}', [ProjectController::class, 'editDataMonthViseForm'])->name('admin.edit.data');
         Route::post('/project/data/update', [ProjectController::class, 'updateDataMonthViseForm'])->name('admin.project.data.update');

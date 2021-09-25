@@ -23,6 +23,7 @@ class CreateProjectDataTable extends Migration
             $table->String('month')->nullable();
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->boolean('saved')->default(0);
             $table->timestamps();
         });
     }

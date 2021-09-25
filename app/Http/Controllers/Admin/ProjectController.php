@@ -229,7 +229,20 @@ class ProjectController extends Controller
             $notexitsdomain = 0;
         }
 
-        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain'));
+
+        $projectdatasaved = ProjectData::where('month',$month)->where('project_id',$id)->first();
+        if($projectdatasaved){
+
+            if($projectdatasaved->saved == '1'){
+                $saved = 1;
+            }else{
+                $saved = 0;
+            }
+        }else{
+            $saved = 0;
+        }
+
+        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain','saved'));
     }
     
     public function showDataMonthViseForm(Request $request, $id, $month)
@@ -252,6 +265,20 @@ class ProjectController extends Controller
 
        return Redirect::to('admin/project/show/'.$request->id.'/'.$request->month);
 
+
+    }
+
+    public function savedDataMonthVise(Request $request, $dataid, $month)
+    {
+        $projectdata = ProjectData::where('project_id',$dataid)->where('month', $month)->first();
+
+        if($projectdata->saved == 0){
+            $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 1]);
+            return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
+        }else{
+            $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 0]);
+            return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
+        }
 
     }
 
