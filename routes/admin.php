@@ -17,14 +17,14 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::namespace('Admin')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login.show');
-    Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
+    Route::post('/login/post', [LoginController::class,  'login'])->name('admin.login.post');
 
 
     
     
     
     
-    Route::middleware('auth:admin')->group(function () {  
+    Route::middleware('adminlogin')->group(function () {  
         
         Route::get('/dashboard', function(){
             return view('admin.welcome');
