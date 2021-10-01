@@ -22,3 +22,4 @@ jobs:
         ftp-server: ftp://109.234.160.108
         ftp-username: siyw9232@dashboard-impulsion.com
         ftp-password: ${{ secrets.FTP_PASSWORD }}
+        
