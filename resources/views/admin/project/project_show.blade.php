@@ -28,6 +28,7 @@
                 <h4 class="card-title title_project">Project Data List</h4>
                 <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
+                <span>Budget: {{$project->price}}</span>
               <div class="table-responsive pt-3 table-div">
                 <table class="table table-bordered">
                   <thead>
@@ -41,7 +42,7 @@
                       <th>
                         Ancre
                       </th>
-                      <th @if($notexitsdomain == '0') style="background-color:red" @endif>
+                      <th>
                         Url Spot
                       </th>
                       <th>
@@ -70,7 +71,7 @@
                       <td>
                       {{$pd->ancre}}
                       </td>
-                      <td @if($notexitsdomain == '0') style="background-color:red" @endif>
+                      <td>
                        {{$pd->url_spot}}
                       </td>
                       <td>
@@ -92,6 +93,9 @@
                    
                   </tbody>
                 </table>
+                {{-- <div class="col-lg-12 float-start ">
+                      <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
+                </div> --}}
               </div>
             </div>
             <div class="col-lg-12 float-start">
@@ -113,5 +117,21 @@
   @section('script')
   <script>
   $("#propject_tab").addClass('active');
+
+  $(".check_website").click(function(){
+    var website = $(this).data('website');
+    var token = $('html').find('meta[name="csrf-token"]')
+// console.log(token);
+  //   $.ajax({
+  //     type:'POST',
+  //     url:'/checkwebsite',
+  //     data: {
+  //       "_token": "{{ csrf_token() }}",
+  //       "website": website
+  //       },
+  //     success: function(html) {
+  //     },
+  //   });
+  // });
  </script>
   @endsection

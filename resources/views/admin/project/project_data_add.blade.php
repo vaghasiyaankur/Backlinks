@@ -25,32 +25,32 @@
                         <input type="hidden" value="{{$id}}" name="id"/>
                         <input type="hidden" value="{{$month}}" name="month"/>
                       <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Url</label>
-                        <div class="col-sm-9">
+                        <label for="name" class="col-sm-12 col-form-label">Url</label>
+                        <div class="col-sm-12">
                           <input type="text" class="form-control" id="url" placeholder="Url" name="url" Required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="Ancre" class="col-sm-3 col-form-label">Ancre</label>
-                        <div class="col-sm-9">
+                        <label for="Ancre" class="col-sm-12 col-form-label">Ancre</label>
+                        <div class="col-sm-12">
                           <input type="text" class="form-control" id="ancre" placeholder="Ancre" name="ancre" Required> 
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="Url Spot" class="col-sm-3 col-form-label">Url Spot</label>
-                        <div class="col-sm-9">
+                        <label for="Url Spot" class="col-sm-12 col-form-label">Url Spot</label>
+                        <div class="col-sm-12">
                           <input type="text" class="form-control" id="url_spot" placeholder="Url Spot" name="url_spot" Required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="Prestataire" class="col-sm-3 col-form-label">Prestataire</label>
-                        <div class="col-sm-9">
+                        <label for="Prestataire" class="col-sm-12 col-form-label">Prestataire</label>
+                        <div class="col-sm-12">
                           <input type="text" class="form-control" id="prestataire" placeholder="Prestataire" name="prestataire" Required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="price" class="col-sm-3 col-form-label">Price</label>
-                        <div class="col-sm-9">
+                        <label for="price" class="col-sm-12 col-form-label">Price</label>
+                        <div class="col-sm-12">
                           <input type="text" class="form-control" id="price" placeholder="Price" name="price"  Required>
                         </div>
                       </div>

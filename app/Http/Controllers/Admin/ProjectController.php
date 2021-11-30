@@ -212,22 +212,22 @@ class ProjectController extends Controller
         
         $project = Project::where('id', $id)->first();
 
-        $ch = curl_init();
+        // $ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$project->website."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
-		curl_setopt($ch, CURLOPT_POST, 1);
+		// curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$project->website."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
+		// curl_setopt($ch, CURLOPT_POST, 1);
 
 		
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		$server_output = curl_exec($ch);
+		// $server_output = curl_exec($ch);
 
-		curl_close ($ch);
-        if($server_output == 'Validation Error : target'){
-            $notexitsdomain = 1;
-        }else{
-            $notexitsdomain = 0;
-        }
+		// curl_close ($ch);
+        // if($server_output == 'Validation Error : target'){
+        //     $notexitsdomain = 1;
+        // }else{
+        //     $notexitsdomain = 0;
+        // }
 
 
         $projectdatasaved = ProjectData::where('month',$month)->where('project_id',$id)->first();
@@ -235,14 +235,12 @@ class ProjectController extends Controller
 
             if($projectdatasaved->saved == '1'){
                 $saved = 1;
-            }else{
                 $saved = 0;
             }
         }else{
             $saved = 0;
         }
-
-        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','notexitsdomain','saved'));
+        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved'));
     }
     
     public function showDataMonthViseForm(Request $request, $id, $month)
@@ -312,5 +310,10 @@ class ProjectController extends Controller
     public function delete(Request $request)
     {
         return view('admin.project.project_list');
+    }
+    public function checkwebsite(Request $request)
+    {
+        # code...
+        dd('yes');
     }
 }
