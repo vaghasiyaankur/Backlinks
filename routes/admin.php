@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SpotListController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
@@ -42,9 +43,17 @@ Route::namespace('Admin')->group(function () {
         Route::post('/project/data/add', [ProjectController::class, 'addDataEntryMonthVise'])->name('admin.project.data.store');
         Route::get('/project/data/edit/{id}/{month}/{dataid}', [ProjectController::class, 'editDataMonthViseForm'])->name('admin.edit.data');
         Route::post('/project/data/update', [ProjectController::class, 'updateDataMonthViseForm'])->name('admin.project.data.update');
-        Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.projectcheckwebsite');
+        Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
+
+        //  spot list
+        Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
+        Route::get('/spot-list/add-excel', [SpotListController::class, 'excel'])->name('admin.spot.list.excel');
+        Route::post('/spot-list/add-excel', [SpotListController::class, 'excelstore'])->name('admin.spot.excel.store');
+        Route::get('/spot-list/download-csv', [SpotListController::class, 'csvdownload'])->name('admin.spot.list.csv');
+
         
-
-
+        
+        
+        
     });
 });

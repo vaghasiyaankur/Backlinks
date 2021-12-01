@@ -12,5 +12,11 @@
           <span class="menu-title" >Project</span>
         </a>
       </li>
+      <li class="nav-item" id="list_spot_tab">
+        <a class="nav-link" href="{{ route('admin.list.spot') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Liste des Spots</span>
+        </a>
+      </li>
     </ul>
   </nav>

@@ -4,7 +4,7 @@
 .title_project{
 
   float: left;
-  width: 75%;
+  width: 60%;
 
 }
 .card .card-body .table-div{
@@ -26,6 +26,7 @@
           <div class="card">
             <div class="card-body">
                 <h4 class="card-title title_project">Project Data List</h4>
+                <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
                 <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
                 <span>Budget: {{$project->price}}</span>
@@ -42,7 +43,7 @@
                       <th>
                         Ancre
                       </th>
-                      <th>
+                      <th class="url_spot">
                         Url Spot
                       </th>
                       <th>
@@ -71,7 +72,7 @@
                       <td>
                       {{$pd->ancre}}
                       </td>
-                      <td>
+                      <td class="url_spot">
                        {{$pd->url_spot}}
                       </td>
                       <td>
@@ -93,9 +94,7 @@
                    
                   </tbody>
                 </table>
-                {{-- <div class="col-lg-12 float-start ">
-                      <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
-                </div> --}}
+              
               </div>
             </div>
             <div class="col-lg-12 float-start">
@@ -121,17 +120,20 @@
   $(".check_website").click(function(){
     var website = $(this).data('website');
     var token = $('html').find('meta[name="csrf-token"]')
-// console.log(token);
-  //   $.ajax({
-  //     type:'POST',
-  //     url:'/checkwebsite',
-  //     data: {
-  //       "_token": "{{ csrf_token() }}",
-  //       "website": website
-  //       },
-  //     success: function(html) {
-  //     },
-  //   });
-  // });
+console.log(token);
+    $.ajax({
+      type:'POST',
+      url:'{{route("admin.project.checkwebsite")}}',
+      data: {
+        "_token": "{{ csrf_token() }}",
+        "website": website
+        },
+      success: function(res) {
+        if(res == 0){
+          $(".url_spot").css('background-color','red'); 
+        }
+      },
+    });
+  });
  </script>
   @endsection

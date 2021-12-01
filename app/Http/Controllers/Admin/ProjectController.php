@@ -231,11 +231,11 @@ class ProjectController extends Controller
 
 
         $projectdatasaved = ProjectData::where('month',$month)->where('project_id',$id)->first();
+        $saved = 0;
         if($projectdatasaved){
 
             if($projectdatasaved->saved == '1'){
                 $saved = 1;
-                $saved = 0;
             }
         }else{
             $saved = 0;
@@ -250,16 +250,23 @@ class ProjectController extends Controller
 
     public function addDataEntryMonthVise(Request $request)
     {
-        // dd($request->all());
-       $projectdata = new ProjectData();
-       $projectdata->url = $request->url;
-       $projectdata->ancre = $request->ancre;
-       $projectdata->url_spot = $request->url_spot;
-       $projectdata->prestataire = $request->prestataire;
-       $projectdata->price = $request->price;
-       $projectdata->month= $request->month;
-       $projectdata->project_id= $request->id;
-       $projectdata->save();
+        $url = explode("\n", str_replace("\r", "",$request->url));
+        $ancre = explode("\n", str_replace("\r", "",$request->ancre));
+        $url_spot = explode("\n", str_replace("\r", "",$request->url_spot));
+        $prestataire = explode("\n", str_replace("\r", "",$request->prestataire));
+        $price = explode("\n", str_replace("\r", "",$request->price));
+
+        foreach($url as $index=>$value){
+            $projectdata = new ProjectData();
+            $projectdata->url = $value;
+            $projectdata->ancre = isset($ancre[$index]) ?  $ancre[$index] : '';
+            $projectdata->url_spot = isset($url_spot[$index]) ?  $url_spot[$index] : '';
+            $projectdata->prestataire = isset($prestataire[$index]) ?  $prestataire[$index] : '';
+            $projectdata->price = isset($price[$index]) ?  $price[$index] : '';
+            $projectdata->month= $request->month;
+            $projectdata->project_id= $request->id;
+            $projectdata->save();
+        }
 
        return Redirect::to('admin/project/show/'.$request->id.'/'.$request->month);
 
@@ -314,6 +321,26 @@ class ProjectController extends Controller
     public function checkwebsite(Request $request)
     {
         # code...
-        dd('yes');
+        // dd('yes');
+
+         $ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$request->website."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
+		curl_setopt($ch, CURLOPT_POST, 1);
+
+		
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$server_output = curl_exec($ch);
+
+		curl_close ($ch);
+        if($server_output == 'Validation Error : target'){
+            $notexitsdomain = 1;
+        }else{
+            $notexitsdomain = 0;
+        }
+
+        return $notexitsdomain;
+
     }
 }
