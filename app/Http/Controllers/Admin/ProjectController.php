@@ -314,9 +314,15 @@ class ProjectController extends Controller
         return view('admin.project.project_edit');
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        return view('admin.project.project_list');
+        $projectdata = ProjectData::where('project_id',$id)->delete();
+        
+        $datamonths = ProjectMonth::where('project_id',$id)->delete();
+        
+        $project = Project::where('id', $id)->delete();
+        $ProjectList = Project::all();
+        return view('admin.project.project_list', compact('ProjectList'));
     }
     public function checkwebsite(Request $request)
     {

@@ -66,6 +66,7 @@
                       </td>
                       <td>
                        <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id, '1'])}}">Show</a>
+                       <a class="btn btn-danger" href="{{ route('admin.project.delete', $pl->id)}}">Delete</a>
                       </td>
                     </tr>
                     @endforeach

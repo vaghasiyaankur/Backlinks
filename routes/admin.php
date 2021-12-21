@@ -38,13 +38,14 @@ Route::namespace('Admin')->group(function () {
         Route::post('/project/add', [ProjectController::class, 'store'])->name('admin.project.store');
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
         Route::get('/project/show/{id}/{month}', [ProjectController::class, 'show'])->name('admin.project.show');
-        Route::get('/project/data/add/{id}/{month}', [ProjectController::class, 'showDataMonthViseForm'])->name('admin.add.data');
+        Route::get('/project/delete/{id}', [ProjectController::class, 'delete'])->name('admin.project.delete');
+        Route::get('/project/data/add/{id}', [ProjectController::class, 'showDataMonthViseForm'])->name('admin.add.data');
         Route::get('/project/data/saved/{id}/{month}', [ProjectController::class, 'savedDataMonthVise'])->name('admin.project.saved');
         Route::post('/project/data/add', [ProjectController::class, 'addDataEntryMonthVise'])->name('admin.project.data.store');
         Route::get('/project/data/edit/{id}/{month}/{dataid}', [ProjectController::class, 'editDataMonthViseForm'])->name('admin.edit.data');
         Route::post('/project/data/update', [ProjectController::class, 'updateDataMonthViseForm'])->name('admin.project.data.update');
         Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
-
+        
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
         Route::get('/spot-list/add-excel', [SpotListController::class, 'excel'])->name('admin.spot.list.excel');
