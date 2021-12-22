@@ -29,7 +29,7 @@
                 <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
                 <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
-                <span>Budget: {{$project->price/12}}</span>
+                <span>Budget: {{number_format($project->price/$datamonths->months, 2)}}</span>
               <div class="table-responsive pt-3 table-div">
                 <table class="table table-bordered">
                   <thead>

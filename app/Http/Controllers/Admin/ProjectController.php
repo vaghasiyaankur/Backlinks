@@ -30,7 +30,16 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        
+
+        $projCheck = '';
+
+        if($request->projectType == '1' || $request->projectType == '2'){
+            if($request->projectCheckbox){
+                $projCheck = implode(",",$request->projectCheckbox);
+            }
+        }
+
+
         $count = Project::where('name',$request->name)->count();
         if($count){
             return Redirect::back()->withErrors(['msg' => 'This Project Name Already Exits']);
@@ -42,6 +51,7 @@ class ProjectController extends Controller
         $project->month = $request->month ;
         $project->price = $request->price ;
         $project->project_type_id = $request->projectType;
+        $project->project_type_checkbox = $projCheck ? $projCheck : '';
         $project->save();
 
         $projectdata = new ProjectMonth();

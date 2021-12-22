@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->String('price')->nullable();
             $table->unsignedBigInteger('project_type_id');
             $table->foreign('project_type_id')->references('id')->on('project_types');
+            $table->String('project_type_checkbox')->nullable();
             $table->timestamps();
         });
     }
