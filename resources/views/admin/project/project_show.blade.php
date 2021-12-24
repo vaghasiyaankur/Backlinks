@@ -52,9 +52,9 @@
                       <th>
                         Price
                       </th>
-                      {{-- <th>
+                      <th>
                         Edit
-                      </th> --}}
+                      </th>
                       {{-- <th>
                         save
                       </th> --}}
@@ -81,9 +81,10 @@
                       <td>
                         {{$pd->price}}
                       </td>
-                      {{-- <td>
+                      <td>
                        <a class="btn btn-primary" href="{{ route('admin.edit.data', [$id, $month,$pd->id])}}">Edit</a>
-                      </td> --}}
+                       <a class="btn btn-danger" href="{{ route('admin.delete.data', [$id, $month,$pd->id])}}">Delete</a>
+                      </td>
                       {{-- <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id])}}">Show</a> --}}
                       {{-- <td>
                         <a class="btn btn-success" href="#">save</a> --}}
