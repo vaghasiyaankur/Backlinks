@@ -18,7 +18,7 @@
                     <h4 class="card-title col-9"  >Project List</h4>
                     <a class="btn btn-success" href="{{ route('admin.spot.list.csv')}}">Download Csv File</a>
               <div class="table-responsive pt-3">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="table">
                   <thead>
                     <tr>
                       <th>
@@ -120,4 +120,11 @@
  
   </div>
 
+  @endsection
+  @section('script')
+  <script>
+    $(document).ready(function() {
+      $('#table').DataTable();
+  } );
+  </script>
   @endsection
