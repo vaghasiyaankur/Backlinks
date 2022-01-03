@@ -9,5 +9,5 @@ class SpotList extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['spot','prix','profile_facebook','ref_domain','trust_flow','citation_flow','majestic_flow','keywords'];
+    protected $fillable = ['spot','prix','profile_facebook','ref_domain','trust_flow','citation_flow','majestic_flow','keywords','trafic','gnews','thematic','provider'];
 }

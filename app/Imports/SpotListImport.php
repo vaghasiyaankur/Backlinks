@@ -27,6 +27,10 @@ class SpotListImport implements ToModel,WithHeadingRow
             'citation_flow'    => $row['citation_flow'],
             'majestic_flow'    => $row['majestic_index'],
             'keywords'    => $row['keywords'],
+            'trafic'    => $row['trafic'],
+            'gnews'    => $row['gnews'],
+            'thematic'    => $row['thematic'],
+            'provider'    => $row['provider'],
             ];
             
             return new SpotList($arr);

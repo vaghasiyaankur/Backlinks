@@ -48,6 +48,18 @@
                       <th>
                         Keywords
                       </th>
+                      <th>
+                        Trafic
+                      </th>
+                      <th>
+                        Gnews
+                      </th>
+                      <th>
+                        Thematic
+                      </th>
+                      <th>
+                        Provider
+                      </th>
                       
                     </tr>
                   </thead>
@@ -81,6 +93,18 @@
                       <td>
                         {{$sl->keywords}}
                       </td>
+                      <th>
+                        {{$sl->trafic}}
+                      </th>
+                      <th>
+                        {{$sl->gnews}}
+                      </th>
+                      <th>
+                       {{$sl->thematic}}
+                      </th>
+                      <th>
+                        {{$sl->provider}}
+                      </th>
                     </tr>
                     @endforeach
                    
