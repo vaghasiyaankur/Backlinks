@@ -13,7 +13,8 @@ class SpotListController extends Controller
     public function index(Request $request)
     {
         $spotlist = SpotList::all();
-       return view('admin.spotlist.list', compact('spotlist'));
+        $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
+       return view('admin.spotlist.list', compact('spotlist', 'thematic'));
     }
     public function excel(Request $request)
     {
@@ -66,5 +67,37 @@ class SpotListController extends Controller
         };
 
         return response()->stream($callback, 200, $headers);
+    }
+
+    public function filters(Request $request)
+    {
+        $list = SpotList::orderBy('id', 'ASC');
+
+
+        if($request->prix){
+            $list->where('prix', '>=', $request->prix);
+        }
+
+        if($request->trafic){
+            // $trafic = 0;
+            // $list->where('trafic', '<=', $request->trafic);
+        }
+
+        if($request->thematic){
+            $list->where('thematic', $request->thematic);
+        }
+
+        if($request->gnews){
+            $list->whereNotNull('gnews');
+        }
+
+        if($request->spot){
+            $list->Where('spot', 'like', '%' . $request->spot . '%');
+        }
+        $spotlist = $list->get();
+
+        $table = view('admin.spotlist.table', compact('spotlist'))->render();
+
+        return $table;
     }
 }

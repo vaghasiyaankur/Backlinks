@@ -121,7 +121,7 @@
   $(".check_website").click(function(){
     var website = $(this).data('website');
     var token = $('html').find('meta[name="csrf-token"]')
-console.log(token);
+// console.log(token);
     $.ajax({
       type:'POST',
       url:'{{route("admin.project.checkwebsite")}}',

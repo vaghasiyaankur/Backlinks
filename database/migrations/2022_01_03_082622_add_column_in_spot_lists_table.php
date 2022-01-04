@@ -29,7 +29,7 @@ class AddColumnInSpotListsTable extends Migration
     public function down()
     {
         Schema::table('spot_lists', function (Blueprint $table) {
-             $table->dropColumn('trafic');
+             $table->Integer('trafic');
              $table->dropColumn('gnews');
              $table->dropColumn('thematic');
              $table->dropColumn('provider');
