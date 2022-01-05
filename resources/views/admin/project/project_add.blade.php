@@ -6,7 +6,15 @@
         .check_2_checkbox {
             display: none;
         }
-
+        ..procheckboxmain{
+            width: 100%;
+        }
+        .procheckboxmain .checkbox_div{
+            display: inline-block;
+        }
+        .procheckboxmain .checkbox_div label {
+            line-height: normal;
+        }
     </style>
 @endsection
 
@@ -52,29 +60,43 @@
 
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-3 procheckboxmain">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
-                                                        name="projectCheckbox[]" value="Optimisation de contenus " >
-                                                    <label for="Optimisation de contenus "> Optimisation de
-                                                        contenus</label><br>
-                                                    <input type="checkbox" class="checkboxes" id="Rédaction" name="projectCheckbox[]"
-                                                        value="Rédaction">
-                                                    <label for="Rédaction"> Rédaction</label><br>
+                                                    {{-- <div>
+                                                        <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
+                                                            name="projectCheckbox[]" value="Optimisation de contenus " >
+                                                        <label for="Optimisation de contenus "> Optimisation de
+                                                            contenus</label><br>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" class="checkboxes" id="Rédaction" name="projectCheckbox[]"
+                                                            value="Rédaction">
+                                                        <label for="Rédaction"> Rédaction</label><br>
+                                                    </div>
+                                                    <div>
                                                     <input type="checkbox" class="checkboxes" id="Backlinks2" name="projectCheckbox[]"
                                                         value="Backlinks2">
                                                     <label for="Backlinks2"> Backlinks</label><br>
+                                                    </div> --}}
+                                                    <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Audit" name="projectCheckbox[]" value="Audit">
-                                                    <label for="Audit"> Audit</label><br>
+                                                    <label for="Audit"> Audit</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Intégration" name="projectCheckbox[]"
                                                         value="Intégration">
-                                                    <label for="Intégration"> Intégration</label><br>
+                                                    <label for="Intégration"> Intégration</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Développement" name="projectCheckbox[]"
                                                         value="Développement">
-                                                    <label for="Développement">Développement</label><br>
+                                                    <label for="Développement">Développement</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Coaching" name="projectCheckbox[]"
                                                         value="Coaching">
-                                                    <label for="Coaching"> Coaching</label><br><br>
+                                                    <label for="Coaching"> Coaching</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,6 +130,25 @@
 
                         </div> --}}
 
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-3 col-form-label">Begining In</label>
+                                            <div class="col-sm-9">
+                                                  <select name="begining_month" id="begining_month">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
 
                                         <div class="form-group row">
@@ -139,10 +180,35 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="price" class="col-sm-3 col-form-label">Price</label>
+                                            <label for="price" class="col-sm-3 col-form-label">Budget Backlinks</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="price" placeholder="Price"
+                                                <input type="text" class="form-control" id="price" placeholder="Budget Backlinks"
                                                     name="price" Required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row select_checkbox check_1_checkbox">
+                                            <label class="col-sm-3 col-form-label"></label>
+                                            <div class="col-sm-3 procheckboxmain">
+                                                <div class="form-check">
+                                                    <div class="checkbox_div">
+                                                        <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
+                                                            name="projectCheckbox[]" value="Optimisation de contenus " >
+                                                        <label for="Optimisation de contenus "> Optimisation de
+                                                            contenus</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
+                                                        <input type="checkbox" class="checkboxes" id="Rédaction" name="projectCheckbox[]"
+                                                            value="Rédaction">
+                                                        <label for="Rédaction"> Rédaction</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
+                                                    <input type="checkbox" class="checkboxes" id="Backlinks2" name="projectCheckbox[]"
+                                                        value="Backlinks2">
+                                                    <label for="Backlinks2"> Backlinks</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>

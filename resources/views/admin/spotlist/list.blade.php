@@ -42,6 +42,14 @@
 #table_filter{
   display: none;
 }
+.card-body .filters {
+  display: flex;
+  flex-wrap: wrap
+}
+.card-body .filters .formtofilter {
+  width: 25%;
+  margin: 0;
+}
 
 /** Switch
  -------------------------------------*/

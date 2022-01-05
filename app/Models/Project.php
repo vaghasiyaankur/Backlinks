@@ -12,7 +12,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'website','email','month','price', 'project_type_id','project_type_checkbox'];
+    protected $fillable = ['name', 'website','email','month','price', 'project_type_id','project_type_checkbox', 'begining_month'];
 
     public function projectType()
     {

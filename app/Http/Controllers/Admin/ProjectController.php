@@ -45,6 +45,7 @@ class ProjectController extends Controller
             return Redirect::back()->withErrors(['msg' => 'This Project Name Already Exits']);
         }
         $project = new Project();
+        $project->begining_month = $request->begining_month;
         $project->name = $request->name;
         $project->website = $request->website ;
         $project->email = $request->email ;
