@@ -74,13 +74,56 @@ class SpotListController extends Controller
         $list = SpotList::orderBy('id', 'ASC');
 
 
-        if($request->prix){
-            $list->where('prix', '>=', $request->prix);
+        if($request->prixFrom){
+            $list->where('prix', '>=', $request->prixFrom);
         }
 
-        if($request->trafic){
+        if($request->prixTo){
+            $list->where('prix', '<=', $request->prixTo);
+        }
+        if($request->refFrom){
+            $list->where('ref_domain', '>=', $request->refFrom);
+        }
+
+        if($request->refTo){
+            $list->where('ref_domain', '<=', $request->refTo);
+        }
+        if($request->trustFrom){
+            $list->where('trust_flow', '>=', $request->trustFrom);
+        }
+
+        if($request->trustTo){
+            $list->where('trust_flow', '<=', $request->trustTo);
+        }
+        if($request->citationFrom){
+            $list->where('citation_flow', '>=', $request->citationFrom);
+        }
+
+        if($request->citationTo){
+            $list->where('citation_flow', '<=', $request->citationTo);
+        }
+        if($request->majesticFrom){
+            $list->where('majestic_flow', '>=', $request->majesticFrom);
+        }
+
+        if($request->majesticTo){
+            $list->where('majestic_flow', '<=', $request->majesticTo);
+        }
+        if($request->keywordsFrom){
+            $list->where('keywords', '>=', $request->keywordsFrom);
+        }
+
+        if($request->keywordsTo){
+            $list->where('keywords', '<=', $request->keywordsTo);
+        }
+
+        if($request->traficFrom){
             // $trafic = 0;
-            // $list->where('trafic', '<=', $request->trafic);
+            $list->where('trafic', '>=', $request->traficFrom);
+        }
+        
+        if($request->traficTo){
+            $list->where('trafic', '<=', $request->traficTo);
         }
 
         if($request->thematic){

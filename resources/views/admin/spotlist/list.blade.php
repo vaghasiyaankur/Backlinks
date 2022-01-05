@@ -9,10 +9,22 @@
   div.filters{
     position: relative;
   }
-  .prixtrafic, .dropdown, .gnewsdiv, .spotdiv{
+  div.filter1 .formtofilter{
+    flex : 0 0 auto;
+    width: 20%;
+  }
+
+  div.filter2 .dropdown, .gnewsdiv, .spotdiv{
+    flex : 0 0 auto;
+    width: 25%;
+  }
+  .formtofilter, .dropdown, .gnewsdiv, .spotdiv{
     display: inline-block;
     margin-right: 100px;
   }
+  input[type="number"] {
+    width: 60px;
+}
 
 
 
@@ -92,17 +104,73 @@
             <div class="card-body">
                     <h4 class="card-title col-9"  >Project List</h4>
                     <a class="btn btn-success mb-3" href="{{ route('admin.spot.list.csv')}}">Download Csv File</a>
+                    
+                    <div class="filters filters1 mt-3 mb-4">
+                    <div class="formtofilter">
+                      <label for="prixFrom">Prix : </label>
+                      <label for="prixFrom" class="prix_label">From</label>
+                      <input type="number" name="prixFrom" class="fromfilter" id="prixFrom" />
+                      <label for="prixTo" class="prix_label">To</label>
+                      <input type="number" name="prixTo"  class="tofilter"  id="prixTo" />
+                    </div>
 
-                    <div class="filters mt-3 mb-4">
+                    <div class="formtofilter">
+                      <label for="refFrom">Ref Domain : </label>
+                      <label for="refFrom" class="ref_label">Form</label>
+                      <input type="number" name="ref" class="fromfilter" id="refFrom" />
+                      <label for="refTo" class="ref_label">To </label>
+                      <input type="number" name="ref" class="tofilter" id="refTo" />
+                    </div>
 
-                        <div class="prixtrafic">
-                          
-                          <label for="prix" class="prix">Form Prix</label>
-                          <input type="number" name="prix" id="prix" />
-                          <label for="trafic" class="trafic">To Trafic</label>
-                          <input type="number" name="trafic" id="trafic" />
-                        </div>
-  
+
+                    <div class="formtofilter">
+                      <label for="trustFrom">Trust Flow : </label>
+                      <label for="trustFrom" class="trust_label">From</label>
+                      <input type="number" name="trustFrom" class="fromfilter" id="trustFrom" />
+                      <label for="trustTo" class="trust_label">To</label>
+                      <input type="number" name="trustTo"  class="tofilter"  id="trustTo" />
+                    </div>
+
+                    <div class="formtofilter">
+                      <label for="citationFrom">Citation Flow : </label>
+                      <label for="citationFrom" class="citation_label">Form</label>
+                      <input type="number" name="citation" class="fromfilter" id="citationFrom" />
+                      <label for="citationTo" class="citation_label">To </label>
+                      <input type="number" name="citation" class="tofilter" id="citationTo" />
+                    </div>
+                  </div>
+
+                  <div class="filters filters1 mt-3 mb-4">
+                    <div class="formtofilter">
+                      <label for="majesticFrom">Majestic Flow : </label>
+                      <label for="majesticFrom" class="majestic_label">From</label>
+                      <input type="number" name="majesticFrom" class="fromfilter" id="majesticFrom" />
+                      <label for="majesticTo" class="majestic_label">To</label>
+                      <input type="number" name="majesticTo"  class="tofilter"  id="majesticTo" />
+                    </div>
+
+                    <div class="formtofilter">
+                      <label for="keywordsFrom">Keywords : </label>
+                      <label for="keywordsFrom" class="keywords_label">Form</label>
+                      <input type="number" name="keywords" class="fromfilter" id="keywordsFrom" />
+                      <label for="keywordsTo" class="keywords_label">To </label>
+                      <input type="number" name="keywords" class="tofilter" id="keywordsTo" />
+                    </div>
+
+
+                    <div class="formtofilter">
+                      <label for="traficFrom">Trafic : </label>
+                      <label for="traficFrom" class="trafic_label">From</label>
+                      <input type="number" name="traficFrom" class="fromfilter" id="traficFrom" />
+                      <label for="traficTo" class="trafic_label">To</label>
+                      <input type="number" name="traficTo"  class="tofilter"  id="traficTo" />
+                    </div>
+                  </div>
+
+                  
+                    <div class="filters filters2 mt-3 mb-4">
+
+
                         <div class="dropdown">
                           <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Thematic
@@ -244,7 +312,7 @@
       });
     });
 
-    $(document).on('keyup', '#prix, #traficm, #spot', function(){
+    $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
       // alert('dsn');
       datatable();
     });
@@ -265,8 +333,20 @@
 
 
     function datatable(){
-      var prix = $("#prix").val();
-      var trafic = $("#trafic").val();
+      var prixFrom = $("#prixFrom").val();
+      var prixTo = $("#prixTo").val();
+      var refFrom = $("#refFrom").val();
+      var refTo = $("#refTo").val();
+      var trustFrom = $("#trustFrom").val();
+      var trustTo = $("#trustTo").val();
+      var citationFrom = $("#citationFrom").val();
+      var citationTo = $("#citationTo").val();
+      var majesticFrom = $("#majesticFrom").val();
+      var majesticTo = $("#majesticTo").val();
+      var keywordsFrom = $("#keywordsFrom").val();
+      var keywordsTo = $("#keywordsTo").val();
+      var traficFrom = $("#traficFrom").val();
+      var traficTo = $("#traficTo").val();
       var spot = $("#spot").val();
       var thematic = $(".select_theme").text();
       var search = $("input[type=seach]").val();
@@ -292,8 +372,21 @@
       url:'{{route("admin.spotlist.filters")}}',
       data: {
         "_token": "{{ csrf_token() }}",
-        "prix": prix,
-        "trafic": trafic,
+        "prixFrom": prixFrom,
+        "prixTo": prixTo,
+        "prixTo": prixTo,
+        "refFrom": refFrom,
+        "refTo": refTo,
+        "trustFrom": trustFrom,
+        "trustTo": trustTo,
+        "citationFrom": citationFrom,
+        "citationTo": citationTo,
+        "majesticFrom": majesticFrom,
+        "majesticTo": majesticTo,
+        "keywordsFrom": keywordsFrom,
+        "keywordsTo": keywordsTo,
+        "traficFrom": traficFrom,
+        "traficTo": traficTo,
         "thematic": thematic,
         "gnews": gnews,
         "spot" : spot,
