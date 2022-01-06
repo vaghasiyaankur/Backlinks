@@ -205,13 +205,13 @@
                                         </div>
 
 
-                                        <div class="form-group row">
+                                        {{-- <div class="form-group row">
                                             <label for="refonte" class="col-sm-3 col-form-label">Refonte maillage interne</label>
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" id="refonte" placeholder="Refonte maillage interne"
                                                     name="refonte" rows="5" Required> {{ $project->refonte ?: ''}}</textarea>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
 
@@ -269,7 +269,7 @@
 
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
-                                            <div class="col-sm-3 procheckboxmain">
+                                            <div class="col-sm-6 procheckboxmain">
                                                 <div class="form-check">
                                                     <div class="checkbox_div">
                                                         <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
@@ -287,11 +287,17 @@
                                                         value="Backlinks2"  @if (in_array('Backlinks2', $arraycheckbox)) checked @endif>
                                                     <label for="Backlinks2"> Backlinks</label>
                                                     </div>
+
+                                                    <div class="checkbox_div">
+                                                        <input type="checkbox" class="checkboxes" id="Refonte maillage interne" name="projectCheckbox[]"
+                                                            value="Refonte maillage interne"  @if (in_array('Refonte maillage interne', $arraycheckbox)) checked @endif>
+                                                        <label for="Refonte maillage interne"> Refonte maillage interne</label>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
 
-
+                                        
 
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
                                         <button class="btn btn-light"><a href="{{ route('admin.project.list') }}"

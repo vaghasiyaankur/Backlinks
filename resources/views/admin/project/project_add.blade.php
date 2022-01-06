@@ -204,13 +204,13 @@
 
 
 
-                                        <div class="form-group row">
+                                        {{-- <div class="form-group row">
                                             <label for="refonte" class="col-sm-3 col-form-label">Refonte maillage interne</label>
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" id="refonte" placeholder="Budget Backlinks"
                                                     name="refonte" rows="5" Required></textarea>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
 
@@ -268,7 +268,7 @@
 
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
-                                            <div class="col-sm-3 procheckboxmain">
+                                            <div class="col-sm-6 procheckboxmain">
                                                 <div class="form-check">
                                                     <div class="checkbox_div">
                                                         <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
@@ -285,6 +285,11 @@
                                                     <input type="checkbox" class="checkboxes" id="Backlinks2" name="projectCheckbox[]"
                                                         value="Backlinks2">
                                                     <label for="Backlinks2"> Backlinks</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
+                                                    <input type="checkbox" class="checkboxes" id="Refonte maillage interne" name="projectCheckbox[]"
+                                                        value="Refonte maillage interne">
+                                                    <label for="Refonte maillage interne"> Refonte maillage interne</label>
                                                     </div>
                                                 </div>
                                             </div>
