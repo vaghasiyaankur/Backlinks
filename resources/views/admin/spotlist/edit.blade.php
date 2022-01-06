@@ -150,6 +150,8 @@
                                         </div>
 
 
+
+
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
                                         <button class="btn btn-light"><a href="{{ route('admin.list.spot') }}"
                                                 class="text-decoration-none">Cancel</a></button>

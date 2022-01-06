@@ -15,6 +15,8 @@ class AddNumberOfBacklinksColumnInProjectsTable extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->Integer('number_of_backlinks')->default(0);
+            $table->Text('refonte')->nullable();
+            $table->Integer('total_price')->default(0);
 
         });
     }
@@ -28,6 +30,8 @@ class AddNumberOfBacklinksColumnInProjectsTable extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('number_of_backlinks');
+            $table->dropColumn('refonte');
+            $table->dropColumn('total_price');
 
         });
     }

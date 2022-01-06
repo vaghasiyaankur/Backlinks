@@ -205,6 +205,25 @@
                                         </div>
 
 
+                                        <div class="form-group row">
+                                            <label for="refonte" class="col-sm-3 col-form-label">Refonte maillage interne</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="refonte" placeholder="Refonte maillage interne"
+                                                    name="refonte" rows="5" Required> {{ $project->refonte ?: ''}}</textarea>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <label for="total_price" class="col-sm-3 col-form-label">Total Price</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="total_price" placeholder="Total Price"
+                                                    name="total_price" value="{{ $project->total_price ?: ''}}" Required>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
                                             <div class="col-sm-3 procheckboxmain">
@@ -271,6 +290,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
                                         <button class="btn btn-light"><a href="{{ route('admin.project.list') }}"
                                                 class="text-decoration-none">Cancel</a></button>

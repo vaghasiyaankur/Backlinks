@@ -203,6 +203,26 @@
                                         </div>
 
 
+
+                                        <div class="form-group row">
+                                            <label for="refonte" class="col-sm-3 col-form-label">Refonte maillage interne</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="refonte" placeholder="Budget Backlinks"
+                                                    name="refonte" rows="5" Required></textarea>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <label for="total_price" class="col-sm-3 col-form-label">Total Price</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="total_price" placeholder="Budget Backlinks"
+                                                    name="total_price" Required>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
                                             <div class="col-sm-3 procheckboxmain">

@@ -55,8 +55,11 @@ class ProjectController extends Controller
         $project->number_of_backlinks = $request->number_of_backlinks ;
         $project->project_type_id = $request->projectType;
         $project->project_type_checkbox = $projCheck ? $projCheck : '';
+        $project->refonte = $request->refonte;
+        $project->total_price = $request->total_price;
         $project->save();
-
+        
+        
         $projectdata = new ProjectMonth();
         $projectdata->months = $request->month;
         $projectdata->project_id = $project->id;
@@ -358,6 +361,8 @@ class ProjectController extends Controller
             'price' => $request->price ,
             'number_of_backlinks' => $request->number_of_backlinks ,
             'project_type_id' => $request->projectType,
+            'refonte' => $request->refonte,
+            'total_price' => $request->total_price,
             'project_type_checkbox' => $projCheck ? $projCheck : '',
         ];
         $project = Project::where('id', $id)->update($update_array);
