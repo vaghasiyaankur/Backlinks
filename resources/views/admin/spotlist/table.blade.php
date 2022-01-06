@@ -54,6 +54,9 @@
         </td>
         <td>
           {{$sl->spot}}
+          <a href="{{ 'https://fr.semrush.com/analytics/overview/?searchType=domain&q='.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('semrush.ico')}}"/></a>
+          <a href="{{ 'https://app.seobserver.com/sites/view/'.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('seobserver.ico')}}"/></a>
+          
         </td>
         <td>
           {{$sl->prix}}

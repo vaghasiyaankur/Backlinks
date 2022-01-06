@@ -92,6 +92,13 @@
   margin-right: 10px;
 }
 
+.table td img, .jsgrid .jsgrid-table td img {
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+}
+
+
 </style>
 @endsection
 @section('content')
