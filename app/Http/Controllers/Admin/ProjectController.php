@@ -314,8 +314,18 @@ class ProjectController extends Controller
     {
        $projectdata = ProjectData::where('id',$dataid)->delete();
 
-       return Redirect::to('admin/project/show/'.$id.'/'.$month);
+       return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved'));
     }
+
+    public function showDetailDataMonthViseForm(Request $request, $id, $month, $dataid)
+    {
+        $projectdata = ProjectData::where('id',$dataid)->first();
+        $project = Project::where('id', $projectdata->project_id)->first();
+// dd($projectdata);
+        return view('admin.project.project_detail', compact('id', 'month','projectdata','project'));
+    }
+
+    
 
     public function updateDataMonthViseForm(Request $request)
     {

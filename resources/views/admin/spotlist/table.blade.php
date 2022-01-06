@@ -47,6 +47,7 @@
       </tr>
     </thead>
     <tbody>
+      
       @foreach($spotlist as $sl)
       <tr>
         <td>
