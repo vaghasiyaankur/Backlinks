@@ -40,6 +40,9 @@
         <th>
           Profile_facebook
         </th>
+        <th>
+          Action
+        </th>
         
       </tr>
     </thead>
@@ -85,6 +88,10 @@
         <td>
           <a href="{{$sl->profile_facebook}}" target="_blank" style="color:#000; text-decoration:none; "> <i class="fa fa-link"></i></a>
           
+        </td>
+        <td>
+          <a class="btn btn-primary" href="{{ route('admin.list.edit', $sl->id)}}">Edit</a>
+          <a class="btn btn-danger" href="{{ route('admin.list.delete', $sl->id)}}">Delete</a>
         </td>
       </tr>
       @endforeach

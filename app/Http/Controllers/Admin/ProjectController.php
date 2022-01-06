@@ -44,13 +44,15 @@ class ProjectController extends Controller
         if($count){
             return Redirect::back()->withErrors(['msg' => 'This Project Name Already Exits']);
         }
+        // dd($request->begining_month);
         $project = new Project();
-        $project->begining_month = $request->begining_month;
+        $project->begining_month = Carbon::parse($request->begining_month);
         $project->name = $request->name;
         $project->website = $request->website ;
         $project->email = $request->email ;
         $project->month = $request->month ;
         $project->price = $request->price ;
+        $project->number_of_backlinks = $request->number_of_backlinks ;
         $project->project_type_id = $request->projectType;
         $project->project_type_checkbox = $projCheck ? $projCheck : '';
         $project->save();
@@ -327,9 +329,44 @@ class ProjectController extends Controller
        return Redirect::to('admin/project/show/'.$request->id.'/'.$request->month);
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-        return view('admin.project.project_edit');
+        $ProjectType = ProjectType::all();
+        $project = Project::where('id', $id)->first();
+        $arraycheckbox = explode(',',$project->project_type_checkbox);
+
+        return view('admin.project.project_edit', compact('ProjectType','project','arraycheckbox'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request);
+        $projCheck = '';
+
+        if($request->projectType == '1' || $request->projectType == '2'){
+            if($request->projectCheckbox){
+                $projCheck = implode(",",$request->projectCheckbox);
+            }
+        }
+
+        $update_array = [
+            'begining_month' => Carbon::parse($request->begining_month),
+            'name' => $request->name,
+            'website' => $request->website ,
+            'email' => $request->email ,
+            'month' => $request->month ,
+            'price' => $request->price ,
+            'number_of_backlinks' => $request->number_of_backlinks ,
+            'project_type_id' => $request->projectType,
+            'project_type_checkbox' => $projCheck ? $projCheck : '',
+        ];
+        $project = Project::where('id', $id)->update($update_array);
+
+        $projectdata = ProjectMonth::where('project_id', $id)->update(['months' => $request->month]);
+
+
+        return Redirect::to('/admin/project');
+
     }
 
     public function delete($id)

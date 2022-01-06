@@ -37,6 +37,7 @@ Route::namespace('Admin')->group(function () {
         Route::get('/project/add', [ProjectController::class, 'add'])->name('admin.project.add');
         Route::post('/project/add', [ProjectController::class, 'store'])->name('admin.project.store');
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
+        Route::post('/project/update/{id}', [ProjectController::class, 'update'])->name('admin.project.update');
         Route::get('/project/show/{id}/{month}', [ProjectController::class, 'show'])->name('admin.project.show');
         Route::get('/project/delete/{id}', [ProjectController::class, 'delete'])->name('admin.project.delete');
         Route::get('/project/data/add/{id}/{month}', [ProjectController::class, 'showDataMonthViseForm'])->name('admin.add.data');
@@ -49,6 +50,9 @@ Route::namespace('Admin')->group(function () {
         
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
+        Route::get('/spot-list-edit/{id}', [SpotListController::class, 'edit'])->name('admin.list.edit');
+        Route::get('/spot-list-delete/{id}', [SpotListController::class, 'delete'])->name('admin.list.delete');
+        Route::post('/spot-list-update/{id}', [SpotListController::class, 'update'])->name('admin.list.update');
         Route::get('/spot-list/add-excel', [SpotListController::class, 'excel'])->name('admin.spot.list.excel');
         Route::post('/spot-list/add-excel', [SpotListController::class, 'excelstore'])->name('admin.spot.excel.store');
         Route::get('/spot-list/download-csv', [SpotListController::class, 'csvdownload'])->name('admin.spot.list.csv');

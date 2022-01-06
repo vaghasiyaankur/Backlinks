@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SpotList;
 use App\Imports\SpotListImport;
 use Excel;
+use Illuminate\Support\Facades\Redirect; 
 
 class SpotListController extends Controller
 {
@@ -16,6 +17,39 @@ class SpotListController extends Controller
         $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
        return view('admin.spotlist.list', compact('spotlist', 'thematic'));
     }
+
+    public function edit(Request $request, $id)
+    {
+       $spotlist = SpotList::where('id', $id)->first();
+       return view('admin.spotlist.edit', compact('spotlist'));
+    }
+    public function update(Request $request, $id)
+    {
+        $spotlist = SpotList::where('id', $id)->first();
+        $listupdatearray = [
+            'spot' => $request->spot ?: $spotlist->spot,
+            'prix' => $request->prix ?: $spotlist->prix,
+            'ref_domain' => $request->ref_domain ?: $spotlist->ref_domain,
+            'trust_flow' => $request->trust_flow ?: $spotlist->trust_flow,
+            'citation_flow' => $request->citation_flow ?: $spotlist->citation_flow,
+            'majestic_flow' => $request->majestic_flow ?: $spotlist->majestic_flow,
+            'keywords' => $request->keywords ?: $spotlist->keywords,
+            'trafic' => $request->trafic ?: $spotlist->trafic,
+            'gnews' => $request->gnews ?: $spotlist->gnews,
+            'thematic' => $request->thematic ?: $spotlist->thematic,
+            'provider' => $request->provider ?: $spotlist->provider,
+        ];
+        $spotlist = SpotList::where('id', $id)->update($listupdatearray);
+        return Redirect::to('/admin/spot-list');
+
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $spotlist = SpotList::where('id', $id)->delete();
+        return Redirect::to('/admin/spot-list');
+    }
+    
     public function excel(Request $request)
     {
         return view('admin.spotlist.excel');

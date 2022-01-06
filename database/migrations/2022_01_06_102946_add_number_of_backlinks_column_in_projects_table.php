@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBiginingMonthColumnInProjectsTable extends Migration
+class AddNumberOfBacklinksColumnInProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddBiginingMonthColumnInProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dateTime('begining_month')->nullable();
+            $table->Integer('number_of_backlinks')->default(0);
+
         });
     }
 
@@ -26,7 +27,8 @@ class AddBiginingMonthColumnInProjectsTable extends Migration
     public function down()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('begining_month');
+            $table->dropColumn('number_of_backlinks');
+
         });
     }
 }

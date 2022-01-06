@@ -12,7 +12,8 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'website','email','month','price', 'project_type_id','project_type_checkbox', 'begining_month'];
+    // protected $fillable = ['name', 'website','email','month','price', 'project_type_id','project_type_checkbox', 'begining_month'];
+     protected $guarded = ['id'];
 
     public function projectType()
     {
