@@ -73,6 +73,7 @@
 
   @section('script')
   <script>
+    $(".nav-item").removeClass('active');
   $("#propject_tab").addClass('active');
  </script>
   @endsection

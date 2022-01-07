@@ -117,6 +117,8 @@
 
   @section('script')
   <script>
+
+$(".nav-item").removeClass('active');
   $("#propject_tab").addClass('active');
 
   $(".check_website").click(function(){

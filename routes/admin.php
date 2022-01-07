@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SpotListController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
@@ -59,6 +60,8 @@ Route::namespace('Admin')->group(function () {
         Route::get('/spot-list/download-csv', [SpotListController::class, 'csvdownload'])->name('admin.spot.list.csv');
         Route::post('/spot-list/spotlist-filter', [SpotListController::class, 'filters'])->name('admin.spotlist.filters');
 
+        // gantt chart
+        Route::get('/chart', [ChartController::class, 'index'])->name('admin.chart.list');
 
         
         

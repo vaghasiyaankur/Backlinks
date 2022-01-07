@@ -18,5 +18,12 @@
           <span class="menu-title" >Liste des Spots</span>
         </a>
       </li>
+
+      <li class="nav-item" id="chart_tab">
+        <a class="nav-link" href="{{ route('admin.chart.list') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Liste des Desk</span>
+        </a>
+      </li>
     </ul>
   </nav>
