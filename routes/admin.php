@@ -62,6 +62,8 @@ Route::namespace('Admin')->group(function () {
 
         // gantt chart
         Route::get('/chart', [ChartController::class, 'index'])->name('admin.chart.list');
+        Route::post('/chart/change-color', [ChartController::class, 'changecolor'])->name('admin.chart.changecolor');
+
 
         
         

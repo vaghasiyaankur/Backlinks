@@ -108,8 +108,27 @@
 	 cursor: pointer;
 	 border-radius: 20px;
 }
- .gantt__row-bars li.stripes {
+ /* .gantt__row-bars li.stripes {
 	 background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, .1) 5px, rgba(255, 255, 255, .1) 12px);
+} */
+.gantt__row-bars li.project_type{
+    z-index : 3;
+    /* background-color: #FF0000; */
+
+}
+
+.gantt__row-bars li.color1{
+    background-color: #FF0000;
+
+}
+
+.gantt__row-bars li.color2{
+    background-color: #FF8C00;
+
+}
+.gantt__row-bars li.color3{
+    background-color: #008000;
+
 }
  .gantt__row-bars li:before, .gantt__row-bars li:after {
 	 content: "";
@@ -174,7 +193,16 @@
                 @foreach ($project_type as $type) 
                 {{-- {{dump($type)}} --}}
                 @if(@$type)
-                   <li class="project_type" style="grid-column: {{$begining_month}}/{{$total_month}}; background-color: #FF0000;" data-color="1">{{$type}}</li>
+                   {{-- <li class="project_type" style="grid-column: {{$begining_month}}/{{$total_month}}; background-color: #FF0000;" data-color="1">{{$type}}</li> --}}
+
+                   @for ($i = $begining_month; $i < $total_month; $i++)
+                   {{-- <option value="{{ $i }}">{{ $i }}</option> --}}
+                   <li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$i}}/{{$i+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+                   @endfor
+
+
+                   {{-- <li class="project_type" style="grid-column: 2/3; background-color: #FF0000;" data-color="1">{{$type}}</li> --}}
+                   
                 @endif
 				{{-- <li style="grid-column: 1/12; background-color: #2ecaac;">{{$type}}</li> --}}
                 @endforeach
@@ -274,6 +302,26 @@
             $(this).css('background-color','#FF0000');
             $(this).data('color', 1);
           }
+
+		  var id = $(this).data('id');
+		  var color_code = $(this).data('color');
+		  var type = $(this).data('type');
+
+		  $.ajax({
+			type:'POST',
+			url:'{{route("admin.chart.changecolor")}}',
+			data: {
+				"_token": "{{ csrf_token() }}",
+				"id" : id,
+				"color_code": color_code,
+				"type" : type
+				},
+			success: function(res) {
+				if(res == 1){
+				 console.log('done'); 
+				}
+			},
+			});
 
 
 

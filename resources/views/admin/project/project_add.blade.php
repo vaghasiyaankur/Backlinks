@@ -283,7 +283,7 @@
                                                     </div>
                                                     <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Backlinks2" name="projectCheckbox[]"
-                                                        value="Backlinks2">
+                                                        value="Backlinks">
                                                     <label for="Backlinks2"> Backlinks</label>
                                                     </div>
                                                     <div class="checkbox_div">

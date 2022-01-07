@@ -284,7 +284,7 @@
                                                     </div>
                                                     <div class="checkbox_div">
                                                     <input type="checkbox" class="checkboxes" id="Backlinks2" name="projectCheckbox[]"
-                                                        value="Backlinks2"  @if (in_array('Backlinks2', $arraycheckbox)) checked @endif>
+                                                        value="Backlinks"  @if (in_array('Backlinks', $arraycheckbox)) checked @endif>
                                                     <label for="Backlinks2"> Backlinks</label>
                                                     </div>
 
