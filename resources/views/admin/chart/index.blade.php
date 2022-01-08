@@ -148,7 +148,21 @@
 </style>
 @endsection
 @section('content')
-<div class="content-wrapper">
+
+@php
+$month = date('m');
+$prev_year = date('Y') - 1;
+$currnet_year = date('Y');
+$next_year = date('Y') + 1;
+@endphp
+<div class="d-flex flex-wrap w-100">
+<div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
+<button class="year_button btn btn-primary" value="{{$prev_year }}">{{$prev_year }}</button>
+<button class="year_button btn btn-primary" value="{{$currnet_year }}">{{$currnet_year}}</button>
+<button class="year_button btn btn-primary" value="{{$next_year }}">{{$next_year}}</button>
+</div>
+
+<div class="content-wrapper" id="{{$prev_year}}" style="display: none">
 	<div class="gantt">
 		<div class="gantt__row gantt__row--months">
 			<div class="gantt__row-first"></div>
@@ -157,9 +171,59 @@
 			<span>Jul</span><span>Aug</span><span>Sep</span>
 			<span>Oct</span><span>Nov</span><span>Dec</span>
 		</div>
-        @php
-            $month = date('m');
-        @endphp
+		<div class="gantt__row gantt__row--lines" data-month="5">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+        {{-- {{dd($ProjectList)}} --}}
+        @foreach($ProjectList as $pl)
+        <div class="gantt__row">
+			<div class="gantt__row-first">
+				{{$pl->name}}
+			</div>
+            @php
+                $project_type = explode(',', $pl->project_type_checkbox);
+				$begining_month = @$data[$prev_year][$pl->id][0];
+            @endphp
+
+			<ul class="gantt__row-bars">
+				@foreach ($project_type as $type) 
+				 	@if(@$type)
+
+							@foreach ($data[$prev_year][$pl->id] as $list)
+
+								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							
+							@endforeach	
+                	@endif
+                @endforeach
+			</ul>
+		</div>
+        @endforeach
+	</div>
+</div>	
+
+
+<div class="content-wrapper" id="{{$currnet_year}}">
+	<div class="gantt">
+		<div class="gantt__row gantt__row--months">
+			<div class="gantt__row-first"></div>
+			<span>Jan</span><span>Feb</span><span>Mar</span>
+			<span>Apr</span><span>May</span><span>Jun</span>
+			<span>Jul</span><span>Aug</span><span>Sep</span>
+			<span>Oct</span><span>Nov</span><span>Dec</span>
+		</div>
 		<div class="gantt__row gantt__row--lines" data-month="5">
 			<span></span>
 			<span @if($month == 1) class="marker" @endif></span>
@@ -175,108 +239,99 @@
 			<span @if($month == 11) class="marker" @endif></span>
 			<span @if($month == 12) class="marker" @endif></span>
 		</div>
-        {{-- {{dd($ProjectList)}} --}}
+
         @foreach($ProjectList as $pl)
         <div class="gantt__row">
 			<div class="gantt__row-first">
 				{{$pl->name}}
 			</div>
-            {{-- {{ date('m', strtotime($pl->begining_month)) }} --}}
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
-                $begining_month = date('m', strtotime($pl->begining_month));
-                $total_month = $pl->month + 1;
+				$begining_month = @$data[$currnet_year][$pl->id][0];
             @endphp
-            {{-- {{dd($type)}}
-            {{dd($pl)}} --}}
+
 			<ul class="gantt__row-bars">
-                @foreach ($project_type as $type) 
-                {{-- {{dump($type)}} --}}
-                @if(@$type)
-                   {{-- <li class="project_type" style="grid-column: {{$begining_month}}/{{$total_month}}; background-color: #FF0000;" data-color="1">{{$type}}</li> --}}
+				@foreach ($project_type as $type) 
+				 	@if(@$type)
+							@foreach ($data[$currnet_year][$pl->id] as $list)
 
-                   @for ($i = $begining_month; $i < $total_month; $i++)
-                   {{-- <option value="{{ $i }}">{{ $i }}</option> --}}
-                   <li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$i}}/{{$i+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
-                   @endfor
-
-
-                   {{-- <li class="project_type" style="grid-column: 2/3; background-color: #FF0000;" data-color="1">{{$type}}</li> --}}
-                   
-                @endif
-				{{-- <li style="grid-column: 1/12; background-color: #2ecaac;">{{$type}}</li> --}}
+								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							
+							@endforeach
+                	@endif
                 @endforeach
 			</ul>
 		</div>
         @endforeach
-
-		{{-- <div class="gantt__row">
-			<div class="gantt__row-first">
-				Barnard Posselt
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
-				<li style="grid-column: 4/11; background-color: #2ecaac;">Even longer project</li>
-			</ul>
-		</div> --}}
-		{{-- <div class="gantt__row gantt__row--empty">
-			<div class="gantt__row-first">
-				Ryley Huggons
-			</div>
-			<ul class="gantt__row-bars"></ul>
-		</div> --}}
-		{{-- <div class="gantt__row">
-			<div class="gantt__row-first">
-				Lanie Erwin
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 2/5; background-color: #2ecaac;">Start Februar 🙌</li>
-				<li style="grid-column: 1/6; background-color: #ff6252;" class="stripes"></li>
-				<li style="grid-column: 7/11; background-color: #54c6f9;">Same line</li>
-			</ul>
-		</div> --}}
-		{{-- <div class="gantt__row gantt__row--empty">
-			<div class="gantt__row-first">
-				Krishnah Pauleit
-			</div>
-			<ul class="gantt__row-bars"></ul>
-		</div>
-		<div class="gantt__row gantt__row--empty">
-			<div class="gantt__row-first">
-				Hobard Lampitt
-			</div>
-			<ul class="gantt__row-bars"></ul>
-		</div> --}}
-		{{-- <div class="gantt__row">
-			<div class="gantt__row-first">
-				Virgilio Jeanes
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 2/5; background-color: #2ecaac;"></li>
-			</ul>
-		</div> --}}
-		{{-- <div class="gantt__row">
-			<div class="gantt__row-first">
-				Ky Verick
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 3/8; background-color: #54c6f9;">Long project</li>
-			</ul>
-		</div> --}}
-{{-- 
-		<div class="gantt__row">
-			<div class="gantt__row-first">
-				Ketti Waterworth
-			</div>
-			<ul class="gantt__row-bars">
-				<li style="grid-column: 4/9; background-color: #ff6252;" class="stripes">A title</li>
-			</ul>
-		</div> --}}
 	</div>
+</div>	
+
+
+
+
+<div class="content-wrapper"  id="{{$next_year}}" style="display: none">
+	<div class="gantt">
+		<div class="gantt__row gantt__row--months">
+			<div class="gantt__row-first"></div>
+			<span>Jan</span><span>Feb</span><span>Mar</span>
+			<span>Apr</span><span>May</span><span>Jun</span>
+			<span>Jul</span><span>Aug</span><span>Sep</span>
+			<span>Oct</span><span>Nov</span><span>Dec</span>
+		</div>
+		<div class="gantt__row gantt__row--lines" data-month="5">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+        @foreach($ProjectList as $pl)
+        <div class="gantt__row">
+			<div class="gantt__row-first">
+				{{$pl->name}}
+			</div>
+            @php
+                $project_type = explode(',', $pl->project_type_checkbox);
+
+				$begining_month = @$data[$next_year][$pl->id][0];
+            @endphp
+
+			<ul class="gantt__row-bars">
+				@foreach ($project_type as $type) 
+				 	@if(@$type)
+
+							@foreach ($data[$next_year][$pl->id] as $list)
+
+								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							
+							@endforeach	
+                	@endif
+                @endforeach
+			</ul>
+		</div>
+        @endforeach
+	</div>
+</div>	
+</div>
   @endsection
 
   @section('script')
   <script>
+
+	  $(document).on('click','.year_button', function(){
+		  var value = $(this).val();
+		  $('.content-wrapper').hide();
+		  $("#"+value).show();
+	  })
       $(document).on('click', '.project_type', function(){
         //   if($(this).data('color') == 3){
         //     $(this).css('background-color','#FF0000');
