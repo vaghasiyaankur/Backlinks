@@ -242,19 +242,22 @@ $next_year = date('Y') + 1;
 							@php
 
 							$class = 'color1';
+							$datacolor = 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
+								$datacolor = 2;
 								$orangetask++;
 							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$datacolor = 3;
 								$greentask++;
 							}else{
 								$redtask++;
 							}
 								
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
 							@endforeach
                 	@endif
@@ -319,19 +322,22 @@ $next_year = date('Y') + 1;
 							@php
 
 							$class = 'color1';
+							$datacolor = 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
+								$datacolor = 2;
 								$orangetask++;
 							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$datacolor = 3;
 								$greentask++;
 							}else{
 								$redtask++;
 							}
 								
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
 							@endforeach
                 	@endif
@@ -397,19 +403,22 @@ $next_year = date('Y') + 1;
 							@php
 
 							$class = 'color1';
+							$datacolor = 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
+								$datacolor =2;
 								$orangetask++;
 							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$datacolor =3;
 								$greentask++;
 							}else{
 								$redtask++;
 							}
 								
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
 							@endforeach
                 	@endif

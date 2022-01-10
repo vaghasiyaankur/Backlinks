@@ -35,6 +35,10 @@
                                 </span>
                                 @enderror
                             </div>
+
+                            <div class="popup-btn text-left">
+                            <a href="{{ route('admin.list.demo') }}" class="btn btn-common btn-primary">Demo</a>
+                            </div>
                             <div class="col-md-8">
 
                                 <div class="popup-btn text-center">

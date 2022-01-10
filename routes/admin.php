@@ -59,6 +59,8 @@ Route::namespace('Admin')->group(function () {
         Route::post('/spot-list/add-excel', [SpotListController::class, 'excelstore'])->name('admin.spot.excel.store');
         Route::get('/spot-list/download-csv', [SpotListController::class, 'csvdownload'])->name('admin.spot.list.csv');
         Route::post('/spot-list/spotlist-filter', [SpotListController::class, 'filters'])->name('admin.spotlist.filters');
+        Route::get('/spot-list-demo', [SpotListController::class, 'exceldemo'])->name('admin.list.demo');
+
 
         // gantt chart
         Route::get('/chart', [ChartController::class, 'index'])->name('admin.chart.list');

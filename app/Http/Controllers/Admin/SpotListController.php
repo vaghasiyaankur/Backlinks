@@ -8,6 +8,7 @@ use App\Models\SpotList;
 use App\Imports\SpotListImport;
 use Excel;
 use Illuminate\Support\Facades\Redirect; 
+use Response;
 
 class SpotListController extends Controller
 {
@@ -60,6 +61,12 @@ class SpotListController extends Controller
         Excel::import(new SpotListImport,request()->file('excel'));
                
         return redirect()->route('admin.list.spot')->with("status", "Spot  list Added Using Excel Successfully");
+    }
+
+    public function exceldemo(Request $request)
+    {
+        $filePath = public_path("template/demoexel.xlsx");
+        return Response::download($filePath);
     }
 
     public function csvdownload(Request $request)
