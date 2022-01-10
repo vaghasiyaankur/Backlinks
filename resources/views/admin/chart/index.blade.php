@@ -113,21 +113,21 @@
 } */
 .gantt__row-bars li.project_type{
     z-index : 3;
-    /* background-color: #FF0000; */
+    /* background-color: #f77777; */
 
 }
 
 .gantt__row-bars li.color1{
-    background-color: #FF0000;
+    background-color: #f77777;
 
 }
 
 .gantt__row-bars li.color2{
-    background-color: #FF8C00;
+    background-color: #f8a744;
 
 }
 .gantt__row-bars li.color3{
-    background-color: #008000;
+    background-color: #6bdd6b;
 
 }
  .gantt__row-bars li:before, .gantt__row-bars li:after {
@@ -198,14 +198,34 @@ $next_year = date('Y') + 1;
             @endphp
 
 			<ul class="gantt__row-bars">
-				@foreach ($project_type as $type) 
+				@foreach ($project_type as $type)
+					@php
+
+						$orangetype = $type.'_orange';
+						$orange = explode(',',$pl->$orangetype);
+
+						$greentype = $type.'_green';
+						$green = explode(',',$pl->$greentype);
+					@endphp
 				 	@if(@$type)
-
 							@foreach ($data[$prev_year][$pl->id] as $list)
+								
+							@php
 
-								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							$class = 'color1';
+
+							if (in_array($list, $orange)) {
+								$class = 'color2';
+							}
+
+							if (in_array($list, $green)) {
+								$class = 'color3';
+							}
+								
+							@endphp
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
-							@endforeach	
+							@endforeach
                 	@endif
                 @endforeach
 			</ul>
@@ -251,11 +271,32 @@ $next_year = date('Y') + 1;
             @endphp
 
 			<ul class="gantt__row-bars">
-				@foreach ($project_type as $type) 
+				@foreach ($project_type as $type)
+					@php
+
+						$orangetype = $type.'_orange';
+						$orange = explode(',',$pl->$orangetype);
+
+						$greentype = $type.'_green';
+						$green = explode(',',$pl->$greentype);
+					@endphp
 				 	@if(@$type)
 							@foreach ($data[$currnet_year][$pl->id] as $list)
+								
+							@php
 
-								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							$class = 'color1';
+
+							if (in_array($list, $orange)) {
+								$class = 'color2';
+							}
+
+							if (in_array($list, $green)) {
+								$class = 'color3';
+							}
+								
+							@endphp
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
 							@endforeach
                 	@endif
@@ -306,14 +347,34 @@ $next_year = date('Y') + 1;
             @endphp
 
 			<ul class="gantt__row-bars">
-				@foreach ($project_type as $type) 
+				@foreach ($project_type as $type)
+					@php
+
+						$orangetype = $type.'_orange';
+						$orange = explode(',',$pl->$orangetype);
+
+						$greentype = $type.'_green';
+						$green = explode(',',$pl->$greentype);
+					@endphp
 				 	@if(@$type)
-
 							@foreach ($data[$next_year][$pl->id] as $list)
+								
+							@php
 
-								<li class="project_type @if(@$pl->$type) color{{$pl->$type}} @else 'color1 @endif" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}">{{$type}}</li>
+							$class = 'color1';
+
+							if (in_array($list, $orange)) {
+								$class = 'color2';
+							}
+
+							if (in_array($list, $green)) {
+								$class = 'color3';
+							}
+								
+							@endphp
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="1" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 							
-							@endforeach	
+							@endforeach
                 	@endif
                 @endforeach
 			</ul>
@@ -341,33 +402,34 @@ $next_year = date('Y') + 1;
 	  })
       $(document).on('click', '.project_type', function(){
         //   if($(this).data('color') == 3){
-        //     $(this).css('background-color','#FF0000');
+        //     $(this).css('background-color','#f77777');
         //     $(this).data('color', 1);
         //   }
 
         //   if($(this).data('color') == 2){
-        //     $(this).css('background-color','#008000');
+        //     $(this).css('background-color','#6bdd6b');
         //     $(this).data('color', 3);
         //   }
           
           if($(this).data('color') == 1){
 
-            $(this).css('background-color','#FF8C00');
+            $(this).css('background-color','#f8a744');
             $(this).data('color', 2);
 
           }else if($(this).data('color') == 2){
 
-            $(this).css('background-color','#008000');
+            $(this).css('background-color','#6bdd6b');
             $(this).data('color', 3);
 
           }else if($(this).data('color') == 3){
-            $(this).css('background-color','#FF0000');
+            $(this).css('background-color','#f77777');
             $(this).data('color', 1);
           }
 
 		  var id = $(this).data('id');
 		  var color_code = $(this).data('color');
 		  var type = $(this).data('type');
+		  var month= $(this).data('month');
 
 		  $.ajax({
 			type:'POST',
@@ -376,7 +438,8 @@ $next_year = date('Y') + 1;
 				"_token": "{{ csrf_token() }}",
 				"id" : id,
 				"color_code": color_code,
-				"type" : type
+				"type" : type,
+				"month" : month
 				},
 			success: function(res) {
 				if(res == 1){
@@ -387,8 +450,8 @@ $next_year = date('Y') + 1;
 
 
 
-        //   #FF8C00
-        // #008000
+        //   #f8a744
+        // #6bdd6b
       })
   </script>
   @endsection

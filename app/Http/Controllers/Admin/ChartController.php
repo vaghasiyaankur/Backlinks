@@ -78,7 +78,78 @@ class ChartController extends Controller
 
     public function changecolor(Request $request)
     {
-        $updatecolor = Project::where('id', $request->id)->update([$request->type => $request->color_code]);
+
+        // dd($request->all());
+        // $updatecolor = Project::where('id', $request->id)->update([$request->type => $request->color_code]);
+        $project = Project::where('id', $request->id)->first();
+        $type = $request->type;
+
+        if($request->color_code == 1){
+
+            $greentype = $type."_green";
+            $green = explode(',',$project->$greentype);
+            
+            if (($key = array_search($request->month, $green)) !== false) {
+                unset($green[$key]);
+            }
+            
+            
+            $orangetype = $type."_orange";
+            $orange = explode(',',$project->$orangetype);
+            
+            if (($key = array_search($request->month, $orange)) !== false) {
+                unset($orange[$key]);
+            }
+
+            $implodeorange = implode(',', $orange);
+            $implodegreen = implode(',', $green);
+            $update = Project::where('id', $request->id)->update([$greentype => $implodegreen, $orangetype => $implodeorange]);
+
+        }
+        
+        if($request->color_code == 2){
+            $orangetype = $type."_orange";
+            $orange = explode(',',$project->$orangetype);
+            
+            if (($key = array_search($request->month, $orange)) !== false) {
+                unset($orange[$key]);
+            }
+            array_push($orange,$request->month);
+
+            $greentype = $type."_green";
+            $green = explode(',',$project->$greentype);
+            
+            if (($key = array_search($request->month, $green)) !== false) {
+                unset($green[$key]);
+            }
+
+
+            $implodeorange = implode(',', $orange);
+            $implodegreen = implode(',', $green);
+            $update = Project::where('id', $request->id)->update([$greentype => $implodegreen, $orangetype => $implodeorange]);
+        }
+
+        if($request->color_code == 3){
+            $greentype = $type."_green";
+            $green = explode(',',$project->$greentype);
+            
+            if (($key = array_search($request->month, $green)) !== false) {
+                unset($green[$key]);
+            }
+            array_push($green,$request->month);
+
+            $orangetype = $type."_orange";
+            $orange = explode(',',$project->$orangetype);
+            
+            if (($key = array_search($request->month, $orange)) !== false) {
+                unset($orange[$key]);
+            }
+
+
+            $implodeorange = implode(',', $orange);
+            $implodegreen = implode(',', $green);
+            $update = Project::where('id', $request->id)->update([$greentype => $implodegreen, $orangetype => $implodeorange]);
+        }
         return 1;
     }
 }
