@@ -57,22 +57,13 @@ class ChartController extends Controller
             }
 
         }
-            // while ( $months < $end ) {
-            //     $year = date('Y', $months);
-            //     $month = date('m', $months);
-            //     dump($year);
-                // dump($prev_year);
-                // dd($year);
-            //     $months = strtotime("+1 month", $months);
-            // }
 
-        // }
-
-        // dd($data);
+        $clients = Project::count();
+        // dd($clients);
 
 
 
-        return view('admin.chart.index', compact('data','ProjectList'));
+        return view('admin.chart.index', compact('data','ProjectList', 'clients'));
 
     }
 

@@ -130,6 +130,21 @@
     background-color: #6bdd6b;
 
 }
+
+
+.color1{
+    background-color: #f77777;
+
+}
+
+.color2{
+    background-color: #f8a744;
+
+}
+.color3{
+    background-color: #6bdd6b;
+
+}
  .gantt__row-bars li:before, .gantt__row-bars li:after {
 	 content: "";
 	 height: 100%;
@@ -161,6 +176,20 @@ $next_year = date('Y') + 1;
 <button class="year_button btn btn-success" value="{{$currnet_year }}">{{$currnet_year}}</button>
 <button class="year_button btn btn-primary" value="{{$next_year }}">{{$next_year}}</button>
 </div>
+
+
+<div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
+	<button class="btn btn-primary" value="{{$prev_year }}">Number Of Clients : <span id="no_of_client">{{$clients}}</span></button>
+	<button class="btn color1" value="{{$currnet_year }}">Task Number :  <span id="redtask">40</span></button>
+	<button class="btn color2" value="{{$next_year }}">Task Number :  <span id="orangetask">40</span></button>
+	<button class="btn color3" value="{{$next_year }}">Task Number :  <span id="greentask">40</span></button>
+</div>
+
+@php
+	$orangetask = 0;
+	$greentask = 0;
+	$redtask = 0;
+@endphp
 
 <div class="content-wrapper" id="{{$prev_year}}" style="display: none">
 	<div class="gantt">
@@ -216,10 +245,12 @@ $next_year = date('Y') + 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
-							}
-
-							if (in_array($list, $green)) {
+								$orangetask++;
+							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$greentask++;
+							}else{
+								$redtask++;
 							}
 								
 							@endphp
@@ -233,7 +264,9 @@ $next_year = date('Y') + 1;
         @endforeach
 	</div>
 </div>	
-
+{{-- {{dump($orangetask)}}
+{{dump($greentask)}}
+{{dd($redtask)}} --}}
 
 <div class="content-wrapper" id="{{$currnet_year}}">
 	<div class="gantt">
@@ -289,10 +322,12 @@ $next_year = date('Y') + 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
-							}
-
-							if (in_array($list, $green)) {
+								$orangetask++;
+							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$greentask++;
+							}else{
+								$redtask++;
 							}
 								
 							@endphp
@@ -365,10 +400,12 @@ $next_year = date('Y') + 1;
 
 							if (in_array($list, $orange)) {
 								$class = 'color2';
-							}
-
-							if (in_array($list, $green)) {
+								$orangetask++;
+							}else if (in_array($list, $green)) {
 								$class = 'color3';
+								$greentask++;
+							}else{
+								$redtask++;
 							}
 								
 							@endphp
@@ -382,11 +419,25 @@ $next_year = date('Y') + 1;
         @endforeach
 	</div>
 </div>	
+<input type="hidden" name="orangetaskno" id="orangetaskno" value="{{$orangetask}}">
+<input type="hidden" name="greentaskno" id="greentaskno" value="{{$greentask}}">
+<input type="hidden" name="redtaskno" id="redtaskno" value="{{$redtask}}">
 </div>
   @endsection
-
   @section('script')
   <script>
+
+	$(document).ready(function() {
+		var orangetaskno  = $("#orangetaskno").val();
+		var greentaskno  = $("#greentaskno").val();
+		var redtaskno  = $("#redtaskno").val();
+		$("#redtask").text(redtaskno);
+		$("#orangetask").text(orangetaskno);
+		$("#greentask").text(greentaskno);
+	}
+	
+
+);
 
 	  $(document).on('click','.year_button', function(){
 		  var value = $(this).val();
@@ -413,15 +464,43 @@ $next_year = date('Y') + 1;
           
           if($(this).data('color') == 1){
 
+			var rno = $("#redtask").text();
+			var redno = parseInt(rno) - 1;
+			$("#redtask").text(redno);
+
+			var ono = $("#orangetask").text();
+			var redno = parseInt(ono) + 1;
+			$("#orangetask").text(redno);
+
+			
             $(this).css('background-color','#f8a744');
             $(this).data('color', 2);
 
           }else if($(this).data('color') == 2){
 
+
+			var rno = $("#orangetask").text();
+			var redno = parseInt(rno) - 1;
+			$("#orangetask").text(redno);
+
+			var ono = $("#greentask").text();
+			var redno = parseInt(ono) + 1;
+			$("#greentask").text(redno);
+
+
             $(this).css('background-color','#6bdd6b');
             $(this).data('color', 3);
 
           }else if($(this).data('color') == 3){
+
+			var rno = $("#greentask").text();
+			var redno = parseInt(rno) - 1;
+			$("#greentask").text(redno);
+
+			var ono = $("#redtask").text();
+			var redno = parseInt(ono) + 1;
+			$("#redtask").text(redno);
+
             $(this).css('background-color','#f77777');
             $(this).data('color', 1);
           }
