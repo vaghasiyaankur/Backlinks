@@ -22,7 +22,14 @@
       <li class="nav-item" id="chart_tab">
         <a class="nav-link" href="{{ route('admin.chart.list') }}">
           <i class="icon-grid menu-icon"></i>
-          <span class="menu-title" >Liste des Desk</span>
+          <span class="menu-title" >Task Manager</span>
+        </a>
+      </li>
+
+      <li class="nav-item" id="current_tab">
+        <a class="nav-link" href="{{ route('admin.current.order') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Current BL orders</span>
         </a>
       </li>
     </ul>

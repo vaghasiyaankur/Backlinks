@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SpotListController;
 use App\Http\Controllers\Admin\ChartController;
+use App\Http\Controllers\Admin\CurrentOrderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
@@ -66,6 +67,9 @@ Route::namespace('Admin')->group(function () {
         Route::get('/chart', [ChartController::class, 'index'])->name('admin.chart.list');
         Route::post('/chart/change-color', [ChartController::class, 'changecolor'])->name('admin.chart.changecolor');
 
+
+        //  curretn BL Order
+        Route::get('/currentorder', [CurrentOrderController::class, 'index'])->name('admin.current.order');
 
         
         

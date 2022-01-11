@@ -22,7 +22,7 @@ class Project extends Model
 
     public function project()
     {
-        $this->belongsTo(ProjectData::class);
+        $this->hasMany(ProjectData::class);
     }
 
     public function projectMonths()
