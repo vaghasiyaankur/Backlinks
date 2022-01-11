@@ -20,14 +20,14 @@ class Project extends Model
         return $this->hasOne(ProjectType::class);
     }
 
-    public function project()
+    public function projectData()
     {
-        $this->hasMany(ProjectData::class);
+       return  $this->hasMany(ProjectData::class);
     }
 
     public function projectMonths()
     {
         return $this->hasOne(ProjectMonth::class);
     }
-    
+
 }

@@ -11,7 +11,7 @@ class ChartController extends Controller
 {
     public function index(Request $request)
     {
-        
+
         $ProjectList = Project::all();
         $current = Carbon::now();
         $data = [];
@@ -19,14 +19,14 @@ class ChartController extends Controller
         $current_year = $current->year;
         $next_year = $current->year + 1;
 
-        
+
         // $year = date('Y', strtotime($ProjectList->begining_month));
 
 
         foreach($ProjectList as $project){
             $end = strtotime(date($project->begining_month));
             $start = $months = strtotime("-".$project->month." months", $end);
-            
+
 
             $start = strtotime($project->begining_month);
             $end = strtotime("+".$project->month." months", $start);
@@ -34,7 +34,7 @@ class ChartController extends Controller
             $data[$prev_year][$project->id] = [];
             $data[$current_year][$project->id] = [];
             $data[$next_year][$project->id] = [];
-            
+
 
             while($start < $end)
             {
@@ -79,15 +79,15 @@ class ChartController extends Controller
 
             $greentype = $type."_green";
             $green = explode(',',$project->$greentype);
-            
+
             if (($key = array_search($request->month, $green)) !== false) {
                 unset($green[$key]);
             }
-            
-            
+
+
             $orangetype = $type."_orange";
             $orange = explode(',',$project->$orangetype);
-            
+
             if (($key = array_search($request->month, $orange)) !== false) {
                 unset($orange[$key]);
             }
@@ -97,11 +97,11 @@ class ChartController extends Controller
             $update = Project::where('id', $request->id)->update([$greentype => $implodegreen, $orangetype => $implodeorange]);
 
         }
-        
+
         if($request->color_code == 2){
             $orangetype = $type."_orange";
             $orange = explode(',',$project->$orangetype);
-            
+
             if (($key = array_search($request->month, $orange)) !== false) {
                 unset($orange[$key]);
             }
@@ -109,7 +109,7 @@ class ChartController extends Controller
 
             $greentype = $type."_green";
             $green = explode(',',$project->$greentype);
-            
+
             if (($key = array_search($request->month, $green)) !== false) {
                 unset($green[$key]);
             }
@@ -123,7 +123,7 @@ class ChartController extends Controller
         if($request->color_code == 3){
             $greentype = $type."_green";
             $green = explode(',',$project->$greentype);
-            
+
             if (($key = array_search($request->month, $green)) !== false) {
                 unset($green[$key]);
             }
@@ -131,7 +131,7 @@ class ChartController extends Controller
 
             $orangetype = $type."_orange";
             $orange = explode(',',$project->$orangetype);
-            
+
             if (($key = array_search($request->month, $orange)) !== false) {
                 unset($orange[$key]);
             }
