@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SpotListController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\CurrentOrderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,15 @@ Route::namespace('Admin')->group(function () {
     Route::post('/login/post', [LoginController::class,  'login'])->name('admin.login.post');
 
 
-    
-    
-    
-    
-    Route::middleware('adminlogin')->group(function () {  
-        
+
+
+
+
+    Route::middleware('adminlogin')->group(function () {
+
         Route::get('/dashboard', function(){
             return view('admin.welcome');
-        })->name('admin.dashboard');  
+        })->name('admin.dashboard');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
@@ -50,7 +51,8 @@ Route::namespace('Admin')->group(function () {
         Route::get('/project/data/show/{id}/{month}/{dataid}', [ProjectController::class, 'showDetailDataMonthViseForm'])->name('admin.show.data');
         Route::post('/project/data/update', [ProjectController::class, 'updateDataMonthViseForm'])->name('admin.project.data.update');
         Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
-        
+        Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
+
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
         Route::get('/spot-list-edit/{id}', [SpotListController::class, 'edit'])->name('admin.list.edit');
@@ -70,10 +72,8 @@ Route::namespace('Admin')->group(function () {
 
         //  curretn BL Order
         Route::get('/currentorder', [CurrentOrderController::class, 'index'])->name('admin.current.order');
+        Route::post('/currentorder/filter', [CurrentOrderController::class, 'filter'])->name('admin.current.order.filters');
+        Route::get('/currentorder/download-csv',[CurrentOrderController::class, 'download_csv'])->name('admin.currentorder.csv');
 
-        
-        
-        
-        
     });
 });

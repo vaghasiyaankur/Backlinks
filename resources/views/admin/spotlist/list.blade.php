@@ -104,112 +104,115 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
- 
+
       <div class="row">
-        
+
           <div class="col-lg-10 col-md-10">
             <h3> Project </h3>
           </div>
           <div class="col-lg-2 col-md-2 mb-4">
            <a href="{{ route('admin.spot.list.excel') }}" class="btn btn-primary"> Add SpotList Excel</a>
           </div>
-        
+
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
                     <h4 class="card-title col-9"  >Project List</h4>
                     <a class="btn btn-success mb-3" href="{{ route('admin.spot.list.csv')}}">Download Csv File</a>
-                    
-                    <div class="filters filters1 mt-3 mb-4">
-                    <div class="formtofilter">
-                      <label for="prixFrom">Prix : </label>
-                      <label for="prixFrom" class="prix_label">From</label>
-                      <input type="number" name="prixFrom" class="fromfilter" id="prixFrom" />
-                      <label for="prixTo" class="prix_label">To</label>
-                      <input type="number" name="prixTo"  class="tofilter"  id="prixTo" />
+
+                    <button class="btn btn-primary mb-3 show_filter">Show Filter</button>
+                    <button class="btn btn-primary mb-3 d-none hide_filter">Hide Filter</button>
+
+                    <div class="filters filters1 mt-3 mb-4 d-none">
+                        <div class="formtofilter">
+                        <label for="prixFrom">Prix : </label>
+                        <label for="prixFrom" class="prix_label">From</label>
+                        <input type="number" name="prixFrom" class="fromfilter" id="prixFrom" />
+                        <label for="prixTo" class="prix_label">To</label>
+                        <input type="number" name="prixTo"  class="tofilter"  id="prixTo" />
+                        </div>
+
+                        <div class="formtofilter">
+                        <label for="refFrom">Ref Domain : </label>
+                        <label for="refFrom" class="ref_label">Form</label>
+                        <input type="number" name="ref" class="fromfilter" id="refFrom" />
+                        <label for="refTo" class="ref_label">To </label>
+                        <input type="number" name="ref" class="tofilter" id="refTo" />
+                        </div>
+
+
+                        <div class="formtofilter">
+                        <label for="trustFrom">Trust Flow : </label>
+                        <label for="trustFrom" class="trust_label">From</label>
+                        <input type="number" name="trustFrom" class="fromfilter" id="trustFrom" />
+                        <label for="trustTo" class="trust_label">To</label>
+                        <input type="number" name="trustTo"  class="tofilter"  id="trustTo" />
+                        </div>
+
+                        <div class="formtofilter">
+                        <label for="citationFrom">Citation Flow : </label>
+                        <label for="citationFrom" class="citation_label">Form</label>
+                        <input type="number" name="citation" class="fromfilter" id="citationFrom" />
+                        <label for="citationTo" class="citation_label">To </label>
+                        <input type="number" name="citation" class="tofilter" id="citationTo" />
+                        </div>
                     </div>
 
-                    <div class="formtofilter">
-                      <label for="refFrom">Ref Domain : </label>
-                      <label for="refFrom" class="ref_label">Form</label>
-                      <input type="number" name="ref" class="fromfilter" id="refFrom" />
-                      <label for="refTo" class="ref_label">To </label>
-                      <input type="number" name="ref" class="tofilter" id="refTo" />
+                    <div class="filters filters1 mt-3 mb-4 d-none">
+                        <div class="formtofilter">
+                        <label for="majesticFrom">Majestic Flow : </label>
+                        <label for="majesticFrom" class="majestic_label">From</label>
+                        <input type="number" name="majesticFrom" class="fromfilter" id="majesticFrom" />
+                        <label for="majesticTo" class="majestic_label">To</label>
+                        <input type="number" name="majesticTo"  class="tofilter"  id="majesticTo" />
+                        </div>
+
+                        <div class="formtofilter">
+                        <label for="keywordsFrom">Keywords : </label>
+                        <label for="keywordsFrom" class="keywords_label">Form</label>
+                        <input type="number" name="keywords" class="fromfilter" id="keywordsFrom" />
+                        <label for="keywordsTo" class="keywords_label">To </label>
+                        <input type="number" name="keywords" class="tofilter" id="keywordsTo" />
+                        </div>
+
+
+                        <div class="formtofilter">
+                        <label for="traficFrom">Trafic : </label>
+                        <label for="traficFrom" class="trafic_label">From</label>
+                        <input type="number" name="traficFrom" class="fromfilter" id="traficFrom" />
+                        <label for="traficTo" class="trafic_label">To</label>
+                        <input type="number" name="traficTo"  class="tofilter"  id="traficTo" />
+                        </div>
                     </div>
 
 
-                    <div class="formtofilter">
-                      <label for="trustFrom">Trust Flow : </label>
-                      <label for="trustFrom" class="trust_label">From</label>
-                      <input type="number" name="trustFrom" class="fromfilter" id="trustFrom" />
-                      <label for="trustTo" class="trust_label">To</label>
-                      <input type="number" name="trustTo"  class="tofilter"  id="trustTo" />
-                    </div>
-
-                    <div class="formtofilter">
-                      <label for="citationFrom">Citation Flow : </label>
-                      <label for="citationFrom" class="citation_label">Form</label>
-                      <input type="number" name="citation" class="fromfilter" id="citationFrom" />
-                      <label for="citationTo" class="citation_label">To </label>
-                      <input type="number" name="citation" class="tofilter" id="citationTo" />
-                    </div>
-                  </div>
-
-                  <div class="filters filters1 mt-3 mb-4">
-                    <div class="formtofilter">
-                      <label for="majesticFrom">Majestic Flow : </label>
-                      <label for="majesticFrom" class="majestic_label">From</label>
-                      <input type="number" name="majesticFrom" class="fromfilter" id="majesticFrom" />
-                      <label for="majesticTo" class="majestic_label">To</label>
-                      <input type="number" name="majesticTo"  class="tofilter"  id="majesticTo" />
-                    </div>
-
-                    <div class="formtofilter">
-                      <label for="keywordsFrom">Keywords : </label>
-                      <label for="keywordsFrom" class="keywords_label">Form</label>
-                      <input type="number" name="keywords" class="fromfilter" id="keywordsFrom" />
-                      <label for="keywordsTo" class="keywords_label">To </label>
-                      <input type="number" name="keywords" class="tofilter" id="keywordsTo" />
-                    </div>
-
-
-                    <div class="formtofilter">
-                      <label for="traficFrom">Trafic : </label>
-                      <label for="traficFrom" class="trafic_label">From</label>
-                      <input type="number" name="traficFrom" class="fromfilter" id="traficFrom" />
-                      <label for="traficTo" class="trafic_label">To</label>
-                      <input type="number" name="traficTo"  class="tofilter"  id="traficTo" />
-                    </div>
-                  </div>
-
-                  
-                    <div class="filters filters2 mt-3 mb-4">
+                    <div class="filters filters2 mt-3 mb-4 d-none">
 
 
                         <div class="dropdown">
-                          <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Thematic
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton1">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton1">
                             @foreach($thematic as $th)
                             <span class="dropdown-item"  value="{{ $th->thematic }}">{{ $th->thematic }}</span>
                             @endforeach
-                          </div>
+                        </div>
 
                         </div>
                         <div class="gnewsdiv">
-                          <label for="gnews" class="labelGnews">Gnews</label>
-                          <label class="gnewslabel" for="gnews"><input type="checkbox" name="gnews" id="gnews"/>    <div></div>
-                          </label>
+                        <label for="gnews" class="labelGnews">Gnews</label>
+                        <label class="gnewslabel" for="gnews"><input type="checkbox" name="gnews" id="gnews"/>    <div></div>
+                        </label>
                         </div>
 
                         <div class="spotdiv">
-                          
-                          <label for="spot" class="spot">Spot</label>
-                          <input type="search" name="spot" id="spot" />
+
+                        <label for="spot" class="spot">Spot</label>
+                        <input type="search" name="spot" id="spot" />
                         </div>
-                      </div>     
-                    
+                    </div>
+
               <div class="table-responsive pt-3">
                 {{-- @yield('table') --}}
                 @include('admin.spotlist.table')
@@ -255,7 +258,7 @@
                       <th>
                         Profile_facebook
                       </th>
-                      
+
                     </tr>
                   </thead>
                   <tbody>
@@ -299,11 +302,11 @@
                       </td>
                       <td>
                         <a href="{{$sl->profile_facebook}}" target="_blank" style="color:#000; text-decoration:none; "> <i class="fa fa-link"></i></a>
-                        
+
                       </td>
                     </tr>
                     @endforeach
-                   
+
                   </tbody>
                 </table> --}}
               </div>
@@ -313,7 +316,7 @@
       </div>
     </div>
     <!-- content-wrapper ends -->
- 
+
   </div>
 
   @endsection
@@ -369,7 +372,7 @@
       if ($('#gnews').is(":checked"))
       {
         var gnews = 1;
-       
+
       }else{
         var gnews = '';
       }
@@ -414,5 +417,16 @@
 
 
     }
+    $(document).on('click','.show_filter',function(){
+        $('.hide_filter').removeClass('d-none');
+        $('.filters').removeClass('d-none');
+        $(this).addClass('d-none');
+    });
+
+    $(document).on('click','.hide_filter',function(){
+        $('.show_filter').removeClass('d-none');
+        $('.filters').addClass('d-none');
+        $(this).addClass('d-none');
+    });
   </script>
   @endsection

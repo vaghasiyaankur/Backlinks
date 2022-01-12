@@ -32,8 +32,15 @@ class SpotListImport implements ToModel,WithHeadingRow
             'thematic'    => $row['thematic'],
             'provider'    => $row['provider'],
             ];
-            
-            return new SpotList($arr);
+
+            $count = SpotList::where('spot', $row['spot'])->count();
+            if($count){
+              SpotList::where('spot', $row['spot'])->update($arr);
+            //   return 1;
+            }else{
+                return new SpotList($arr);
+            }
+
         }
     }
 }

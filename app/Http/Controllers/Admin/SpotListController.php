@@ -5,16 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SpotList;
+use App\Models\ProjectData;
 use App\Imports\SpotListImport;
 use Excel;
-use Illuminate\Support\Facades\Redirect; 
+use Illuminate\Support\Facades\Redirect;
 use Response;
 
 class SpotListController extends Controller
 {
     public function index(Request $request)
     {
-        $spotlist = SpotList::all();
+
+        $url_spot = ProjectData::pluck('url_spot');
+
+
+        $spotlist = SpotList::whereNotIn('spot', $url_spot)->get();
         $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
        return view('admin.spotlist.list', compact('spotlist', 'thematic'));
     }
@@ -50,7 +55,7 @@ class SpotListController extends Controller
         $spotlist = SpotList::where('id', $id)->delete();
         return Redirect::to('/admin/spot-list');
     }
-    
+
     public function excel(Request $request)
     {
         return view('admin.spotlist.excel');
@@ -59,7 +64,7 @@ class SpotListController extends Controller
     public function excelstore(Request $request)
     {
         Excel::import(new SpotListImport,request()->file('excel'));
-               
+
         return redirect()->route('admin.list.spot')->with("status", "Spot  list Added Using Excel Successfully");
     }
 
@@ -74,8 +79,10 @@ class SpotListController extends Controller
         $fileName = 'spotlist.csv';
 
 
+        $url_spot = ProjectData::pluck('url_spot');
 
-        $spotlist = SpotList::all();
+
+        $spotlist = SpotList::whereNotIn('spot', $url_spot)->get();
 
         $headers = array(
             "Content-type"        => "text/csv",
@@ -112,7 +119,9 @@ class SpotListController extends Controller
 
     public function filters(Request $request)
     {
-        $list = SpotList::orderBy('id', 'ASC');
+        $url_spot = ProjectData::pluck('url_spot');
+
+        $list = SpotList::whereNotIn('spot', $url_spot);
 
 
         if($request->prixFrom){
@@ -162,7 +171,7 @@ class SpotListController extends Controller
             // $trafic = 0;
             $list->where('trafic', '>=', $request->traficFrom);
         }
-        
+
         if($request->traficTo){
             $list->where('trafic', '<=', $request->traficTo);
         }
