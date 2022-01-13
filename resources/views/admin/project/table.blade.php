@@ -39,8 +39,8 @@
             <td>
             {{$pd->ancre}}
             </td>
-            <td class="url_spot">
-                {{$pd->url_spot}}
+            <td class="url_spot spot_{{$loop->index}}">
+                {{$spotlist[$loop->index]}}
             </td>
             <td>
                 {{$pd->prestataire}}

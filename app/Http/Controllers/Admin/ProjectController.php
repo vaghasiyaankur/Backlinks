@@ -13,6 +13,7 @@ use Mail;
 use Carbon\Carbon;
 use File;
 use ZipArchive;
+use App\Models\SpotList;
 
 class ProjectController extends Controller
 {
@@ -256,7 +257,15 @@ class ProjectController extends Controller
         }else{
             $saved = 0;
         }
-        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved'));
+        $spot_list = SpotList::select('spot')->get();
+
+        $spotlist = [];
+        foreach ($spot_list as $index => $value) {
+            $spotlist[$index] = $value->spot;
+
+        }
+        $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
+        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved','spotlist','thematic'));
     }
 
     public function showDataMonthViseForm(Request $request, $id, $month)
@@ -420,35 +429,107 @@ class ProjectController extends Controller
 
     }
 
-    public function filter(Request $req)
+    public function filter(Request $request)
     {
-        $projectdata = ProjectData::orderBy('id','ASC');
-        if ($req->url) {
-            $projectdata->where('url', 'like', '%' . $req->url . '%');
-        }
-        if ($req->ancre) {
-            $projectdata->where('ancre', 'like', '%' . $req->ancre . '%');
-        }
-        if ($req->urlspot) {
-            $projectdata->where('url_spot', 'like', '%' . $req->urlspot . '%');
-        }
-        if ($req->prestataire) {
-            $projectdata->where('prestataire', 'like', '%' . $req->prestataire . '%');
-        }
-        if ($req->pricefrom) {
-            $projectdata->where('price', '>=', $req->pricefrom);
-        }
-        if ($req->priceto) {
-            $projectdata->where('price', '<=', $req->priceto);
-        }
-        $projectdata = $projectdata->where('project_id', $req->id)->where('month', $req->month)->get();
+        // $projectdata = ProjectData::orderBy('id','ASC');
+        // if ($req->url) {
+        //     $projectdata->where('url', 'like', '%' . $req->url . '%');
+        // }
+        // if ($req->ancre) {
+        //     $projectdata->where('ancre', 'like', '%' . $req->ancre . '%');
+        // }
+        // if ($req->urlspot) {
+        //     $projectdata->where('url_spot', 'like', '%' . $req->urlspot . '%');
+        // }
+        // if ($req->prestataire) {
+        //     $projectdata->where('prestataire', 'like', '%' . $req->prestataire . '%');
+        // }
+        // if ($req->pricefrom) {
+        //     $projectdata->where('price', '>=', $req->pricefrom);
+        // }
+        // if ($req->priceto) {
+        //     $projectdata->where('price', '<=', $req->priceto);
+        // }
+        // $projectdata = $projectdata->where('project_id', $req->id)->where('month', $req->month)->get();
 
-        $id = $req->id;
-        $month = $req->month;
+        // $id = $req->id;
+        // $month = $req->month;
 
-        $table = view('admin.project.table', compact('projectdata','id','month'))->render();
+        // $table = view('admin.project.table', compact('projectdata','id','month'))->render();
 
-        return $table;
+        // return $table;
+        $url_spot = ProjectData::pluck('url_spot');
+
+        $list = SpotList::whereNotIn('spot', $url_spot);
+
+
+        if($request->prixFrom){
+            $list->where('prix', '>=', $request->prixFrom);
+        }
+
+        if($request->prixTo){
+            $list->where('prix', '<=', $request->prixTo);
+        }
+        if($request->refFrom){
+            $list->where('ref_domain', '>=', $request->refFrom);
+        }
+
+        if($request->refTo){
+            $list->where('ref_domain', '<=', $request->refTo);
+        }
+        if($request->trustFrom){
+            $list->where('trust_flow', '>=', $request->trustFrom);
+        }
+
+        if($request->trustTo){
+            $list->where('trust_flow', '<=', $request->trustTo);
+        }
+        if($request->citationFrom){
+            $list->where('citation_flow', '>=', $request->citationFrom);
+        }
+
+        if($request->citationTo){
+            $list->where('citation_flow', '<=', $request->citationTo);
+        }
+        if($request->majesticFrom){
+            $list->where('majestic_flow', '>=', $request->majesticFrom);
+        }
+
+        if($request->majesticTo){
+            $list->where('majestic_flow', '<=', $request->majesticTo);
+        }
+        if($request->keywordsFrom){
+            $list->where('keywords', '>=', $request->keywordsFrom);
+        }
+
+        if($request->keywordsTo){
+            $list->where('keywords', '<=', $request->keywordsTo);
+        }
+
+        if($request->traficFrom){
+            // $trafic = 0;
+            $list->where('trafic', '>=', $request->traficFrom);
+        }
+
+        if($request->traficTo){
+            $list->where('trafic', '<=', $request->traficTo);
+        }
+
+        if($request->thematic){
+            $list->where('thematic', $request->thematic);
+        }
+
+        if($request->gnews){
+            $list->whereNotNull('gnews');
+        }
+
+        if($request->spot){
+            $list->Where('spot', 'like', '%' . $request->spot . '%');
+        }
+
+        $spot = $list->pluck('spot');
+
+        return $spot;
     }
 
 }

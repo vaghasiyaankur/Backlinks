@@ -461,15 +461,16 @@ $next_year = date('Y') + 1;
 		var orangetaskno  = $("#orangetaskno").val();
 		var greentaskno  = $("#greentaskno").val();
 		var redtaskno  = $("#redtaskno").val();
-		var currentorangetaskno  = $("#orangetaskno").val();
-		var currentgreentaskno  = $("#greentaskno").val();
-		var currentredtaskno  = $("#redtaskno").val();
+		var currentorangetaskno  = $("#currentorangetaskno").val();
+		var currentgreentaskno  = $("#currentgreentaskno").val();
+		var currentredtaskno  = $("#currentredtaskno").val();
+
 		$("#redtask").text(redtaskno);
 		$("#orangetask").text(orangetaskno);
 		$("#greentask").text(greentaskno);
-		$("#currentredtask").text(currentorangetaskno);
-		$("#currentorangetask").text(currentgreentaskno);
-		$("#currentgreentask").text(currentredtaskno);
+		$("#currentorangetask").text(currentorangetaskno);
+		$("#currentgreentask").text(currentgreentaskno);
+		$("#currentredtask").text(currentredtaskno);
 
 	}
 
@@ -499,6 +500,10 @@ $next_year = date('Y') + 1;
         //     $(this).data('color', 3);
         //   }
 
+
+        var year = $(this).parents('div.gantt').parent('div').attr("id");
+        var month = $(this).data('month')-1;
+
           if($(this).data('color') == 1){
 
 			var rno = $("#redtask").text();
@@ -508,6 +513,16 @@ $next_year = date('Y') + 1;
 			var ono = $("#orangetask").text();
 			var redno = parseInt(ono) + 1;
 			$("#orangetask").text(redno);
+
+            if ((year == new Date().getFullYear()) && (month == new Date().getMonth())) {
+                var crno = $("#currentredtask").text();
+                var credno = parseInt(crno) - 1;
+                $("#currentredtask").text(credno);
+
+                var cono = $("#currentorangetask").text();
+                var credno = parseInt(cono) + 1;
+                $("#currentorangetask").text(credno);
+            }
 
 
             $(this).css('background-color','#f8a744');
@@ -524,6 +539,15 @@ $next_year = date('Y') + 1;
 			var redno = parseInt(ono) + 1;
 			$("#greentask").text(redno);
 
+            if ((year == new Date().getFullYear()) && (month == new Date().getMonth())) {
+                var crno = $("#currentorangetask").text();
+                var credno = parseInt(crno) - 1;
+                $("#currentorangetask").text(credno);
+
+                var cono = $("#currentgreentask").text();
+                var credno = parseInt(cono) + 1;
+                $("#currentgreentask").text(credno);
+            }
 
             $(this).css('background-color','#6bdd6b');
             $(this).data('color', 3);
@@ -537,6 +561,16 @@ $next_year = date('Y') + 1;
 			var ono = $("#redtask").text();
 			var redno = parseInt(ono) + 1;
 			$("#redtask").text(redno);
+
+            if ((year == new Date().getFullYear()) && (month == new Date().getMonth())) {
+                var rno = $("#currentgreentask").text();
+                var redno = parseInt(rno) - 1;
+                $("#currentgreentask").text(redno);
+
+                var ono = $("#currentredtask").text();
+                var redno = parseInt(ono) + 1;
+                $("#currentredtask").text(redno);
+            }
 
             $(this).css('background-color','#f77777');
             $(this).data('color', 1);
