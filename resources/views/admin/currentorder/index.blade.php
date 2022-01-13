@@ -23,7 +23,12 @@
                                     <h4 class="card-title">current Project List</h4>
                                 </div>
                                 <div class="col-3 text-end">
-                                    <a href="{{ route('admin.currentorder.csv') }}" class="btn btn-primary csv-download">Download Csv File</a>
+                                    <form action="{{ route('admin.currentorder.csv') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" id="csv_date" name="csv_date">
+                                        <input type="hidden" id="csv_project" name="csv_project">
+                                        <input type="submit" value="Download Csv File" class="btn btn-primary csv-download">
+                                    </form>
                                 </div>
                             </div>
                             <div class="row">
@@ -72,6 +77,13 @@
                     $(".table-responsive").append(res);
                 },
             });
+        });
+        $(document).on('click','.csv-download',function(){
+            var date = $('#datepicker').val();
+            var project = $("#project").val();
+            $('#csv_date').val(date);
+            $("#csv_project").val(project);
+
         });
     </script>
 @stop

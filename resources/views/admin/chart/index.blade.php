@@ -159,7 +159,7 @@
  .gantt__row-bars li:after {
 	 right: 0;
 }
- 
+
 </style>
 @endsection
 @section('content')
@@ -185,10 +185,20 @@ $next_year = date('Y') + 1;
 	<button class="btn color3" value="{{$next_year }}">Task Number :  <span id="greentask">40</span></button>
 </div>
 
+<div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
+	<button class="btn btn-primary" value="{{$prev_year }}">current Number Of Clients : <span id="no_of_client">{{$clients}}</span></button>
+	<button class="btn color1" value="{{$currnet_year }}">current Task Number :  <span id="currentredtask">40</span></button>
+	<button class="btn color2" value="{{$next_year }}">current Task Number :  <span id="currentorangetask">40</span></button>
+	<button class="btn color3" value="{{$next_year }}">current Task Number :  <span id="currentgreentask">40</span></button>
+</div>
+
 @php
 	$orangetask = 0;
 	$greentask = 0;
 	$redtask = 0;
+    $currentorangetask = 0;
+    $currentgreentask = 0;
+    $currentredtask = 0;
 @endphp
 
 <div class="content-wrapper" id="{{$prev_year}}" style="display: none">
@@ -238,7 +248,7 @@ $next_year = date('Y') + 1;
 					@endphp
 				 	@if(@$type)
 							@foreach ($data[$prev_year][$pl->id] as $list)
-								
+
 							@php
 
 							$class = 'color1';
@@ -255,10 +265,10 @@ $next_year = date('Y') + 1;
 							}else{
 								$redtask++;
 							}
-								
+
 							@endphp
 								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-							
+
 							@endforeach
                 	@endif
                 @endforeach
@@ -266,7 +276,7 @@ $next_year = date('Y') + 1;
 		</div>
         @endforeach
 	</div>
-</div>	
+</div>
 {{-- {{dump($orangetask)}}
 {{dump($greentask)}}
 {{dd($redtask)}} --}}
@@ -318,27 +328,35 @@ $next_year = date('Y') + 1;
 					@endphp
 				 	@if(@$type)
 							@foreach ($data[$currnet_year][$pl->id] as $list)
-								
+
 							@php
 
 							$class = 'color1';
 							$datacolor = 1;
-
 							if (in_array($list, $orange)) {
 								$class = 'color2';
 								$datacolor = 2;
 								$orangetask++;
+                                if($list == $month){
+                                    $currentorangetask++;
+                                }
 							}else if (in_array($list, $green)) {
 								$class = 'color3';
 								$datacolor = 3;
 								$greentask++;
+                                if($list == $month){
+                                    $currentgreentask++;
+                                }
 							}else{
 								$redtask++;
+                                if($list == $month){
+                                    $currentredtask++;
+                                }
 							}
-								
+
 							@endphp
 								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-							
+
 							@endforeach
                 	@endif
                 @endforeach
@@ -346,7 +364,7 @@ $next_year = date('Y') + 1;
 		</div>
         @endforeach
 	</div>
-</div>	
+</div>
 
 
 
@@ -399,7 +417,7 @@ $next_year = date('Y') + 1;
 					@endphp
 				 	@if(@$type)
 							@foreach ($data[$next_year][$pl->id] as $list)
-								
+
 							@php
 
 							$class = 'color1';
@@ -416,10 +434,10 @@ $next_year = date('Y') + 1;
 							}else{
 								$redtask++;
 							}
-								
+
 							@endphp
 								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-							
+
 							@endforeach
                 	@endif
                 @endforeach
@@ -427,10 +445,13 @@ $next_year = date('Y') + 1;
 		</div>
         @endforeach
 	</div>
-</div>	
+</div>
 <input type="hidden" name="orangetaskno" id="orangetaskno" value="{{$orangetask}}">
 <input type="hidden" name="greentaskno" id="greentaskno" value="{{$greentask}}">
 <input type="hidden" name="redtaskno" id="redtaskno" value="{{$redtask}}">
+<input type="hidden" name="currentorangetaskno" id="currentorangetaskno" value="{{$currentorangetask}}">
+<input type="hidden" name="currentgreentaskno" id="currentgreentaskno" value="{{$currentgreentask}}">
+<input type="hidden" name="currentredtaskno" id="currentredtaskno" value="{{$currentredtask}}">
 </div>
   @endsection
   @section('script')
@@ -440,11 +461,18 @@ $next_year = date('Y') + 1;
 		var orangetaskno  = $("#orangetaskno").val();
 		var greentaskno  = $("#greentaskno").val();
 		var redtaskno  = $("#redtaskno").val();
+		var currentorangetaskno  = $("#orangetaskno").val();
+		var currentgreentaskno  = $("#greentaskno").val();
+		var currentredtaskno  = $("#redtaskno").val();
 		$("#redtask").text(redtaskno);
 		$("#orangetask").text(orangetaskno);
 		$("#greentask").text(greentaskno);
+		$("#currentredtask").text(currentorangetaskno);
+		$("#currentorangetask").text(currentgreentaskno);
+		$("#currentgreentask").text(currentredtaskno);
+
 	}
-	
+
 
 );
 
@@ -470,7 +498,7 @@ $next_year = date('Y') + 1;
         //     $(this).css('background-color','#6bdd6b');
         //     $(this).data('color', 3);
         //   }
-          
+
           if($(this).data('color') == 1){
 
 			var rno = $("#redtask").text();
@@ -481,7 +509,7 @@ $next_year = date('Y') + 1;
 			var redno = parseInt(ono) + 1;
 			$("#orangetask").text(redno);
 
-			
+
             $(this).css('background-color','#f8a744');
             $(this).data('color', 2);
 
@@ -531,7 +559,7 @@ $next_year = date('Y') + 1;
 				},
 			success: function(res) {
 				if(res == 1){
-				 console.log('done'); 
+				 console.log('done');
 				}
 			},
 			});

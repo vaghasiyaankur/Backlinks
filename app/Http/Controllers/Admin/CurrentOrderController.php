@@ -78,9 +78,9 @@ class CurrentOrderController extends Controller
     {
         $fileName = 'currntorder.csv';
 
-        $project = Project::with('projectData')->where('name', 'LIKE','%'. request()->project . '%')->get();
-        if ($request->date) {
-            $date = $request->date;
+        $project = Project::with('projectData')->where('name', 'LIKE','%'. $request->csv_project . '%')->get();
+        if ($request->csv_date) {
+            $date = $request->csv_date;
         }else{
             $date = Carbon::now()->format('m/d/Y');
         }
@@ -133,11 +133,6 @@ class CurrentOrderController extends Controller
             }
             fclose($file);
         };
-        // return response()->streamDownload($callback, 200, $headers);
-        // return response()->file($callback, $headers);
         return response()->stream($callback, 200, $headers);
-        // return response()->download($callback, 'rfse', $headers);
-        // return response($callback, 200)
-        //           ->header('Content-Type', 'text/csv');
     }
 }

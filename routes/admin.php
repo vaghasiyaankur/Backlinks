@@ -73,7 +73,7 @@ Route::namespace('Admin')->group(function () {
         //  curretn BL Order
         Route::get('/currentorder', [CurrentOrderController::class, 'index'])->name('admin.current.order');
         Route::post('/currentorder/filter', [CurrentOrderController::class, 'filter'])->name('admin.current.order.filters');
-        Route::get('/currentorder/download-csv',[CurrentOrderController::class, 'download_csv'])->name('admin.currentorder.csv');
+        Route::post('/currentorder/download-csv',[CurrentOrderController::class, 'download_csv'])->name('admin.currentorder.csv');
 
     });
 });
