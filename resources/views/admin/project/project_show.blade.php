@@ -4,7 +4,7 @@
 .title_project{
 
   float: left;
-  width: 45%;
+  width: 50%;
 
 }
 .card .card-body .table-div{
@@ -48,7 +48,7 @@ a:focus, input:focus{
           <div class="card">
             <div class="card-body">
                 <h4 class="card-title title_project">Project Data List</h4>
-                <a href="{{ route('admin.list.spot') }}" class="btn btn-primary">Spot List</a>
+                {{-- <a href="{{ route('admin.list.spot') }}" class="btn btn-primary">Spot List</a> --}}
                 <button class="btn btn-primary show_filter">Show Filter</button>
                 <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
                 <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
