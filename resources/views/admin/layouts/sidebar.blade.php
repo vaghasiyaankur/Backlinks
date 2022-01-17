@@ -6,6 +6,12 @@
           <span class="menu-title" >Dashboard</span>
         </a>
       </li>
+      <li class="nav-item" id="dashboard_tab">
+        <a class="nav-link" href="{{ route('admin.user') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >User</span>
+        </a>
+      </li>
       <li class="nav-item" id="propject_tab">
         <a class="nav-link" href="{{ route('admin.project.list') }}">
           <i class="icon-cog menu-icon"></i>

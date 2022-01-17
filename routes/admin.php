@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SpotListController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\CurrentOrderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -35,6 +36,22 @@ Route::namespace('Admin')->group(function () {
         })->name('admin.dashboard');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+        // user
+
+        Route::get('users', [UserController::class, 'index'])->name('admin.user');
+        Route::get('changePassword/{id}', function($id){
+            return view('admin.users.change_password',compact('id'));
+        })->name('change.password');
+        Route::post('changePassword',[UserController::class,'changePassword'])->name('admin.user.change.password');
+        Route::get('verified/{id}', [UserController::class, 'verify_status'])->name('verified');
+        Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+        Route::get('user/add', function(){
+            return view('admin.users.add_user');
+        })->name('add.users');
+        Route::post('user/add',[UserController::class,'add_user'])->name('admin.user.store');
+
+        // project
 
         Route::get('/project', [ProjectController::class, 'list'])->name('admin.project.list');
         Route::get('/project/add', [ProjectController::class, 'add'])->name('admin.project.add');

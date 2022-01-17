@@ -31,7 +31,7 @@
                                 <textarea class="form-control" rows="8" cols="50"  id="url" placeholder="Url" name="url" Required></textarea>
                                 </div>
                             </div>
-                            <div class="form-group row align-items-center col-2">
+                            <div class="form-group row align-items-center col-3">
                                 {{-- <label for="Ancre" class="col-sm-2 col-form-label">Ancre</label> --}}
                                 <div class="col-sm-12">
                                 <textarea class="form-control" rows="8" cols="50" id="ancre" placeholder="Ancre" name="ancre" Required></textarea>
