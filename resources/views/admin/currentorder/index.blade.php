@@ -27,6 +27,7 @@
                                         @csrf
                                         <input type="hidden" id="csv_date" name="csv_date">
                                         <input type="hidden" id="csv_project" name="csv_project">
+                                        <input type="hidden" id="csv_provider" name="csv_provider">
                                         <input type="submit" value="Download Csv File" class="btn btn-primary csv-download">
                                     </form>
                                 </div>
@@ -37,8 +38,18 @@
                                     <input id="datepicker" name="date" class="filter">
                                 </div>
                                 <div class="col-3">
-                                    <label for="project">project Name : </label>
+                                    <label for="project">Project Name : </label>
                                     <input id="project" name="project" class="filter">
+                                </div>
+                                <div class="col-4">
+                                    <label for="provider">Provider : </label>
+                                    {{-- <input id="project" name="project" class="filter"> --}}
+                                    <select name="provider" id="provider" class="filter">
+                                        <option value="">All</option>
+                                        @foreach ($provider_data as $val)
+                                            <option value="{{$val}}">{{ $val }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="table-responsive pt-3">
@@ -62,6 +73,7 @@
         $(document).on('keyup change','.filter',function(){
             var date = $('#datepicker').val();
             var project = $("#project").val();
+            var provider = $("#provider").val();
             var token = $('html').find('meta[name="csrf-token"]');
 
             $.ajax({
@@ -71,6 +83,7 @@
                     "_token": "{{ csrf_token() }}",
                     "date": date,
                     "project": project,
+                    "provider": provider,
                 },
                 success: function(res) {
                     $("#table").remove();
@@ -81,8 +94,10 @@
         $(document).on('click','.csv-download',function(){
             var date = $('#datepicker').val();
             var project = $("#project").val();
+            var provider = $("#provider").val();
             $('#csv_date').val(date);
             $("#csv_project").val(project);
+            $("#csv_provider").val(provider);
 
         });
     </script>

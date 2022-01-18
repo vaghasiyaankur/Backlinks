@@ -16,6 +16,7 @@ class CurrentOrderController extends Controller
         $project = Project::with('projectData')->get();
         $current = Carbon::now();
         $project_data = [];
+        $provider = [];
         $current_year = $current->year;
 
         foreach ($project as $val) {
@@ -32,12 +33,19 @@ class CurrentOrderController extends Controller
                 $month = date('m', $start);
                 if(($year == $current_year) && ($month == date('m'))){
                     $project_data[$val->name] = ProjectData::where('month', $i)->where('project_id', $val->id)->select('url','ancre','url_spot','prestataire','price')->get();
+                    $provider[] = ProjectData::where('month', $i)->where('project_id', $val->id)->select('prestataire')->get()->groupBy('prestataire');
                 }
                 $start = strtotime("+1 month", $start);
                 $i += 1;
             }
         }
-        return view('admin.currentorder.index',compact('project_data'));
+        $provider_data = [];
+        foreach ($provider as $data) {
+            foreach ($data as $key => $val) {
+                $provider_data[] = $key;
+            }
+        }
+        return view('admin.currentorder.index',compact('project_data','provider_data'));
     }
     public function filter(Request $request)
     {
@@ -65,7 +73,7 @@ class CurrentOrderController extends Controller
                 $year = date('Y', $start);
                 $month = date('m', $start);
                 if(($year == $current_year) && ($month == $current_month)){
-                    $project_data[$val->name] = ProjectData::where('month', $i)->where('project_id', $val->id)->select('url','ancre','url_spot','prestataire','price')->get();
+                    $project_data[$val->name] = ProjectData::where('month', $i)->where('project_id', $val->id)->where('prestataire','LIKE','%'.$request->provider.'%')->select('url','ancre','url_spot','prestataire','price')->get();
                 }
                 $start = strtotime("+1 month", $start);
                 $i += 1;
@@ -76,7 +84,7 @@ class CurrentOrderController extends Controller
 
     public function download_csv(Request $request)
     {
-        $fileName = 'currntorder.csv';
+        $fileName = 'currentorder.csv';
 
         $project = Project::with('projectData')->where('name', 'LIKE','%'. $request->csv_project . '%')->get();
         if ($request->csv_date) {
@@ -101,7 +109,7 @@ class CurrentOrderController extends Controller
                 $year = date('Y', $start);
                 $month = date('m', $start);
                 if(($year == $current_year) && ($month == $current_month)){
-                    $project_data[$val->name] = ProjectData::where('month', $i)->where('project_id', $val->id)->select('url','ancre','url_spot','prestataire','price')->get();
+                    $project_data[$val->name] = ProjectData::where('month', $i)->where('project_id', $val->id)->where('prestataire','LIKE','%'.$request->csv_provider.'%')->select('url','ancre','url_spot','prestataire','price')->get();
                 }
                 $start = strtotime("+1 month", $start);
                 $i += 1;
