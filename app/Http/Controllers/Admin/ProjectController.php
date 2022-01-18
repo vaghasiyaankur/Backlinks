@@ -321,9 +321,30 @@ class ProjectController extends Controller
 
     public function deleteDataMonthViseForm(Request $request, $id, $month, $dataid)
     {
-       $projectdata = ProjectData::where('id',$dataid)->delete();
+        ProjectData::where('id',$dataid)->delete();
+        $projectdata = ProjectData::whereNotIn('id',[$dataid])->get();
 
-       return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved'));
+        $datamonths = ProjectMonth::where('project_id',$id)->first();
+
+        $project = Project::where('id', $id)->first();
+
+        $projectdatasaved = ProjectData::where('month',$month)->where('project_id',$id)->first();
+        $saved = 0;
+        if($projectdatasaved){
+            if($projectdatasaved->saved == '1'){
+                $saved = 1;
+            }
+        }else{
+            $saved = 0;
+        }
+        $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
+        $spot_list = SpotList::select('spot')->get();
+        $spotlist = [];
+        foreach ($spot_list as $index => $value) {
+            $spotlist[$index] = $value->spot;
+
+        }
+       return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved','thematic','spotlist'));
     }
 
     public function showDetailDataMonthViseForm(Request $request, $id, $month, $dataid)

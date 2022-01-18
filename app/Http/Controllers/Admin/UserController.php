@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -61,7 +62,19 @@ class UserController extends Controller
     public function changePassword(Request $req)
     {
         $user = User::find($req->id);
-        dd($user);
+        $password = ['password' => Hash::make($req->password)];
+        $user->update($password);
+
+        $data = array('name'=>$user->name, "body" => $req->password);
+        $to_name = "Sky desk";
+        $to_email =  $user->email;
+        Mail::send('admin.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('Change Password');
+            $message->from('FROM_EMAIL_ADDRESS','Change password');
+        });
+
+        return redirect()->route('admin.user');
     }
 
 }
