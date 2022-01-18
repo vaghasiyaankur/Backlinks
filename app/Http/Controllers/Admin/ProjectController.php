@@ -322,7 +322,7 @@ class ProjectController extends Controller
     public function deleteDataMonthViseForm(Request $request, $id, $month, $dataid)
     {
         ProjectData::where('id',$dataid)->delete();
-        $projectdata = ProjectData::whereNotIn('id',[$dataid])->get();
+        $projectdata = ProjectData::whereNotIn('id',[$dataid])->where('month', $month)->get();
 
         $datamonths = ProjectMonth::where('project_id',$id)->first();
 
