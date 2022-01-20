@@ -43,6 +43,13 @@
                                             <input type="password" class="form-control" id="c_password" placeholder="Conform Password" name="c_password" Required>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label"></label>
+                                        <div class="form-check col-sm-10 px-3">
+                                            <input type="checkbox" class="form-check-input m-0" name="administrator" id="administrator" value="administrator">
+                                            <label class="form-check-label" for="administrator">Administrator</label>
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                                 </form>
                             </div>

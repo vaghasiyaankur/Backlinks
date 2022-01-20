@@ -8,6 +8,7 @@ use App\Models\Project;
 use Illuminate\Support\Carbon;
 use App\Models\ProjectData;
 use Illuminate\Auth\Access\Response;
+use App\Models\SpotList;
 
 class CurrentOrderController extends Controller
 {
@@ -42,10 +43,18 @@ class CurrentOrderController extends Controller
         $provider_data = [];
         foreach ($provider as $data) {
             foreach ($data as $key => $val) {
-                $provider_data[] = $key;
+                if (!in_array($key,$provider_data)) {
+                    $provider_data[] = $key;
+                }
             }
         }
-        return view('admin.currentorder.index',compact('project_data','provider_data'));
+        $spot_list = SpotList::select('spot')->get();
+        $spotlist = [];
+        foreach ($spot_list as $index => $value) {
+            $spotlist[$index] = $value->spot;
+
+        }
+        return view('admin.currentorder.index',compact('project_data','provider_data','spotlist'));
     }
     public function filter(Request $request)
     {
@@ -79,7 +88,13 @@ class CurrentOrderController extends Controller
                 $i += 1;
             }
         }
-        return view('admin.currentorder.table',compact('project_data'))->render();
+        $spot_list = SpotList::select('spot')->get();
+        $spotlist = [];
+        foreach ($spot_list as $index => $value) {
+            $spotlist[$index] = $value->spot;
+
+        }
+        return view('admin.currentorder.table',compact('project_data','spotlist'))->render();
     }
 
     public function download_csv(Request $request)

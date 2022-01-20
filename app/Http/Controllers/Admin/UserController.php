@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Project;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::select('id','name','email','verify_status')->get();
-        return view('admin.users.index',compact('users'));
+        $project = Project::select('id','name','email')->get();
+        return view('admin.users.index',compact('users','project'));
     }
 
     public function add_user(Request $req)
@@ -30,8 +33,11 @@ class UserController extends Controller
             $messages = $validator->messages();
             return redirect()->back()->withErrors($validator);
         }
-
-        $user = new User;
+        if ($req->administrator) {
+            $user = new Admin;
+        }else{
+            $user = new User;
+        }
         $user->name = $req->name;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);

@@ -69,6 +69,7 @@ Route::namespace('Admin')->group(function () {
         Route::post('/project/data/update', [ProjectController::class, 'updateDataMonthViseForm'])->name('admin.project.data.update');
         Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
         Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
+        Route::post('/project/show/spot-url', [ProjectController::class, 'spot_url_update'])->name('admin.project.show.url-spot');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');

@@ -28,10 +28,10 @@
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+      <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+        <div class="row flex-grow">
+          <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
                 {{-- <img src="{{ asset('template/images/logo.svg') }}" alt="logo"> --}}
               </div>
@@ -56,7 +56,7 @@
                         </span>
                     @enderror
                 </div>
-                
+
                 <div class="my-2 d-flex justify-content-between align-items-center">
                     <div class="form-check">
                         <label class="form-check-label text-md-left" for="remember">
@@ -66,7 +66,7 @@
                     </div>
                     <a href="{{route('forget.password.get')}}" class="auth-link text-black">Forgot password?</a>
                   </div>
-                  
+
                 {{-- <div class="form-group row fadeIn third">
                     <div class="col-md-12 offset-md-12">
                         <div class="form-check " >
@@ -90,6 +90,9 @@
             </div>
             </form>
             </div>
+          </div>
+          <div class="col-lg-6 login-half-bg d-flex flex-row">
+            <p class="text-white font-weight-medium text-center flex-grow align-self-end"></p>
           </div>
         </div>
       </div>

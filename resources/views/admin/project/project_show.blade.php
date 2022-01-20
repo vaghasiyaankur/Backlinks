@@ -49,6 +49,7 @@ a:focus, input:focus{
             <div class="card-body">
                 <h4 class="card-title title_project">Project Data List</h4>
                 {{-- <a href="{{ route('admin.list.spot') }}" class="btn btn-primary">Spot List</a> --}}
+                <button class="btn btn-primary update_url_spot">Update Url Spot</button>
                 <button class="btn btn-primary show_filter">Show Filter</button>
                 <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
                 <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
@@ -331,6 +332,29 @@ $("#propject_tab").addClass('active');
                 $(res).each(function(index, element){
                     $(`.spot_${index}`).text(element);
                 });
+            },
+        });
+    });
+
+    $(document).on("click",".update_url_spot",function(){
+        var id = [];
+        var spot_url = [];
+        $("#table tbody tr").each(function(item){
+            id.push($(this).children(".id").text());
+            spot_url.push($(this).children(".url_spot").text());
+        });
+        id = id.toString();
+        spot_url = spot_url.toString();
+        $.ajax({
+            type:'POST',
+            url:'{{route("admin.project.show.url-spot")}}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "id": id,
+                "spot_url": spot_url,
+                },
+            success: function(res) {
+
             },
         });
     });

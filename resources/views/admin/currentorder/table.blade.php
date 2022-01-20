@@ -21,7 +21,7 @@
                     {{ $data->ancre }}
                 </td>
                 <td>
-                    {{ $data->url_spot }}
+                    {{ $spotlist[$loop->index] }}
                 </td>
                 <td>
                     {{ $data->prestataire }}

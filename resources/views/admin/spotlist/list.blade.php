@@ -107,12 +107,15 @@
 
       <div class="row">
 
-          <div class="col-lg-10 col-md-10">
-            <h3> Project </h3>
-          </div>
-          <div class="col-lg-2 col-md-2 mb-4">
-           <a href="{{ route('admin.spot.list.excel') }}" class="btn btn-primary"> Add SpotList Excel</a>
-          </div>
+            <div class="col-lg-10 col-md-10">
+                <h3> Project </h3>
+            </div>
+            <div class="col-lg-2 col-md-2 mb-4">
+                <a href="{{ route('admin.spot.list.excel') }}" class="btn btn-primary"> Add SpotList Excel</a>
+            </div>
+            <div class="col-lg-12 col-md-12 mb-4 text-end">
+                <a href="javascript:;" class="btn btn-primary" style="margin-right: 70px;"> Update spot list</a>
+            </div>
 
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">

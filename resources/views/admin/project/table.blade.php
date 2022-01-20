@@ -30,9 +30,7 @@
     <tbody>
         @foreach($projectdata as $pd)
         <tr>
-            <td>
-                {{$pd->id}}
-            </td>
+            <td class="id">{{$pd->id}}</td>
             <td>
                 {{$pd->url}}
             </td>
