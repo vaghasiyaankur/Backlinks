@@ -46,7 +46,6 @@ class UserController extends Controller
             $update = ['verify_status' => 1];
             $user->update($update);
         }else{
-            dd($user->verify_status);
             $update = ['verify_status' => 0];
             $user->update($update);
         }

@@ -19,7 +19,7 @@ class SpotListController extends Controller
         $url_spot = ProjectData::pluck('url_spot');
 
 
-        $spotlist = SpotList::whereNotIn('spot', $url_spot)->limit(50)->get();
+        $spotlist = SpotList::whereNotIn('spot', $url_spot)->where('provider','Facebook')->take(50)->get();
         $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
        return view('admin.spotlist.list', compact('spotlist', 'thematic'));
     }
@@ -187,7 +187,7 @@ class SpotListController extends Controller
         if($request->spot){
             $list->Where('spot', 'like', '%' . $request->spot . '%');
         }
-        $spotlist = $list->limit(50)->get();
+        $spotlist = $list->where('provider','Facebook')->take(50)->get();
 
         $table = view('admin.spotlist.table', compact('spotlist'))->render();
 

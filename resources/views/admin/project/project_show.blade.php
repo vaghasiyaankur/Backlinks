@@ -203,6 +203,11 @@ $("#propject_tab").addClass('active');
 
 
   $(".check_website").click(function(){
+    var spot_url = [];
+    $('#table tbody .url_spot').each(function(item) {
+        spot_url.push($(this).text());
+    });
+    spot_url = spot_url.toString();
     var website = $(this).data('website');
     var token = $('html').find('meta[name="csrf-token"]')
 // console.log(token);
@@ -211,12 +216,16 @@ $("#propject_tab").addClass('active');
       url:'{{route("admin.project.checkwebsite")}}',
       data: {
         "_token": "{{ csrf_token() }}",
-        "website": website
+        "website": spot_url
         },
       success: function(res) {
-        if(res == 0){
-          $(".url_spot").css('background-color','red');
-        }
+          $(res).each(function(index, number){
+            if(this == 1){
+                $(".spot_"+index).css('background-color','red');
+            }else{
+                $(".spot_"+index).css('background-color','green');
+            }
+          });
       },
     });
   });

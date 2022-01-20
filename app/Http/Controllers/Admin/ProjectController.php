@@ -426,25 +426,27 @@ class ProjectController extends Controller
     }
     public function checkwebsite(Request $request)
     {
+        $website = explode(",",$request->website);
         # code...
-        // dd('yes');
 
-         $ch = curl_init();
+        $ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$request->website."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
-		curl_setopt($ch, CURLOPT_POST, 1);
+        $notexitsdomain = [];
+        foreach ($website as $webs) {
+            curl_setopt($ch, CURLOPT_URL,"https://api.semrush.com/analytics/v1/?key=96b52a9e29c90a808c6908acff37521a&type=backlinks&target=".$webs."&target_type=root_domain&export_columns=page_ascore,source_title,source_url,target_url,anchor,external_num,internal_num,first_seen,last_seen&display_limit=5");
+            curl_setopt($ch, CURLOPT_POST, 1);
 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $server_output = curl_exec($ch);
 
-		$server_output = curl_exec($ch);
-
-		curl_close ($ch);
-        if($server_output == 'Validation Error : target'){
-            $notexitsdomain = 1;
-        }else{
-            $notexitsdomain = 0;
+            if($server_output == 'Validation Error : target'){
+                $notexitsdomain[] = 1;
+            }else{
+                $notexitsdomain[] = 0;
+            }
         }
+        curl_close ($ch);
 
         return $notexitsdomain;
 
