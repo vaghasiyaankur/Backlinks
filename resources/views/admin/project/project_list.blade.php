@@ -2,16 +2,16 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
- 
+
       <div class="row">
-        
+
           <div class="col-lg-10 col-md-10">
             <h3> Project </h3>
           </div>
           <div class="col-lg-2 col-md-2 mb-4">
            <a href="{{ route('admin.project.add') }}" class="btn btn-primary"> Add New Project</a>
           </div>
-        
+
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
@@ -33,7 +33,7 @@
                         Email
                       </th>
                       <th>
-                        Number of Month 
+                        Number of Month
                       </th>
                       <th>
                         Price
@@ -65,14 +65,14 @@
                         {{$pl->price}}
                       </td>
                       <td>
-                       <a class="btn btn-primary" href="{{ route('admin.project.show', [$pl->id, '1'])}}">Show</a>
+                       <a class="btn btn-primary" href="@if(empty($pl->project_type_checkbox)){{ route('admin.project.show', [$pl->id, '1']) }}@else{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}@endif">Show</a>
                        <a class="btn btn-danger" href="{{ route('admin.project.delete', $pl->id)}}">Delete</a>
                        <a class="btn btn-primary" href="{{ route('admin.project.edit', $pl->id)}}">Edit</a>
 
                       </td>
                     </tr>
                     @endforeach
-                   
+
                   </tbody>
                 </table>
               </div>
@@ -82,7 +82,7 @@
       </div>
     </div>
     <!-- content-wrapper ends -->
- 
+
   </div>
 
   @endsection

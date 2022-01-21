@@ -70,6 +70,7 @@ Route::namespace('Admin')->group(function () {
         Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
         Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
         Route::post('/project/show/spot-url', [ProjectController::class, 'spot_url_update'])->name('admin.project.show.url-spot');
+        Route::get('/project/dashboard/{id}/{month}',[ProjectController::class, 'show_dashboard'])->name('admin.project.show.dashboard');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
@@ -81,6 +82,9 @@ Route::namespace('Admin')->group(function () {
         Route::get('/spot-list/download-csv', [SpotListController::class, 'csvdownload'])->name('admin.spot.list.csv');
         Route::post('/spot-list/spotlist-filter', [SpotListController::class, 'filters'])->name('admin.spotlist.filters');
         Route::get('/spot-list-demo', [SpotListController::class, 'exceldemo'])->name('admin.list.demo');
+        Route::view('/spot-list/update-data', 'admin.spotlist.update-data')->name('admin.spot.list.update.data');
+        Route::get('/spot-list/excel', [SpotListController::class, 'exceldownload'])->name('admin.list.spotlist.excel');
+        Route::post('/spot-list/store-csv', [SpotListController::class, 'storeexcel'])->name('admin.spotlist.excel.store');
 
 
         // gantt chart

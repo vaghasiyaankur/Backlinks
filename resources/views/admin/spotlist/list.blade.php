@@ -114,7 +114,7 @@
                 <a href="{{ route('admin.spot.list.excel') }}" class="btn btn-primary"> Add SpotList Excel</a>
             </div>
             <div class="col-lg-12 col-md-12 mb-4 text-end">
-                <a href="javascript:;" class="btn btn-primary" style="margin-right: 70px;"> Update spot list</a>
+                <a href="{{ route('admin.spot.list.update.data') }}" class="btn btn-primary" style="margin-right: 70px;"> Update spot list</a>
             </div>
 
         <div class="col-lg-12 grid-margin stretch-card">

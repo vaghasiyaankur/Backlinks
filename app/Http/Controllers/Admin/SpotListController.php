@@ -10,6 +10,7 @@ use App\Imports\SpotListImport;
 use Excel;
 use Illuminate\Support\Facades\Redirect;
 use Response;
+use App\Imports\SpotListUpdateImport;
 
 class SpotListController extends Controller
 {
@@ -192,5 +193,55 @@ class SpotListController extends Controller
         $table = view('admin.spotlist.table', compact('spotlist'))->render();
 
         return $table;
+    }
+
+    public function exceldownload()
+    {
+        $fileName = 'update-spotlist.csv';
+
+        $spotlist = SpotList::all();
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Spot','Prix','Profile Facebook','Ref Domains','Trust Flow','Citation Flow','Majestic Flow','Keywords','Trafic','Gnews','Thematic','Provider');
+
+        $callback = function() use($spotlist, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($spotlist as $sl) {
+                $row['Spot']  = $sl->spot;
+                $row['Prix']    = $sl->prix;
+                $row['Profile Facebook']  = $sl->profile_facebook;
+                $row['Ref Domains']  = $sl->ref_domain;
+                $row['Trust Flow']  = $sl->trust_flow;
+                $row['Citation Flow']  = $sl->citation_flow;
+                $row['Majestic Flow']  = $sl->majestic_flow;
+                $row['Keywords']  = $sl->keywords;
+                $row['Trafic']  = $sl->trafic;
+                $row['Gnews']  = $sl->gnews;
+                $row['Thematic']  = $sl->thematic;
+                $row['Provider']  = $sl->provider;
+
+                fputcsv($file, array($row['Spot'], $row['Prix'], $row['Profile Facebook'], $row['Ref Domains'], $row['Trust Flow'], $row['Citation Flow'], $row['Majestic Flow'], $row['Keywords'],$row['Trafic'],$row['Gnews'],$row['Thematic'],$row['Provider']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function storeexcel(Request $request)
+    {
+        Excel::import(new SpotListUpdateImport,$request->file('excel'));
+
+        return redirect()->route('admin.list.spot')->with("status", "Spot  list Added Using Excel Successfully");
     }
 }

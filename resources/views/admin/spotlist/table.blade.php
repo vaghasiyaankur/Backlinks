@@ -43,11 +43,11 @@
         <th>
           Action
         </th>
-        
+
       </tr>
     </thead>
     <tbody>
-      
+
       @foreach($spotlist as $sl)
       <tr>
         <td>
@@ -55,9 +55,17 @@
         </td>
         <td>
           {{$sl->spot}}
+          @php
+            $url = explode('://',$sl->spot);
+            if (($url[0] == 'http') || ($url[0] == 'https')) {
+                $spot = preg_replace("#^[^:/.]*[:/]+#i", "", $sl->spot);
+            }else{
+                $spot = preg_replace('/^www\./', '', $sl->spot);
+            }
+          @endphp
           <a href="{{ 'https://fr.semrush.com/analytics/overview/?searchType=domain&q='.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('semrush.ico')}}"/></a>
-          <a href="{{ 'https://app.seobserver.com/sites/view/'.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('seobserver.ico')}}"/></a>
-          
+          <a href="{{ 'https://app.seobserver.com/sites/view/'.$spot}}" target="_blank"><img class="spotimg" src="{{asset('seobserver.ico')}}"/></a>
+
         </td>
         <td>
           {{$sl->prix}}
@@ -91,7 +99,7 @@
         </td>
         <td>
           <a href="{{$sl->profile_facebook}}" target="_blank" style="color:#000; text-decoration:none; "> <i class="fa fa-link"></i></a>
-          
+
         </td>
         <td>
           <a class="btn btn-primary" href="{{ route('admin.list.edit', $sl->id)}}">Edit</a>
@@ -99,6 +107,6 @@
         </td>
       </tr>
       @endforeach
-     
+
     </tbody>
   </table>
