@@ -326,11 +326,11 @@
   @section('script')
   <script>
     $(document).ready(function() {
-      $('#table').dataTable( {
-        language: {
-          searchPlaceholder: "Search Spot"
-        }
-      });
+        $('#table').dataTable( {
+            language: {
+                searchPlaceholder: "Search Spot"
+            }
+        });
     });
 
     $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
@@ -430,6 +430,23 @@
         $('.show_filter').removeClass('d-none');
         $('.filters').addClass('d-none');
         $(this).addClass('d-none');
+    });
+
+    $(document).on('click', '.pagination .paginate_button .page-link', function(e) {
+        var index = $(this).text();
+        e.preventDefault();
+        $.ajax({
+            url:'{{route("admin.list.spot")}}',
+            type: 'GET',
+            data:{index:index},
+            success:function (res) {
+                $('#table').dataTable( {
+                    language: {
+                        searchPlaceholder: "Search Spot"
+                    }
+                });
+            },
+        });
     });
   </script>
   @endsection
