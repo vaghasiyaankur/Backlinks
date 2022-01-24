@@ -172,7 +172,7 @@ $next_year = date('Y') + 1;
 @endphp
 <div class="d-flex flex-wrap w-100">
 <div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
-<button class="year_button btn btn-primary disabled" value="{{$prev_year }}">{{$prev_year }}</button>
+<button class="year_button btn btn-primary" value="{{$prev_year }}">{{$prev_year }}</button>
 <button class="year_button btn btn-success" value="{{$currnet_year }}">{{$currnet_year}}</button>
 <button class="year_button btn btn-primary" value="{{$next_year }}">{{$next_year}}</button>
 </div>

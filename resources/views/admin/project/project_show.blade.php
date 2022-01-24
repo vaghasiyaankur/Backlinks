@@ -4,7 +4,7 @@
 .title_project{
 
   float: left;
-  width: 50%;
+  width: 42%;
 
 }
 .card .card-body .table-div{

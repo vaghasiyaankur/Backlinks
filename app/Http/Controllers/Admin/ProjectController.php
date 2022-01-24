@@ -560,7 +560,7 @@ class ProjectController extends Controller
         $id = explode(",",$req->id);
         $spot_url = explode(",",$req->spot_url);
         foreach ($spot_url as $index=>$val) {
-            ProjectData::where('id',$id[$index])->update(['url_spot'=>$val]);
+            ProjectData::where('id',$id[$index])->whereNotIn('prestataire',['Mélodie','Réseau BHM'])->update(['url_spot'=>$val]);
         }
     }
 
