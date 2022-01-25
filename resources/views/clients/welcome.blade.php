@@ -28,6 +28,20 @@
         </div>
       </div>
       <div class="row">
+        @php
+            $project_type = explode(",",$project->project_type_checkbox);
+        @endphp
+        @foreach ($project_type as $service)
+            <div class="col-md-3 mb-4 stretch-card transparent">
+                <div class="card card-tale">
+                    <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,$service]) }}@endif" class="card-body text-center py-5  text-decoration-none">
+                        <span class="mb-4 text-white">{{ $service }}</span>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+      </div>
+      <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card tale-bg">
             <div class="card-people mt-auto">
@@ -111,7 +125,7 @@
                 <div class="mt-3">
                   <p class="text-muted">Downloads</p>
                   <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
-                </div> 
+                </div>
               </div>
               <canvas id="order-chart"></canvas>
             </div>
@@ -145,7 +159,7 @@
                           <h1 class="text-primary">$34040</h1>
                           <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
                           <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                        </div>  
+                        </div>
                         </div>
                       <div class="col-md-12 col-xl-9">
                         <div class="row">
@@ -225,7 +239,7 @@
                           <h1 class="text-primary">$34040</h1>
                           <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
                           <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                        </div>  
+                        </div>
                         </div>
                       <div class="col-md-12 col-xl-9">
                         <div class="row">
@@ -322,7 +336,7 @@
                       <th>Price</th>
                       <th>Date</th>
                       <th>Status</th>
-                    </tr>  
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -533,14 +547,14 @@
                         <p class="mb-0">687</p>
                       </div>
                     </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
               <div class="card data-icon-card-primary">
                 <div class="card-body">
-                  <p class="card-title text-white">Number of Meetings</p>                      
+                  <p class="card-title text-white">Number of Meetings</p>
                   <div class="row">
                     <div class="col-8 text-white">
                       <h3>34040</h3>

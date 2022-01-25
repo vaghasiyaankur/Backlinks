@@ -71,6 +71,10 @@ Route::namespace('Admin')->group(function () {
         Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
         Route::post('/project/show/spot-url', [ProjectController::class, 'spot_url_update'])->name('admin.project.show.url-spot');
         Route::get('/project/type/{id}/{month}',[ProjectController::class, 'show_project_type'])->name('admin.project.show.dashboard');
+        Route::get('/project/dropify/{id}/{type}', function($id,$type){
+            return view('admin.project.project_dropify',compact('id','type'));
+        })->name('admin.project.dropify');
+        Route::post('/project/dropify',[ProjectController::class,'project_dropify'])->name('admin.project.dropify.store');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');

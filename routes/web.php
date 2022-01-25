@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ProjectController;
+use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
@@ -18,20 +19,19 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Auth::routes();
 
 Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');  
+Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::middleware(['auth','web'])->group(function () {
-    
-    Route::get('/', function () {
-        return view('clients.welcome');
-    })->name('client.dashboard');
+
+    Route::get('/', [DashboardController::class,'index'])->name('client.dashboard');
 
     Route::get('/project/{id}/{month}', [ProjectController::class, 'show'])->name('client.project.show');
     Route::get('/project/csv/{id}/{month}', [ProjectController::class, 'csvddownload'])->name('client.project.csv');
+    Route::get('/project/type/{id}/{type}', [ProjectController::class, 'project_type'])->name('client.project.type');
 
-   
+
 
 });
 

@@ -8,6 +8,7 @@ use App\Models\ProjectType;
 use App\Models\Project;
 use App\Models\ProjectData;
 use App\Models\ProjectMonth;
+use App\Models\ProjectTypeDropify;
 use Illuminate\Support\Facades\Redirect;
 use Mail;
 use Carbon\Carbon;
@@ -570,4 +571,20 @@ class ProjectController extends Controller
         return view('admin.project.project_type',compact('project','id','month'));
     }
 
+    public function project_dropify(Request $req)
+    {
+        $req->validate([
+            'project_file' => 'required',
+        ]);
+        $fileName = rand().'.'.$req->project_file->getClientOriginalExtension();
+        $req->project_file->move(public_path('template/images/uploads'), $fileName);
+
+        $project_dropify = new ProjectTypeDropify;
+        $project_dropify->project_type = $req->project_type;
+        $project_dropify->project_file = $fileName;
+        $project_dropify->project_id = $req->id;
+        $project_dropify->save();
+
+        return redirect()->back();
+    }
 }
