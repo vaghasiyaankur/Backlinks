@@ -40,16 +40,16 @@ Route::namespace('Admin')->group(function () {
         // user
 
         Route::get('users', [UserController::class, 'index'])->name('admin.user');
-        Route::get('changePassword/{id}', function($id){
-            return view('admin.users.change_password',compact('id'));
+        Route::get('changePassword/{id}/{user}', function($id,$user){
+            return view('admin.users.change_password',compact('id','user'));
         })->name('change.password');
         Route::post('changePassword',[UserController::class,'changePassword'])->name('admin.user.change.password');
-        Route::get('verified/{id}', [UserController::class, 'verify_status'])->name('verified');
-        Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
         Route::get('user/add', function(){
             return view('admin.users.add_user');
         })->name('add.users');
         Route::post('user/add',[UserController::class,'add_user'])->name('admin.user.store');
+        Route::get('user/edit/{id}/{user}',[UserController::class,'edit_user'])->name('user.edit');
+        Route::post('user/update',[UserController::class,'update_user'])->name('admin.user.update');
 
         // project
 
@@ -70,7 +70,7 @@ Route::namespace('Admin')->group(function () {
         Route::post('/checkwebsite', [ProjectController::class, 'checkwebsite'])->name('admin.project.checkwebsite');
         Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
         Route::post('/project/show/spot-url', [ProjectController::class, 'spot_url_update'])->name('admin.project.show.url-spot');
-        Route::get('/project/dashboard/{id}/{month}',[ProjectController::class, 'show_dashboard'])->name('admin.project.show.dashboard');
+        Route::get('/project/type/{id}/{month}',[ProjectController::class, 'show_project_type'])->name('admin.project.show.dashboard');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');

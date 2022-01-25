@@ -276,6 +276,24 @@ $("#propject_tab").addClass('active');
     // });
 
     $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
+        datatable()
+    });
+
+    $(document).on('click', '.dropdown-item', function(){
+      $('.dropdown-item').removeClass('select_theme');
+      $(this).addClass('select_theme');
+
+      var curr_val = $(this).text();
+      $(".dropdown-toggle").text(curr_val);
+
+      datatable();
+    });
+
+    $(document).on('change', '#gnews', function(){
+      datatable();
+    });
+
+    function datatable(){
         var prixFrom = $("#prixFrom").val();
         var prixTo = $("#prixTo").val();
         var refFrom = $("#refFrom").val();
@@ -334,7 +352,7 @@ $("#propject_tab").addClass('active');
                 });
             },
         });
-    });
+    }
 
     $(document).on("click",".update_url_spot",function(){
         var id = [];

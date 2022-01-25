@@ -17,36 +17,41 @@
                                         </div>
                                     </div>
                                 @endif
-                                <form class="forms-sample" action="{{ route('admin.user.store') }}" method="post">
+                                <form class="forms-sample" action="@if(isset($user_data)){{ route('admin.user.update') }}@else{{ route('admin.user.store') }}@endif" method="post">
                                 @csrf
+                                    <input type="hidden" name="id" value="@if((isset($user_data)) && ($user_data->id)){{ $user_data->id }}@endif">
+                                    <input type="hidden" name="user" value="@if(isset($user_data)){{ $user }}@endif">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" placeholder="Name" name="name" Required>
+                                            <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="@if((isset($user_data)) && ($user_data->name)){{ $user_data->name }}@endif" Required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="email" placeholder="Email" name="email" Required>
+                                            <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="@if((isset($user_data)) && ($user_data->email)){{ $user_data->email }}@endif" Required>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="password" placeholder="Password" name="password" Required>
+                                    @if ((!isset($user_data)) || ((isset($user_data)) && ($user == 'project')))
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="password" placeholder="Password" name="password" Required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Conform Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="c_password" placeholder="Conform Password" name="c_password" Required>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Conform Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="c_password" placeholder="Conform Password" name="c_password" Required>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label"></label>
                                         <div class="form-check col-sm-10 px-3">
-                                            <input type="checkbox" class="form-check-input m-0" name="administrator" id="administrator" value="administrator">
+                                            <input type="checkbox" class="form-check-input m-0" name="administrator" id="administrator" value="administrator" @if((isset($user_data)) && ($user == 'admin')) checked @endif>
                                             <label class="form-check-label" for="administrator">Administrator</label>
                                         </div>
                                     </div>

@@ -267,7 +267,7 @@ $next_year = date('Y') + 1;
 							}
 
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
 
 							@endforeach
                 	@endif

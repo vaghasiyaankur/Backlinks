@@ -22,6 +22,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-10">
                                             <input type="hidden" class="form-control" id="id" name="id" value="{{$id}}" Required>
+                                            <input type="hidden" class="form-control" id="user" name="user" value="{{$user}}" Required>
                                         </div>
                                     </div>
                                     <div class="form-group row">

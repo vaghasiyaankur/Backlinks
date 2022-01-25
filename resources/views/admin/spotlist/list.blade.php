@@ -414,7 +414,12 @@
         },
       success: function(res) {
         $("#table").remove();
-        $(".table-responsive").append(res);
+        $(".table-responsive").html(res);
+        $('#table').dataTable( {
+            language: {
+                searchPlaceholder: "Search Spot"
+            }
+        });
       },
     });
 
@@ -432,21 +437,21 @@
         $(this).addClass('d-none');
     });
 
-    $(document).on('click', '.pagination .paginate_button .page-link', function(e) {
-        var index = $(this).text();
-        e.preventDefault();
-        $.ajax({
-            url:'{{route("admin.list.spot")}}',
-            type: 'GET',
-            data:{index:index},
-            success:function (res) {
-                $('#table').dataTable( {
-                    language: {
-                        searchPlaceholder: "Search Spot"
-                    }
-                });
-            },
-        });
-    });
+    // $(document).on('click', '.pagination .paginate_button .page-link', function(e) {
+    //     var index = $(this).text();
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url:'{{route("admin.list.spot")}}',
+    //         type: 'GET',
+    //         data:{index:index},
+    //         success:function (res) {
+    //             $('#table').dataTable( {
+    //                 language: {
+    //                     searchPlaceholder: "Search Spot"
+    //                 }
+    //             });
+    //         },
+    //     });
+    // });
   </script>
   @endsection

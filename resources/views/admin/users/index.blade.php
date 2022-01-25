@@ -27,3 +27,14 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#table').dataTable( {
+                language: {
+                    searchPlaceholder: "Search User"
+                }
+            });
+        });
+    </script>
+@endsection

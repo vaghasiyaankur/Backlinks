@@ -564,10 +564,10 @@ class ProjectController extends Controller
         }
     }
 
-    public function show_dashboard($id,$month)
+    public function show_project_type($id,$month)
     {
         $project = Project::select('project_type_checkbox')->find($id);
-        return view('admin.welcome',compact('project','id','month'));
+        return view('admin.project.project_type',compact('project','id','month'));
     }
 
 }
