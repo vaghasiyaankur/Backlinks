@@ -15,13 +15,13 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
- 
+
       <div class="row">
-        
+
           <div class="col-lg-10 col-md-10">
             <h3> Project </h3>
           </div>
-        
+
           {{-- @if() --}}
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
@@ -48,7 +48,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                   
+
                     @foreach($projectdata as $pd)
                     <tr>
                       <td>
@@ -65,24 +65,30 @@
                       </td>
                     </tr>
                     @endforeach
-                   
+
                   </tbody>
                 </table>
               </div>
+              @else
+                  <div class="d-flex align-items-center justify-content-center h-100">
+                      <p class="display-5">Data Not Found!!</p>
+                  </div>
               @endif
             </div>
             <div class="col-lg-12 float-start">
-              @for ($i = 1; $i <= $datamonths->months; $i++)
-                      <a href="{{ route('client.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
-             @endfor
-              </div>
-           
+                @if($datamonths != '')
+                    @for ($i = 1; $i <= $datamonths->months; $i++)
+                            <a href="{{ route('client.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
+                    @endfor
+                @endif
+            </div>
+
           </div>
         </div>
       </div>
     </div>
     <!-- content-wrapper ends -->
- 
+
   </div>
 
   @endsection

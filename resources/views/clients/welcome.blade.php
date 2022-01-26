@@ -6,7 +6,7 @@
         <div class="col-md-12 grid-margin">
           <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 class="font-weight-bold">Welcome Aamir</h3>
+              <h3 class="font-weight-bold">Welcome {{ Auth::user()->name }}</h3>
               <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
             </div>
             <div class="col-12 col-xl-4">
@@ -27,20 +27,27 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        @php
-            $project_type = explode(",",$project->project_type_checkbox);
-        @endphp
-        @foreach ($project_type as $service)
-            <div class="col-md-3 mb-4 stretch-card transparent">
-                <div class="card card-tale">
-                    <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,$service]) }}@endif" class="card-body text-center py-5  text-decoration-none">
-                        <span class="mb-4 text-white">{{ $service }}</span>
-                    </a>
+        <div class="row">
+            @if(isset($project))
+                @php
+                    $project_type = explode(",",$project->project_type_checkbox);
+                @endphp
+                @foreach ($project_type as $service)
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-tale">
+                            <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,$service]) }}@endif" class="card-body text-center py-5  text-decoration-none">
+                                <span class="mb-4 text-white">{{ $service }}</span>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div class="my-3 text-center">
+                    <p class="display-5">Oops! You are not Found any data.</p>
                 </div>
-            </div>
-        @endforeach
-      </div>
+            @endif
+
+        </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
     <footer class="footer">

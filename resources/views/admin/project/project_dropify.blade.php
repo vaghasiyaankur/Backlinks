@@ -10,11 +10,29 @@
                     <div class="card-body">
                         <form action="{{ route('admin.project.dropify.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="project_file" class="dropify" data-max-file-size="5M" data-default-file="{{$foo->ticket ?? ''}}" data-allowed-file-extensions="pdf png jpg jpeg"/>
+                            <input type="file" name="project_file" class="dropify"/>
                             <input type="hidden" name="project_type" value="{{ $type }}">
                             <input type="hidden" name="id" value="{{ $id }}">
                             <input type="submit" class="btn btn-primary mt-3"/>
                         </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="row">
+                            @forelse ($dropify as $data_drop)
+                                <div class="col-4">
+                                    <a href="{{ url('template/images/uploads/'.$data_drop->project_file) }}" __target="blank" class="text-decoration-none">
+                                        <img src="{{ asset('template/images/uploads/'.$data_drop->project_file) }}" alt="" width="300px">
+                                        <div>
+                                            <button class="btn btn-primary mt-2">{{ $data_drop->project_file }}</button>
+                                        </div>
+                                    </a>
+                                </div>
+                            @empty
+                                <div class="text-center">No Data Found!!</div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>

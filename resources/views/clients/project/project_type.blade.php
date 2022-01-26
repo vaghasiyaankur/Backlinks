@@ -5,13 +5,20 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <h3></h3>
+                        <h3>{{ $type }}</h3>
                         <div class="row">
-                            @foreach ($data_project as $project_data)
+                            @forelse ($data_project as $project_data)
                                 <div class="col-4">
-                                    <img src="{{ asset('template/images/uploads/'.$project_data->project_file) }}" alt="" width="300px">
+                                    <a href="{{ url('template/images/uploads/'.$project_data->project_file) }}" __target="blank" class="text-decoration-none">
+                                        <img src="{{ asset('template/images/uploads/'.$project_data->project_file) }}" alt="" width="300px">
+                                        <div>
+                                            <button class="btn btn-primary mt-2">{{ $project_data->project_file }}</button>
+                                        </div>
+                                    </a>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="text-center">No Data Found!!</div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

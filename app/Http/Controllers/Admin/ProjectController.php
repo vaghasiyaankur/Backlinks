@@ -599,4 +599,9 @@ class ProjectController extends Controller
         return redirect()->route('admin.project.list');
     }
 
+    public function dropify_view($id,$type){
+        $dropify = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->get();
+        return view('admin.project.project_dropify',compact('id','type','dropify'));
+    }
+
 }
