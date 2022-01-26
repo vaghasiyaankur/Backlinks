@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('template/images/favicon.png') }}" />
+  <link rel="shortcut icon" href="{{ asset('template/images/impulsion_seo.png') }}" />
   <style>
     .invalid-feedback {
         display: block;
@@ -33,7 +33,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="{{ asset('template/images/logo.svg') }}" alt="logo">
+                <img src="{{ asset('template/images/favicon_logo.png') }}" alt="logo">
               </div>
               <h4>New here?</h4>
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
@@ -72,7 +72,7 @@
                     </span>
                 @enderror
                 </div>
-                
+
                 <div class="form-group row mb-0">
                     <div class="col-md-12 offset-md-12">
                         <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">

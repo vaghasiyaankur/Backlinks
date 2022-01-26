@@ -38,5 +38,12 @@
           <span class="menu-title" >Current BL orders</span>
         </a>
       </li>
+
+      <li class="nav-item" id="current_tab">
+        <a class="nav-link" href="{{ route('admin.old.client') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Old Clients</span>
+        </a>
+      </li>
     </ul>
   </nav>

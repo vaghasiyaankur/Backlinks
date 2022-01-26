@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('template/images/favicon.png') }}" />
+  <link rel="shortcut icon" href="{{ asset('template/images/impulsion_seo.png') }}" />
   <style>
     .invalid-feedback {
         display: block;
@@ -47,7 +47,7 @@
                           </span>
                       @enderror
                   </div>
-              
+
                   <div class="form-group">
                       <input type="password" id="password" class="inputClass fadeIn second form-control form-control-lg" name="password" placeholder="Password">
                       @error('password')
@@ -56,7 +56,7 @@
                           </span>
                       @enderror
                   </div>
-              
+
                   <div class="form-group">
                       <input type="password" id="password_confirmation" class="inputClass fadeIn second form-control form-control-lg" name="password_confirmation" placeholder="Confirm password">
                       @error('password_confirmation')
@@ -65,22 +65,22 @@
                           </span>
                       @enderror
                   </div>
-              
-                  
-              
-                  
+
+
+
+
                   <div class="mt-3">
                       <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{ asset('asset-admin/index.html') }}">SIGN IN</a> -->
                       <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                           {{ __('Reset Password') }}
                           </button>
                   </div>
-              
+
                   <div class="text-center mt-4 font-weight-light">
                 Don't have an account? <a href="{{ route('register') }}" class="text-primary">Create</a>
               </div>
               </form>
-              
+
             </div>
           </div>
         </div>

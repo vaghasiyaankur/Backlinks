@@ -117,6 +117,6 @@ class ProjectController extends Controller
     {
         $project = Project::where('email',Auth::user()->email)->first();
         $data_project = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->get();
-        return view('clients.project.project_type',compact('project','data_project',$type));
+        return view('clients.project.project_type',compact('project','data_project','type'));
     }
 }

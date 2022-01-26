@@ -68,7 +68,7 @@
                        <a class="btn btn-primary" href="@if(empty($pl->project_type_checkbox)){{ route('admin.project.show', [$pl->id, '1']) }}@else{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}@endif">Show</a>
                        <a class="btn btn-danger" href="{{ route('admin.project.delete', $pl->id)}}">Delete</a>
                        <a class="btn btn-primary" href="{{ route('admin.project.edit', $pl->id)}}">Edit</a>
-
+                       <a href="{{ route('admin.project.status',[$pl->id]) }}" class="btn btn-primary me-2">Finish</a>
                       </td>
                     </tr>
                     @endforeach

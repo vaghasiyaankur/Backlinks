@@ -17,7 +17,7 @@
         .procheckboxmain .checkbox_div label {
             line-height: normal;
         }
-        
+
     </style>
 
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"> --}}
@@ -297,11 +297,11 @@
                                             </div>
                                         </div>
 
-                                        
+
 
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                        <button class="btn btn-light"><a href="{{ route('admin.project.list') }}"
-                                                class="text-decoration-none">Cancel</a></button>
+                                        <button class="btn btn-light"><a href="{{ route('admin.project.list') }}" class="text-decoration-none">Cancel</a></button>
+                                        <button class="btn btn-primary me-2"><a href="{{ route('admin.project.status',[$project->id]) }}" class="text-decoration-none text-white">Finish</a></button>
                                     </form>
                                 </div>
                             </div>

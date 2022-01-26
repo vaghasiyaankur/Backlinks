@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('template/images/favicon.png') }}" />
+  <link rel="shortcut icon" href="{{ asset('template/images/impulsion_seo.png') }}" />
   <style>
     .invalid-feedback {
         display: block;
@@ -47,15 +47,15 @@
                         </span>
                     @enderror
                 </div>
-            
-                
+
+
                 <div class="mt-3">
                     <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{ asset('asset-admin/index.html') }}">SIGN IN</a> -->
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                         {{ __('Get Mail') }}
                         </button>
                 </div>
-            
+
                 <div class="text-center mt-4 font-weight-light">
               Don't have an account? <a href="{{ route('register') }}" class="text-primary">Create</a>
             </div>

@@ -20,7 +20,7 @@ class ProjectController extends Controller
 {
     public function list(Request $request)
     {
-        $ProjectList = Project::all();
+        $ProjectList = Project::where('status',0)->get();
         return view('admin.project.project_list', compact('ProjectList'));
     }
 
@@ -587,4 +587,16 @@ class ProjectController extends Controller
 
         return redirect()->back();
     }
+
+    public function project_status($id)
+    {
+        $project = Project::find($id);
+        if($project->status == 0){
+            $project->update(['status'=>1]);
+        }else{
+            $project->update(['status'=>0]);
+        }
+        return redirect()->route('admin.project.list');
+    }
+
 }

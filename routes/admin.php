@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\CurrentOrderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OldClientController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -75,6 +76,7 @@ Route::namespace('Admin')->group(function () {
             return view('admin.project.project_dropify',compact('id','type'));
         })->name('admin.project.dropify');
         Route::post('/project/dropify',[ProjectController::class,'project_dropify'])->name('admin.project.dropify.store');
+        Route::get('/project/status/{id}',[ProjectController::class,'project_status'])->name('admin.project.status');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');
@@ -101,5 +103,6 @@ Route::namespace('Admin')->group(function () {
         Route::post('/currentorder/filter', [CurrentOrderController::class, 'filter'])->name('admin.current.order.filters');
         Route::post('/currentorder/download-csv',[CurrentOrderController::class, 'download_csv'])->name('admin.currentorder.csv');
 
+        Route::get('/old-project', [OldClientController::class, 'index'])->name('admin.old.client');
     });
 });

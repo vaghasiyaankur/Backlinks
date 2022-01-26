@@ -170,7 +170,7 @@ $prev_year = date('Y') - 1;
 $currnet_year = date('Y');
 $next_year = date('Y') + 1;
 @endphp
-<div class="d-flex flex-wrap w-100">
+<div class="flex-wrap w-100">
 <div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
 <button class="year_button btn btn-primary" value="{{$prev_year }}">{{$prev_year }}</button>
 <button class="year_button btn btn-success" value="{{$currnet_year }}">{{$currnet_year}}</button>
@@ -328,7 +328,6 @@ $next_year = date('Y') + 1;
 					@endphp
 				 	@if(@$type)
 							@foreach ($data[$currnet_year][$pl->id] as $list)
-
 							@php
 
 							$class = 'color1';
@@ -472,8 +471,17 @@ $next_year = date('Y') + 1;
 		$("#currentgreentask").text(currentgreentaskno);
 		$("#currentredtask").text(currentredtaskno);
 
+        $(".content-wrapper").each(function(item){
+            var year = $(this).attr('id');
+            $($('#'+year).find('.gantt__row')).each(function(value) {
+                if($.trim($(this).children('.gantt__row-bars').html()) == ''){
+                    $(this).hide();
+                    $(".gantt__row--months").show();
+                    $(".gantt__row--lines").show();
+                }
+            });
+        });
 	}
-
 
 );
 
