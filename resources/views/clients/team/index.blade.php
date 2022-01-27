@@ -13,9 +13,6 @@
                                 <div class="col-6">
                                     <h4 class="catd-title">Team List</h4>
                                 </div>
-                                <div class="col-6 text-end">
-                                    <a href="{{ route('client.team.add') }}" class="btn btn-primary">Add Team Member</a>
-                                </div>
                             </div>
                             <div class="row my-5">
                                 <div class="text-center">
@@ -27,24 +24,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                @forelse ($team_data as $team)
-                                    <div class="col-4">
-                                        <div class="image text-center">
-                                            <img src="{{ asset('template/images/team/'.$team->image) }}" alt="team-image" style="width:250px;height:350px;">
-                                        </div>
-                                        <div class="info text-center mt-3">
-                                            <div class="display-4 my-1 text-dark">{{ $team->first_name . " " . $team->last_name }}</div>
-                                            <div class="display-5 my-1 text-secondary">{{ $team->title }}</div>
-                                            <div class="my-2"><a href="https://www.linkedin.com/in/{{$team->email}}" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGyOrgBN_tSzRS0X8G2dBJl6iAJ9T-IWc0-Q&usqp=CAU" alt="Linkedin" width="36px" height="36px"></a></div>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <div class="col-12">
-                                        No Team Found !!
-                                    </div>
-                                @endforelse
-                            </div>
+                            @include('clients.team.team_data')
                         </div>
                     </div>
                 </div>
@@ -52,3 +32,4 @@
         </div>
     </div>
 @endsection
+

@@ -54,7 +54,6 @@
           {{$sl->id}}
         </td>
         <td>
-          {{$sl->spot}}
           @php
                 $url = $sl->spot;
                 $parse = parse_url($url);
@@ -65,7 +64,8 @@
                 }
                 $spot = str_ireplace('www.', '', $spot);
           @endphp
-          <a href="{{ 'https://fr.semrush.com/analytics/overview/?searchType=domain&q='.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('semrush.ico')}}"/></a>
+          {{$spot}}
+          <a href="{{ 'https://fr.semrush.com/analytics/overview/?searchType=domain&q='.$spot}}" target="_blank"><img class="spotimg" src="{{asset('semrush.ico')}}"/></a>
           <a href="{{ 'https://app.seobserver.com/sites/view/'.$spot}}" target="_blank"><img class="spotimg" src="{{asset('seobserver.ico')}}"/></a>
 
         </td>
