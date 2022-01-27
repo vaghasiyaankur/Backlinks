@@ -12,6 +12,12 @@
           <span class="menu-title" >Project</span>
         </a>
       </li>
+      <li class="nav-item" id="propject_tab">
+        <a class="nav-link" href="{{ route('client.team') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Team</span>
+        </a>
+      </li>
         @isset($project)
             @php
                 $project_type = explode(",",$project->project_type_checkbox);

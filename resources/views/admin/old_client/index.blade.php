@@ -6,7 +6,7 @@
       <div class="row">
 
           <div class="col-lg-10 col-md-10">
-            <h3> Project </h3>
+            <h3> Old Client </h3>
           </div>
           <div class="col-lg-2 col-md-2 mb-4">
            <a href="{{ route('admin.project.add') }}" class="btn btn-primary"> Add New Project</a>
@@ -15,7 +15,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Project List</h4>
+              <h4 class="card-title">Old Client List</h4>
               <div class="table-responsive pt-3">
                 <table class="table table-bordered">
                   <thead>

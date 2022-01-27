@@ -56,12 +56,14 @@
         <td>
           {{$sl->spot}}
           @php
-            $url = explode('://',$sl->spot);
-            if (($url[0] == 'http') || ($url[0] == 'https')) {
-                $spot = preg_replace("#^[^:/.]*[:/]+#i", "", $sl->spot);
-            }else{
-                $spot = preg_replace('/^www\./', '', $sl->spot);
-            }
+                $url = $sl->spot;
+                $parse = parse_url($url);
+                if (isset($parse['host'])) {
+                    $spot = $parse['host'];
+                }else{
+                    $spot = $parse['path'];
+                }
+                $spot = str_ireplace('www.', '', $spot);
           @endphp
           <a href="{{ 'https://fr.semrush.com/analytics/overview/?searchType=domain&q='.$sl->spot}}" target="_blank"><img class="spotimg" src="{{asset('semrush.ico')}}"/></a>
           <a href="{{ 'https://app.seobserver.com/sites/view/'.$spot}}" target="_blank"><img class="spotimg" src="{{asset('seobserver.ico')}}"/></a>

@@ -178,12 +178,12 @@ $next_year = date('Y') + 1;
 </div>
 
 
-<div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
+{{-- <div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
 	<button class="btn btn-primary" value="{{$prev_year }}">Number Of Clients : <span id="no_of_client">{{$clients}}</span></button>
 	<button class="btn color1" value="{{$currnet_year }}">Task Number :  <span id="redtask">40</span></button>
 	<button class="btn color2" value="{{$next_year }}">Task Number :  <span id="orangetask">40</span></button>
 	<button class="btn color3" value="{{$next_year }}">Task Number :  <span id="greentask">40</span></button>
-</div>
+</div> --}}
 
 <div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
 	<button class="btn btn-primary" value="{{$prev_year }}">current Number Of Clients : <span id="no_of_client">{{$clients}}</span></button>

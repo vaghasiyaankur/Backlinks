@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\Client\TeamController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
@@ -31,7 +32,12 @@ Route::middleware(['auth','web'])->group(function () {
     Route::get('/project/csv/{id}/{month}', [ProjectController::class, 'csvddownload'])->name('client.project.csv');
     Route::get('/project/type/{id}/{type}', [ProjectController::class, 'project_type'])->name('client.project.type');
 
-
+    Route::get('team',[TeamController::class,'index'])->name('client.team');
+    Route::view('team/add','clients.team.team_add')->name('client.team.add');
+    Route::post('team',[TeamController::class,'create'])->name('client.add.team');
+    Route::get('team/edit/{id}',[TeamController::class,'team_edit'])->name('client.team.edit');
+    Route::post('team/update',[TeamController::class,'update_team'])->name('client.update.team');
+    Route::get('team/delete/{id}',[TeamController::class,'team_delete'])->name('client.team.delete');
 
 });
 
