@@ -68,7 +68,6 @@ class UserController extends Controller
         Mail::send('admin.mail', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
                     ->subject('Change Password');
-            $message->from('FROM_EMAIL_ADDRESS','Change password');
         });
 
         return redirect()->route('admin.user');
@@ -89,6 +88,7 @@ class UserController extends Controller
     public function update_user(Request $req)
     {
         if ($req->user == 'project') {
+
             if ($req->administrator) {
                 $unique = 'unique:admins';
             }else{
@@ -116,6 +116,21 @@ class UserController extends Controller
             $user->save();
             return redirect()->route('admin.user');
         }else{
+
+            if ($req->administrator) {
+                $unique = 'unique:admins,email,'.$req->id.',id';
+            }else{
+                $unique = 'unique:users,email,'.$req->id.',id';
+            }
+            $rules = [
+                'name' => 'required',
+                'email' => 'required|'.$unique.'',
+            ];
+            $validator = Validator::make($req->all(), $rules);
+            if ($validator->fails()) {
+                $messages = $validator->messages();
+                return redirect()->back()->withErrors($validator);
+            }
             $update_data = ['name'=>$req->name,'email'=>$req->email];
             if ($req->administrator) {
                 $user = Admin::find($req->id)->update($update_data);

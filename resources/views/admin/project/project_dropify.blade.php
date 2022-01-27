@@ -13,6 +13,7 @@
                             <input type="file" name="project_file" class="dropify"/>
                             <input type="hidden" name="project_type" value="{{ $type }}">
                             <input type="hidden" name="id" value="{{ $id }}">
+                            <input type="hidden" name="month" value="{{ $month }}">
                             <input type="submit" class="btn btn-primary mt-3"/>
                         </form>
                     </div>
@@ -26,12 +27,20 @@
                                         <img src="{{ asset('template/images/uploads/'.$data_drop->project_file) }}" alt="" width="300px">
                                         <div>
                                             <button class="btn btn-primary mt-2">{{ $data_drop->project_file }}</button>
+                                            <a href="{{ route('dropify.delete',[$data_drop->id]) }}" class="btn btn-danger mt-2">Delete</a>
                                         </div>
                                     </a>
                                 </div>
                             @empty
                                 <div class="text-center">No Data Found!!</div>
                             @endforelse
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 float-start">
+                            @for ($i = 1; $i <= $datamonths->months; $i++)
+                                <a href="{{ route('admin.project.dropify', [$id,$type,$i])}}" class="btn btn-primary">{{$i}}</a>
+                            @endfor
                         </div>
                     </div>
                 </div>

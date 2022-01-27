@@ -3,19 +3,36 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\Team;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->project = Project::where('email',Auth::user()->email)->first();
+            return $next($request);
+        });
+    }
+    public function add_team()
+    {
+        $project = $this->project;
+        return view('clients.team.team_add',compact('project'));
+
+    }
     public function index()
     {
-        $team_data = Team::paginate(12);
-        return view('clients.team.index',compact('team_data'));
+        $project = $this->project;
+        $team_data = Team::paginate(10);
+        return view('clients.team.index',compact('team_data','project'));
     }
     public function create(Request $req)
     {
+
         $rules = [
             'first_name' => 'required|unique:teams',
             'last_name' => 'required',
@@ -30,7 +47,7 @@ class TeamController extends Controller
 
         if ($req->image) {
             $imageName = rand().'.'.$req->image->extension();
-            $req->image->move(public_path('template/images/team'), $imageName);
+            $req->image->move('template/images/team', $imageName);
         }
 
         $data = new Team;
@@ -44,8 +61,9 @@ class TeamController extends Controller
     }
     public function team_edit($id)
     {
+        $project = $this->project;
         $edit_team = Team::find($id);
-        return view('clients.team.team_add',compact('edit_team'));
+        return view('clients.team.team_add',compact('edit_team','project'));
     }
 
     public function update_team(Request $req)
@@ -65,11 +83,11 @@ class TeamController extends Controller
         $data = Team::find($req->id);
 
         if ($req->image) {
-            if (file_exists(public_path('template/images/team/'.$data->image))) {
-                unlink(public_path('template/images/team/'.$data->image));
+            if (file_exists('template/images/team/'.$data->image)) {
+                unlink('template/images/team/'.$data->image);
             }
             $imageName = rand().'.'.$req->image->extension();
-            $req->image->move(public_path('template/images/team'), $imageName);
+            $req->image->move('template/images/team', $imageName);
         }else{
             $imageName = $data->image;
         }
@@ -81,8 +99,8 @@ class TeamController extends Controller
     {
         $data = Team::find($id);
         if (isset($data)) {
-            if (file_exists(public_path('template/images/team/'.$data->image))) {
-                unlink(public_path('template/images/team/'.$data->image));
+            if (file_exists('template/images/team/'.$data->image)) {
+                unlink('template/images/team/'.$data->image);
             }
         }
         $data->delete();

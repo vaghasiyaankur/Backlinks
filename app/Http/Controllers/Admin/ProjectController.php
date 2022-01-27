@@ -577,12 +577,13 @@ class ProjectController extends Controller
             'project_file' => 'required',
         ]);
         $fileName = rand().'.'.$req->project_file->getClientOriginalExtension();
-        $req->project_file->move(public_path('template/images/uploads'), $fileName);
+        $req->project_file->move('template/images/uploads', $fileName);
 
         $project_dropify = new ProjectTypeDropify;
         $project_dropify->project_type = $req->project_type;
         $project_dropify->project_file = $fileName;
         $project_dropify->project_id = $req->id;
+        $project_dropify->month = $req->month;
         $project_dropify->save();
 
         return redirect()->back();
@@ -599,9 +600,20 @@ class ProjectController extends Controller
         return redirect()->route('admin.project.list');
     }
 
-    public function dropify_view($id,$type){
-        $dropify = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->get();
-        return view('admin.project.project_dropify',compact('id','type','dropify'));
+    public function dropify_view($id,$type,$month){
+        $datamonths = ProjectMonth::where('project_id',$id)->first();
+        $dropify = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->where('month',$month)->get();
+        return view('admin.project.project_dropify',compact('id','type','dropify','datamonths','month'));
+    }
+
+    public function dropify_delete($id)
+    {
+        $dropify = ProjectTypeDropify::find($id);
+        if (file_exists('template/images/uploads/'.$dropify->project_file)) {
+            unlink('template/images/uploads/'.$dropify->project_file);
+        }
+        $dropify->delete();
+        return redirect()->back();
     }
 
 }

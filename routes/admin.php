@@ -72,9 +72,10 @@ Route::namespace('Admin')->group(function () {
         Route::post('/project/show/filter', [ProjectController::class, 'filter'])->name('admin.project.show.filters');
         Route::post('/project/show/spot-url', [ProjectController::class, 'spot_url_update'])->name('admin.project.show.url-spot');
         Route::get('/project/type/{id}/{month}',[ProjectController::class, 'show_project_type'])->name('admin.project.show.dashboard');
-        Route::get('/project/dropify/{id}/{type}',[ProjectController::class,'dropify_view'])->name('admin.project.dropify');
+        Route::get('/project/dropify/{id}/{type}/{month}',[ProjectController::class,'dropify_view'])->name('admin.project.dropify');
         Route::post('/project/dropify',[ProjectController::class,'project_dropify'])->name('admin.project.dropify.store');
         Route::get('/project/status/{id}',[ProjectController::class,'project_status'])->name('admin.project.status');
+        Route::get('/dropify/delete/{id}',[ProjectController::class,'dropify_delete'])->name('dropify.delete');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');

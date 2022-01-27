@@ -20,6 +20,13 @@
                                 <div class="text-center">No Data Found!!</div>
                             @endforelse
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-12 float-start">
+                                @for ($i = 1; $i <= $datamonths->months; $i++)
+                                    <a href="{{ route('client.project.type', [$id,$type,$i])}}" class="btn btn-primary">{{$i}}</a>
+                                @endfor
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

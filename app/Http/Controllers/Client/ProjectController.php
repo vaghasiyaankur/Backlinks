@@ -22,8 +22,7 @@ class ProjectController extends Controller
     }
     public function show(Request $request, $id, $month)
     {
-
-        $project = $this->project;
+        $project = Project::where('id',$id)->first();
 
         if (isset($project)) {
 
@@ -113,10 +112,12 @@ class ProjectController extends Controller
 
     }
 
-    public function project_type($id,$type)
+    public function project_type($id,$type,$month)
     {
         $project = Project::where('email',Auth::user()->email)->first();
-        $data_project = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->get();
-        return view('clients.project.project_type',compact('project','data_project','type'));
+
+        $datamonths = ProjectMonth::where('project_id',$id)->first();
+        $data_project = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->where('month',$month)->get();
+        return view('clients.project.project_type',compact('id','project','data_project','type','datamonths'));
     }
 }

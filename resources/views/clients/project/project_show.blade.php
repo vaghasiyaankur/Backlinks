@@ -26,7 +26,6 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body" style="min-height: 550px">
-              @if($saved == '1')
               <h4 class="card-title title_project">Project List</h4>
               <a class="btn btn-success" href="{{ route('client.project.csv', [$id, $month])}}">Download Csv File</a>
               <div class="table-responsive pt-3 table-div">
@@ -49,7 +48,7 @@
                   </thead>
                   <tbody>
 
-                    @foreach($projectdata as $pd)
+                    @forelse($projectdata as $pd)
                     <tr>
                       <td>
                         {{$pd->id}}
@@ -64,16 +63,15 @@
                        {{$pd->url_spot}}
                       </td>
                     </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No Data Found !!</td>
+                        </tr>
+                    @endforelse
 
                   </tbody>
                 </table>
               </div>
-              @else
-                  <div class="d-flex align-items-center justify-content-center h-100">
-                      <p class="display-5">Data Not Found!!</p>
-                  </div>
-              @endif
             </div>
             <div class="col-lg-12 float-start">
                 @if($datamonths != '')

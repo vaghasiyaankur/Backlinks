@@ -14,7 +14,7 @@
                     @foreach ($serveice as $serve)
                         <div class="col-md-3 mb-4 stretch-card transparent">
                             <div class="card card-tale">
-                                <a href="@if($serve == 'Backlinks'){{ route('admin.project.show', [$id, '1']) }}@else{{ route('admin.project.dropify', [$id,$serve]) }}@endif" class="card-body text-center py-5  text-decoration-none">
+                                <a href="@if($serve == 'Backlinks'){{ route('admin.project.show', [$id, '1']) }}@else{{ route('admin.project.dropify', [$id,$serve,'1']) }}@endif" class="card-body text-center py-5  text-decoration-none">
                                     <span class="mb-4 text-white">{{ $serve }}</span>
                                 </a>
                             </div>
