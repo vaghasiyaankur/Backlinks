@@ -35,9 +35,6 @@ Route::middleware(['auth','web'])->group(function () {
     Route::get('team',[TeamController::class,'index'])->name('client.team');
     Route::get('team/add',[TeamController::class,'add_team'])->name('client.team.add');
     Route::post('team',[TeamController::class,'create'])->name('client.add.team');
-    Route::get('team/edit/{id}',[TeamController::class,'team_edit'])->name('client.team.edit');
-    Route::post('team/update',[TeamController::class,'update_team'])->name('client.update.team');
-    Route::get('team/delete/{id}',[TeamController::class,'team_delete'])->name('client.team.delete');
 
 });
 

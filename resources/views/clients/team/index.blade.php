@@ -17,33 +17,33 @@
                                     <a href="{{ route('client.team.add') }}" class="btn btn-primary">Add Team Member</a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="table-responsive mt-3">
-                                    <table class="table table-bordered" id="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Image</th>
-                                                <th>Name</th>
-                                                <th>Title</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($team_data as $team)
-                                            <tr>
-                                                <td><img src="{{ asset('template/images/team/'.$team->image) }}" alt="team-image" style="width:50px;height:50px;"></td>
-                                                <td>{{ $team->first_name . " " . $team->last_name }}</td>
-                                                <td>{{ $team->title }}</td>
-                                                <td>{{ $team->email }} <a href="https://www.linkedin.com/in/{{$team->email}}" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGyOrgBN_tSzRS0X8G2dBJl6iAJ9T-IWc0-Q&usqp=CAU" alt="Linkedin"></a></td>
-                                                <td><a href="{{ route('client.team.edit',[$team->id]) }}" class="btn btn-primary">Edit</a> <a href="{{ route('client.team.delete',[$team->id]) }}" class="btn btn-danger">Delete</a></td>
-                                            </tr>
-                                            @empty
-                                                <tr><td colspan="5" class="text-center">No Data Found !!</td></tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                            <div class="row my-5">
+                                <div class="text-center">
+                                    <h2>Our team</h2>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="col-6">
+                                            <p class="text-dark">Composed of a dozen collaborators passionate about the digital world and especially SEO. We collaborate by investing ourselves day after day in each of your projects to help you build the visibility of your company.</p>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                @forelse ($team_data as $team)
+                                    <div class="col-4">
+                                        <div class="image text-center">
+                                            <img src="{{ asset('template/images/team/'.$team->image) }}" alt="team-image" style="width:250px;height:350px;">
+                                        </div>
+                                        <div class="info text-center mt-3">
+                                            <div class="display-4 my-1 text-dark">{{ $team->first_name . " " . $team->last_name }}</div>
+                                            <div class="display-5 my-1 text-secondary">{{ $team->title }}</div>
+                                            <div class="my-2"><a href="https://www.linkedin.com/in/{{$team->email}}" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGyOrgBN_tSzRS0X8G2dBJl6iAJ9T-IWc0-Q&usqp=CAU" alt="Linkedin" width="36px" height="36px"></a></div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="col-12">
+                                        No Team Found !!
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
