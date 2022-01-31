@@ -32,7 +32,7 @@ Route::middleware(['auth','web'])->group(function () {
     Route::get('/project/csv/{id}/{month}', [ProjectController::class, 'csvddownload'])->name('client.project.csv');
     Route::get('/project/type/{id}/{type}/{month}', [ProjectController::class, 'project_type'])->name('client.project.type');
 
-    Route::view('team','clients.team.index')->name('client.team');
+    Route::get('team',[ProjectController::class, 'team_data'])->name('client.team');
 
 });
 

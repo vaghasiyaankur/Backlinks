@@ -120,4 +120,10 @@ class ProjectController extends Controller
         $data_project = ProjectTypeDropify::where('project_id',$id)->where('project_type',$type)->where('month',$month)->get();
         return view('clients.project.project_type',compact('id','project','data_project','type','datamonths'));
     }
+
+    public function team_data()
+    {
+        $project = Project::where('email',Auth::user()->email)->first();
+        return view('clients.team.index',compact('project'));
+    }
 }
