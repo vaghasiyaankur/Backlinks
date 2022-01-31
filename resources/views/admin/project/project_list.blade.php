@@ -86,3 +86,11 @@
   </div>
 
   @endsection
+  @section('script')
+  <script>
+      $(document).ready(function(){
+          $(".nav-item").removeClass('active');
+          $("#propject_tab").addClass('active');
+      });
+  </script>
+@endsection

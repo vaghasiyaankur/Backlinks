@@ -28,11 +28,11 @@ Route::middleware(['auth','web'])->group(function () {
 
     Route::get('/', [DashboardController::class,'index'])->name('client.dashboard');
 
-    Route::get('/project/{id}/{month}', [ProjectController::class, 'show'])->name('client.project.show');
+    Route::get('/project/{id}/{month}/backlinks-data', [ProjectController::class, 'show'])->name('client.project.show');
     Route::get('/project/csv/{id}/{month}', [ProjectController::class, 'csvddownload'])->name('client.project.csv');
-    Route::get('/project/type/{id}/{type}/{month}', [ProjectController::class, 'project_type'])->name('client.project.type');
+    Route::get('/project/type/{id}/{month}/{type}', [ProjectController::class, 'project_type'])->name('client.project.type');
 
-    Route::get('team',[ProjectController::class, 'team_data'])->name('client.team');
+    Route::get('team-data',[ProjectController::class, 'team_data'])->name('client.team.data');
 
 });
 

@@ -33,7 +33,7 @@
                     @foreach ($project_type as $service)
                         <div class="col-md-3 mb-4 stretch-card transparent">
                             <div class="card card-tale">
-                                <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,$service,'1']) }}@endif" class="card-body text-center py-5  text-decoration-none">
+                                <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,'1',$service]) }}@endif" class="card-body text-center py-5  text-decoration-none">
                                     <span class="mb-4 text-white">{{ $service }}</span>
                                 </a>
                             </div>
@@ -50,3 +50,12 @@
   </div>
 
   @endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            if(location.pathname.split("/")[1] == ''){
+                $('#dashboard_tab').addClass('active');
+            }
+        });
+    </script>
+@endsection

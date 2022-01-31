@@ -112,7 +112,7 @@ class ProjectController extends Controller
 
     }
 
-    public function project_type($id,$type,$month)
+    public function project_type($id,$month,$type)
     {
         $project = Project::where('email',Auth::user()->email)->first();
 
