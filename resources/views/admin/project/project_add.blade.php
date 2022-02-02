@@ -17,7 +17,7 @@
         .procheckboxmain .checkbox_div label {
             line-height: normal;
         }
-        
+
     </style>
 
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"> --}}
@@ -225,7 +225,7 @@
 
                                         <div class="form-group row select_checkbox check_1_checkbox">
                                             <label class="col-sm-3 col-form-label"></label>
-                                            <div class="col-sm-3 procheckboxmain">
+                                            <div class="col-sm-4 procheckboxmain">
                                                 <div class="form-check">
                                                     {{-- <div>
                                                         <input type="checkbox" class="checkboxes" id="Optimisation de contenus "
@@ -261,6 +261,11 @@
                                                     <input type="checkbox" class="checkboxes" id="Coaching" name="projectCheckbox[]"
                                                         value="Coaching">
                                                     <label for="Coaching"> Coaching</label>
+                                                    </div>
+                                                    <div class="checkbox_div">
+                                                    <input type="checkbox" class="checkboxes" id="pbn" name="projectCheckbox[]"
+                                                        value="PBN">
+                                                    <label for="pbn"> PBN</label>
                                                     </div>
                                                 </div>
                                             </div>

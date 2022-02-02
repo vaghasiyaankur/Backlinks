@@ -331,6 +331,8 @@
                 searchPlaceholder: "Search Spot"
             }
         });
+        $(".nav-item").removeClass('active');
+        $("#list_spot_tab").addClass('active');
     });
 
     $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){

@@ -258,15 +258,8 @@ class ProjectController extends Controller
         }else{
             $saved = 0;
         }
-        $spot_list = SpotList::select('spot')->get();
-
-        $spotlist = [];
-        foreach ($spot_list as $index => $value) {
-            $spotlist[$index] = $value->spot;
-
-        }
         $thematic = SpotList::select('thematic')->groupBy('thematic')->get();
-        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved','spotlist','thematic'));
+        return view('admin.project.project_show', compact('id', 'month','projectdata','datamonths','project','saved','thematic'));
     }
 
     public function showDataMonthViseForm(Request $request, $id, $month)
@@ -281,6 +274,11 @@ class ProjectController extends Controller
         $url_spot = explode("\n", str_replace("\r", "",$request->url_spot));
         $prestataire = explode("\n", str_replace("\r", "",$request->prestataire));
         $price = explode("\n", str_replace("\r", "",$request->price));
+        $url = explode(" ", str_replace("\r", "",$request->url));
+        $ancre = explode(" ", str_replace("\r", "",$request->ancre));
+        $url_spot = explode(" ", str_replace("\r", "",$request->url_spot));
+        $prestataire = explode(" ", str_replace("\r", "",$request->prestataire));
+        $price = explode(" ", str_replace("\r", "",$request->price));
 
         foreach($url as $index=>$value){
             $projectdata = new ProjectData();
@@ -483,7 +481,6 @@ class ProjectController extends Controller
 
         // return $table;
         $url_spot = ProjectData::pluck('url_spot');
-
         $list = SpotList::whereNotIn('spot', $url_spot);
 
 
@@ -551,7 +548,7 @@ class ProjectController extends Controller
             $list->Where('spot', 'like', '%' . $request->spot . '%');
         }
 
-        $spot = $list->pluck('spot');
+        $spot = $list->whereNotIn('provider',['Mélodie','Réseau BHM'])->pluck('spot');
 
         return $spot;
     }
@@ -561,7 +558,7 @@ class ProjectController extends Controller
         $id = explode(",",$req->id);
         $spot_url = explode(",",$req->spot_url);
         foreach ($spot_url as $index=>$val) {
-            ProjectData::where('id',$id[$index])->whereNotIn('prestataire',['Mélodie','Réseau BHM'])->update(['url_spot'=>$val]);
+            ProjectData::where('id',$id[$index])->update(['url_spot'=>$val]);
         }
     }
 

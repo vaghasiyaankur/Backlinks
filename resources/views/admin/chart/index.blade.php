@@ -247,29 +247,34 @@ $next_year = date('Y') + 1;
 						$green = explode(',',$pl->$greentype);
 					@endphp
 				 	@if(@$type)
-							@foreach ($data[$prev_year][$pl->id] as $list)
+                        @foreach ($data[$prev_year][$pl->id] as $index => $list)
 
-							@php
+                        @php
 
-							$class = 'color1';
-							$datacolor = 1;
+                        $class = 'color1';
+                        $datacolor = 1;
 
-							if (in_array($list, $orange)) {
-								$class = 'color2';
-								$datacolor = 2;
-								$orangetask++;
-							}else if (in_array($list, $green)) {
-								$class = 'color3';
-								$datacolor = 3;
-								$greentask++;
-							}else{
-								$redtask++;
-							}
+                        if (in_array($list, $orange)) {
+                            $class = 'color2';
+                            $datacolor = 2;
+                            $orangetask++;
+                        }else if (in_array($list, $green)) {
+                            $class = 'color3';
+                            $datacolor = 3;
+                            $greentask++;
+                        }else{
+                            $redtask++;
+                        }
 
-							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-
-							@endforeach
+                        @endphp
+                            @if ($type == 'Audit')
+                                @if ($list == $begining_month)
+                                    <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                                @endif
+                            @else
+                                <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                            @endif
+                        @endforeach
                 	@endif
                 @endforeach
 			</ul>
@@ -314,6 +319,7 @@ $next_year = date('Y') + 1;
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
 				$begining_month = @$data[$currnet_year][$pl->id][0];
+                $prev_begining_month = @$data[$prev_year][$pl->id][0];
             @endphp
 
 			<ul class="gantt__row-bars">
@@ -327,7 +333,7 @@ $next_year = date('Y') + 1;
 						$green = explode(',',$pl->$greentype);
 					@endphp
 				 	@if(@$type)
-							@foreach ($data[$currnet_year][$pl->id] as $list)
+							@foreach ($data[$currnet_year][$pl->id] as $index => $list)
 							@php
 
 							$class = 'color1';
@@ -354,8 +360,13 @@ $next_year = date('Y') + 1;
 							}
 
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-
+                            @if ($type == 'Audit')
+                                @if (($list == $begining_month) && ($prev_begining_month == null))
+                                    <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                                @endif
+                            @else
+                                <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                            @endif
 							@endforeach
                 	@endif
                 @endforeach
@@ -402,6 +413,8 @@ $next_year = date('Y') + 1;
                 $project_type = explode(',', $pl->project_type_checkbox);
 
 				$begining_month = @$data[$next_year][$pl->id][0];
+                $curr_begining_month = @$data[$currnet_year][$pl->id][0];
+                $prev_begining_month = @$data[$prev_year][$pl->id][0];
             @endphp
 
 			<ul class="gantt__row-bars">
@@ -435,9 +448,14 @@ $next_year = date('Y') + 1;
 							}
 
 							@endphp
-								<li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
-
-							@endforeach
+								@if ($type == 'Audit')
+                                    @if (($list == $begining_month) && ($prev_begining_month == null) && ($curr_begining_month == null))
+                                        <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                                    @endif
+                                @else
+                                    <li class="project_type {{$class}}" style="grid-column: {{$list}}/{{$list+1}}" data-id="{{$pl->id}}" data-color="{{$datacolor}}" data-type="{{$type}}"  data-month="{{$list}}">{{$type}}</li>
+                                @endif
+                            @endforeach
                 	@endif
                 @endforeach
 			</ul>
@@ -457,6 +475,9 @@ $next_year = date('Y') + 1;
   <script>
 
 	$(document).ready(function() {
+        $(".nav-item").removeClass('active');
+        $("#chart_tab").addClass('active');
+
 		var orangetaskno  = $("#orangetaskno").val();
 		var greentaskno  = $("#greentaskno").val();
 		var redtaskno  = $("#redtaskno").val();

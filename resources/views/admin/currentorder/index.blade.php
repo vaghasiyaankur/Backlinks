@@ -7,6 +7,7 @@
             border-color: #000;
         }
     </style>
+
 @stop
 @section('content')
     <div class="main-panel">
@@ -64,8 +65,14 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function(){
+        $(".nav-item").removeClass('active');
+        $("#current_tab").addClass('active');
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script>
         $(function() {
             $( "#datepicker" ).datepicker();

@@ -52,3 +52,11 @@
   </div>
 
   @endsection
+  @section('script')
+  <script>
+      $(document).ready(function(){
+          $(".nav-item").removeClass('active');
+          $("#old_client_tab").addClass('active');
+      });
+  </script>
+@endsection

@@ -86,6 +86,9 @@ a:focus, input:focus{
                         <input type="hidden" name="month" id="month" value="{{ Request::segment(5) }}">
                     </div>
                 </div> --}}
+
+                <input type="hidden" name="id" id="id" value="{{$id}}">
+                <input type="hidden" name="month" id="month" value="{{$month}}">
                 <div class="filters filters1 mt-3 mb-4 d-none">
                     <div class="formtofilter">
                     <label for="prixFrom">Prix : </label>
@@ -138,7 +141,6 @@ a:focus, input:focus{
                     <input type="number" name="keywords" class="tofilter" id="keywordsTo" />
                     </div>
 
-
                     <div class="formtofilter">
                     <label for="traficFrom">Trafic : </label>
                     <label for="traficFrom" class="trafic_label">From</label>
@@ -184,7 +186,7 @@ a:focus, input:focus{
             <div class="col-lg-12 float-start">
             @for ($i = 1; $i <= $datamonths->months; $i++)
                     <a href="{{ route('admin.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
-           @endfor
+            @endfor
             </div>
 
           </div>
@@ -275,23 +277,22 @@ $("#propject_tab").addClass('active');
     //     });
     // });
 
-    $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
-        datatable()
-    });
+    // $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
+    //     datatable()
+    // });
 
-    $(document).on('click', '.dropdown-item', function(){
-      $('.dropdown-item').removeClass('select_theme');
-      $(this).addClass('select_theme');
+    // $(document).on('click', '.dropdown-item', function(){
+    //   $('.dropdown-item').removeClass('select_theme');
+    //   $(this).addClass('select_theme');
 
-      var curr_val = $(this).text();
-      $(".dropdown-toggle").text(curr_val);
+    //   var curr_val = $(this).text();
+    //   $(".dropdown-toggle").text(curr_val);
 
-      datatable();
-    });
+    //   datatable();
+    // });
 
-    $(document).on('change', '#gnews', function(){
-      datatable();
-    });
+    // $(document).on('change', '#gnews', function(){
+    // });
 
     function datatable(){
         var prixFrom = $("#prixFrom").val();
@@ -350,31 +351,32 @@ $("#propject_tab").addClass('active');
                 $(res).each(function(index, element){
                     $(`.spot_${index}`).text(element);
                 });
+                var id = [];
+                var spot_url = [];
+                $("#table tbody tr").each(function(item){
+                    id.push($(this).children(".id").text());
+                    spot_url.push($(this).children(".url_spot").text());
+                });
+                id = id.toString();
+                spot_url = spot_url.toString();
+                $.ajax({
+                    type:'POST',
+                    url:'{{route("admin.project.show.url-spot")}}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                        "spot_url": spot_url,
+                        },
+                    success: function(res) {
+
+                    },
+                });
             },
         });
     }
 
     $(document).on("click",".update_url_spot",function(){
-        var id = [];
-        var spot_url = [];
-        $("#table tbody tr").each(function(item){
-            id.push($(this).children(".id").text());
-            spot_url.push($(this).children(".url_spot").text());
-        });
-        id = id.toString();
-        spot_url = spot_url.toString();
-        $.ajax({
-            type:'POST',
-            url:'{{route("admin.project.show.url-spot")}}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "id": id,
-                "spot_url": spot_url,
-                },
-            success: function(res) {
-
-            },
-        });
+        datatable()
     });
 
  </script>
