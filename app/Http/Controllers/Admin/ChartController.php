@@ -12,7 +12,7 @@ class ChartController extends Controller
     public function index(Request $request)
     {
 
-        $ProjectList = Project::all();
+        $ProjectList = Project::where('status',0)->get();
         $current = Carbon::now();
         $data = [];
         $prev_year = $current->year - 1;

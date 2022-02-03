@@ -6,10 +6,16 @@
           <span class="menu-title" >Dashboard</span>
         </a>
       </li>
-      <li class="nav-item" id="propject_tab">
+      <li class="nav-item" id="team_tab">
         <a class="nav-link" href="{{ route('client.team.data') }}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title" >Team</span>
+        </a>
+      </li>
+      <li class="nav-item" id="credit_tab">
+        <a class="nav-link" href="{{ route('client.credit') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Credit</span>
         </a>
       </li>
         @isset($project)

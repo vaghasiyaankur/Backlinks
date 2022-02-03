@@ -1,9 +1,12 @@
 <style>
-    .nav-item .dropdown-menu.show {
-        display: contents;
+    .sidebar-tab .dropdown-menu.show {
+        display: contents !important;
     }
     .nav-item{
         margin: 0;
+    }
+    .sidebar-tab .dropdown-menu{
+        display: none !important;
     }
 </style>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -20,7 +23,7 @@
           <span class="menu-title" >User</span>
         </a>
       </li>
-      <li class="dropdown nav-item">
+      <li class="dropdown nav-item sidebar-tab">
           <a class="nav-link dropdown-toggle" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if ((Request::segment(2) == 'project') || (Request::segment(2) == 'spot-list') || (Request::segment(2) == 'chart') || (Request::segment(2) == 'currentorder') || (Request::segment(2) == 'old-project')) aria-expanded="true" @else aria-expanded="false" @endif>
             <i class="icon-grid menu-icon"></i>
             <span class="menu-title" >Prod</span>

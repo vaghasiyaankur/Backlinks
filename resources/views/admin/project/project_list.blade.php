@@ -53,7 +53,12 @@
                         {{$pl->name}}
                       </td>
                       <td>
-                        {{$pl->website}}
+                        @php
+                            $website = explode(" ",$pl->website)
+                        @endphp
+                        @foreach ($website as $web)
+                            {{$web}}@if(!$loop->last) <br><br> @endif
+                        @endforeach
                       </td>
                       <td>
                         {{$pl->email}}

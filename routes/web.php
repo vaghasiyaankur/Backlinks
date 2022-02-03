@@ -5,6 +5,8 @@ use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\TeamController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Client\CreditController;
+use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,8 @@ Route::middleware(['auth','web'])->group(function () {
     Route::get('/project/type/{id}/{month}/{type}', [ProjectController::class, 'project_type'])->name('client.project.type');
 
     Route::get('team-data',[ProjectController::class, 'team_data'])->name('client.team.data');
+
+    Route::get('/credit',[CreditController::class, 'index'])->name('client.credit');
 
 });
 

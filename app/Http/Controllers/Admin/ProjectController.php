@@ -274,11 +274,6 @@ class ProjectController extends Controller
         $url_spot = explode("\n", str_replace("\r", "",$request->url_spot));
         $prestataire = explode("\n", str_replace("\r", "",$request->prestataire));
         $price = explode("\n", str_replace("\r", "",$request->price));
-        $url = explode(" ", str_replace("\r", "",$request->url));
-        $ancre = explode(" ", str_replace("\r", "",$request->ancre));
-        $url_spot = explode(" ", str_replace("\r", "",$request->url_spot));
-        $prestataire = explode(" ", str_replace("\r", "",$request->prestataire));
-        $price = explode(" ", str_replace("\r", "",$request->price));
 
         foreach($url as $index=>$value){
             $projectdata = new ProjectData();

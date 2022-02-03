@@ -40,13 +40,13 @@
                             <div class="form-group row align-items-center col-3">
                                 {{-- <label for="Url Spot" class="col-sm-2 col-form-label">Url Spot</label> --}}
                                 <div class="col-sm-12">
-                                <textarea class="form-control" rows="8" cols="50" id="url_spot" placeholder="Url Spot" name="url_spot" Required></textarea>
+                                <textarea class="form-control" rows="8" cols="50" id="url_spot" placeholder="Url Spot" name="url_spot"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row align-items-center col-2">
                                 {{-- <label for="Prestataire" class="col-sm-2 col-form-label">Prestataire</label> --}}
                                 <div class="col-sm-12">
-                                <textarea class="form-control" rows="8" cols="50" id="prestataire" placeholder="Prestataire" name="prestataire" Required></textarea>
+                                <textarea class="form-control" rows="8" cols="50" id="prestataire" placeholder="Prestataire" name="prestataire"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row align-items-center col-2">

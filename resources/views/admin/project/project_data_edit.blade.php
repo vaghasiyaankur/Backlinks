@@ -34,19 +34,19 @@
                       <div class="form-group row">
                         <label for="Ancre" class="col-sm-3 col-form-label">Ancre</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="ancre" placeholder="Ancre" name="ancre" value="{{ $projectdata->ancre ? $projectdata->ancre : ''}}"  Required> 
+                          <input type="text" class="form-control" id="ancre" placeholder="Ancre" name="ancre" value="{{ $projectdata->ancre ? $projectdata->ancre : ''}}"  Required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="Url Spot" class="col-sm-3 col-form-label">Url Spot</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="url_spot" placeholder="Url Spot" name="url_spot" value="{{ $projectdata->url_spot ? $projectdata->url_spot : ''}}"  Required>
+                          <input type="text" class="form-control" id="url_spot" placeholder="Url Spot" name="url_spot" value="{{ $projectdata->url_spot ? $projectdata->url_spot : ''}}" >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="Prestataire" class="col-sm-3 col-form-label">Prestataire</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="prestataire" placeholder="Prestataire" name="prestataire" value="{{ $projectdata->prestataire ? $projectdata->prestataire : ''}}"  Required>
+                          <input type="text" class="form-control" id="prestataire" placeholder="Prestataire" name="prestataire" value="{{ $projectdata->prestataire ? $projectdata->prestataire : ''}}" >
                         </div>
                       </div>
                       <div class="form-group row">
@@ -65,8 +65,8 @@
 
           </div>
         </div>
-      </div> 
-    </div> 
+      </div>
+    </div>
 </div>
 
   @endsection
