@@ -193,10 +193,10 @@
 
 
                         <div class="dropdown">
-                        <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-danger btn-lg dropdown-toggle thematic" type="button" id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Thematic
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton1">
+                        <div class="dropdown-menu" style="overflow: auto;height: 500px;" aria-labelledby="dropdownMenuSizeButton1">
                             @foreach($thematic as $th)
                             <span class="dropdown-item"  value="{{ $th->thematic }}">{{ $th->thematic }}</span>
                             @endforeach
@@ -345,7 +345,7 @@
       $(this).addClass('select_theme');
 
       var curr_val = $(this).text();
-      $(".dropdown-toggle").text(curr_val);
+      $(".dropdown-toggle.thematic").text(curr_val);
 
       datatable();
     });
