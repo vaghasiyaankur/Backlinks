@@ -13,9 +13,15 @@
         </a>
       </li>
       <li class="nav-item" id="credit_tab">
-        <a class="nav-link" href="{{ route('client.credit.add') }}">
+        <a class="nav-link" href="{{ route('client.credit') }}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title" >Credit</span>
+        </a>
+      </li>
+      <li class="nav-item" id="credit_tab">
+        <a class="nav-link" href="{{ route('client.credit.add') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Mes performances SEO</span>
         </a>
       </li>
         @isset($project)
