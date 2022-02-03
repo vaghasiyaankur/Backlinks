@@ -52,7 +52,7 @@
                             <div class="form-group row align-items-center col-2">
                                 {{-- <label for="price" class="col-sm-2 col-form-label">Price</label> --}}
                                 <div class="col-sm-12">
-                                <textarea class="form-control" rows="8" cols="50" id="price" placeholder="Price" name="price"  Required></textarea>
+                                <textarea class="form-control" rows="8" cols="50" id="price" placeholder="Price" name="price"></textarea>
                                 </div>
                             </div>
                         </div>

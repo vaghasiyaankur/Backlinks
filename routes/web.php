@@ -36,7 +36,10 @@ Route::middleware(['auth','web'])->group(function () {
 
     Route::get('team-data',[ProjectController::class, 'team_data'])->name('client.team.data');
 
+    Route::get('/credit/add',[CreditController::class, 'add_credit'])->name('client.credit.add');
     Route::get('/credit',[CreditController::class, 'index'])->name('client.credit');
+    Route::post('/add/credit',[CreditController::class, 'credit_add'])->name('client.add.credit');
+    Route::get('/purchase/credit',[CreditController::class, 'parchese_credit'])->name('purchase.credit');
 
 });
 

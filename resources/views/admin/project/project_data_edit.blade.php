@@ -52,7 +52,7 @@
                       <div class="form-group row">
                         <label for="price" class="col-sm-3 col-form-label">Price</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="price" placeholder="Price" name="price"  value="{{ $projectdata->price ? $projectdata->price : ''}}"  Required>
+                          <input type="text" class="form-control" id="price" placeholder="Price" name="price"  value="{{ $projectdata->price ? $projectdata->price : ''}}">
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary me-2">Submit</button>

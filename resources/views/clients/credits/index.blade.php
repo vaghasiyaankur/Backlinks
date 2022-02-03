@@ -26,7 +26,7 @@
                                           <li>Free upgrade for one year</li>
                                         </ul>
                                         <div class="wrapper">
-                                          <a href="#" class="btn btn-outline-primary btn-block">Download</a>
+                                          <a href="{{ route('purchase.credit') }}" class="btn btn-outline-primary btn-block">Download</a>
                                         </div>
                                         <p class="mt-3 mb-0 plan-cost text-gray">Free</p>
                                       </div>
@@ -47,7 +47,7 @@
                                           <li>Free upgrade for two year</li>
                                         </ul>
                                         <div class="wrapper">
-                                          <a href="#" class="btn btn-success btn-block">Start trial</a>
+                                          <a href="{{ route('purchase.credit') }}" class="btn btn-success btn-block">Start trial</a>
                                         </div>
                                         <p class="mt-3 mb-0 plan-cost text-success">or purchase now</p>
                                       </div>
@@ -68,7 +68,7 @@
                                           <li>Free upgrade for two year</li>
                                         </ul>
                                         <div class="wrapper">
-                                          <a href="#" class="btn btn-outline-primary btn-block">Start trial</a>
+                                          <a href="{{ route('purchase.credit') }}" class="btn btn-outline-primary btn-block">Start trial</a>
                                         </div>
                                         <p class="mt-3 mb-0 plan-cost text-gray">or purchase now</p>
                                       </div>
