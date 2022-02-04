@@ -185,8 +185,21 @@ $next_year = date('Y') + 1;
 	<button class="btn color3" value="{{$next_year }}">Task Number :  <span id="greentask">40</span></button>
 </div> --}}
 
+@php
+    foreach ($ProjectList as $pl){
+        $project_type = explode(',', $pl->project_type_checkbox);
+        if (!empty($project_type)){
+            foreach ($data[$currnet_year][$pl->id] as $index => $list) {
+                if($list == $month){
+                    $client[] = $list;
+                }
+            }
+        }
+    }
+    $client = count($client);
+@endphp
 <div class="year--button d-flex flex-wrap align-items-center justify-content-between w-100" style="padding: 20px 50px 0">
-	<button class="btn btn-primary" value="{{$prev_year }}">current Number Of Clients : <span id="no_of_client">{{$clients}}</span></button>
+	<button class="btn btn-primary" value="{{$prev_year }}">current Number Of Clients : <span id="no_of_client">{{ $client }}</span></button>
 	<button class="btn color1" value="{{$currnet_year }}">current Task Number :  <span id="currentredtask">40</span></button>
 	<button class="btn color2" value="{{$next_year }}">current Task Number :  <span id="currentorangetask">40</span></button>
 	<button class="btn color3" value="{{$next_year }}">current Task Number :  <span id="currentgreentask">40</span></button>
@@ -335,7 +348,6 @@ $next_year = date('Y') + 1;
 				 	@if(@$type)
 							@foreach ($data[$currnet_year][$pl->id] as $index => $list)
 							@php
-
 							$class = 'color1';
 							$datacolor = 1;
 							if (in_array($list, $orange)) {

@@ -281,15 +281,15 @@ $("#propject_tab").addClass('active');
     //     datatable()
     // });
 
-    // $(document).on('click', '.dropdown-item', function(){
-    //   $('.dropdown-item').removeClass('select_theme');
-    //   $(this).addClass('select_theme');
+    $(document).on('click', '.dropdown-item', function(){
+      $('.dropdown-item').removeClass('select_theme');
+      $(this).addClass('select_theme');
 
-    //   var curr_val = $(this).text();
-    //   $(".dropdown-toggle").text(curr_val);
+      var curr_val = $(this).text();
+      $(".dropdown-toggle").text(curr_val);
 
     //   datatable();
-    // });
+    });
 
     // $(document).on('change', '#gnews', function(){
     // });

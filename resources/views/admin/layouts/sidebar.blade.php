@@ -64,5 +64,11 @@
             </li>
           </ul>
       </li>
+      <li class="nav-item" id="sales_tab">
+        <a class="nav-link" href="{{ route('admin.sales') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Sales</span>
+        </a>
+      </li>
     </ul>
   </nav>

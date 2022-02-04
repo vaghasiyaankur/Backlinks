@@ -58,10 +58,7 @@ class ChartController extends Controller
 
         }
 
-        $clients = Project::count();
-        // dd($clients);
-
-        return view('admin.chart.index', compact('data','ProjectList', 'clients'));
+        return view('admin.chart.index', compact('data','ProjectList'));
 
     }
 

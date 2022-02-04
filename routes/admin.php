@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CurrentOrderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OldClientController;
+use App\Http\Controllers\Admin\SalesController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -103,5 +104,8 @@ Route::namespace('Admin')->group(function () {
         Route::post('/currentorder/download-csv',[CurrentOrderController::class, 'download_csv'])->name('admin.currentorder.csv');
 
         Route::get('/old-project', [OldClientController::class, 'index'])->name('admin.old.client');
+
+        Route::view('sales','admin.sales.index')->name('admin.sales');
+        Route::post('sales',[SalesController::class,'index'])->name('sales.api.call');
     });
 });
