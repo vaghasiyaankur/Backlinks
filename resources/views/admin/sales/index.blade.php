@@ -14,7 +14,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Domain Name</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" name="demain_name" class="form-control" rows="5" placeholder="Domain Name"></textarea>
+                                        <textarea type="text" name="domain_name" class="form-control" rows="5" placeholder="Domain Name"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">

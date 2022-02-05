@@ -608,4 +608,9 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
+    public function check_valid_data(Request $req,$id,$month,$valid_data)
+    {
+        ProjectData::where('project_id',$id)->where('month',$month)->where('id',$valid_data)->update(['url_spot'=>$req->urlspot]);
+    }
+
 }

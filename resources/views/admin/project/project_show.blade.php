@@ -348,6 +348,7 @@ $("#propject_tab").addClass('active');
                 "spot" : spot,
                 },
             success: function(res) {
+                $('#table tbody tr .url_spot').text('');
                 $(res).each(function(index, element){
                     $(`.spot_${index}`).text(element);
                 });
@@ -377,6 +378,19 @@ $("#propject_tab").addClass('active');
 
     $(document).on("click",".update_url_spot",function(){
         datatable()
+    });
+
+    $(document).on("click",".validate_row",function(){
+        var url = $(this).data('href');
+        var urlspot = $(this).parents('.project_data').children('.url_spot').text();
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: {urlspot:urlspot},
+            success: function (res) {
+                console.log(res);
+            }
+        });
     });
 
  </script>
