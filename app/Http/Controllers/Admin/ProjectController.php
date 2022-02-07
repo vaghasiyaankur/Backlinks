@@ -543,7 +543,7 @@ class ProjectController extends Controller
             $list->Where('spot', 'like', '%' . $request->spot . '%');
         }
 
-        $spot = $list->whereNotIn('provider',['Mélodie','Réseau BHM'])->pluck('spot');
+        $spot = $list->whereNotIn('provider',['Mélodie','Réseau BHM'])->select('spot','prix','provider')->get();
 
         return $spot;
     }
@@ -610,7 +610,7 @@ class ProjectController extends Controller
 
     public function check_valid_data(Request $req,$id,$month,$valid_data)
     {
-        ProjectData::where('project_id',$id)->where('month',$month)->where('id',$valid_data)->update(['url_spot'=>$req->urlspot]);
+        ProjectData::where('project_id',$id)->where('month',$month)->where('id',$valid_data)->update(['url_spot'=>$req->urlspot,'price'=>$req->price,'prestataire'=>$req->provider]);
     }
 
 }

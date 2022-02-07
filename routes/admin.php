@@ -106,7 +106,8 @@ Route::namespace('Admin')->group(function () {
 
         Route::get('/old-project', [OldClientController::class, 'index'])->name('admin.old.client');
 
-        Route::view('sales','admin.sales.index')->name('admin.sales');
+        Route::view('sales/diagnostic','admin.sales.index')->name('admin.sales.diagnostic');
+        Route::view('sales/dictionnaire','admin.dictionnaire.index')->name('admin.sales.dictionnaire');
         Route::post('sales',[SalesController::class,'index'])->name('sales.api.call');
     });
 });

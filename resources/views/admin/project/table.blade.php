@@ -35,15 +35,11 @@
                 {{$pd->url}}
             </td>
             <td>
-            {{$pd->ancre}}
+                {{$pd->ancre}}
             </td>
-            <td class="url_spot spot_{{$index}}"></td>
-            <td>
-                {{$pd->prestataire}}
-            </td>
-            <td>
-                {{$pd->price}}
-            </td>
+            <td class="url_spot spot_{{$index}}">{{ $pd->url_spot }}</td>
+            <td class="provider provider_{{$index}}">{{ $pd->prestataire }}</td>
+            <td class="price price_{{$index}}">{{ $pd->price }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('admin.edit.data', [$id, $month,$pd->id])}}">Edit</a>
                 <a class="btn btn-danger" href="{{ route('admin.delete.data', [$id, $month,$pd->id])}}">Delete</a>

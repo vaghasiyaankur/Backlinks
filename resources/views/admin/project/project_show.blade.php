@@ -349,8 +349,12 @@ $("#propject_tab").addClass('active');
                 },
             success: function(res) {
                 $('#table tbody tr .url_spot').text('');
+                $('#table tbody tr .provider').text('');
+                $('#table tbody tr .price').text('');
                 $(res).each(function(index, element){
-                    $(`.spot_${index}`).text(element);
+                    $(`.spot_${index}`).text(element.spot);
+                    $(`.provider_${index}`).text(element.provider);
+                    $(`.price_${index}`).text(element.prix);
                 });
                 var id = [];
                 var spot_url = [];
@@ -383,10 +387,12 @@ $("#propject_tab").addClass('active');
     $(document).on("click",".validate_row",function(){
         var url = $(this).data('href');
         var urlspot = $(this).parents('.project_data').children('.url_spot').text();
+        var provider = $(this).parents('.project_data').children('.provider').text();
+        var price = $(this).parents('.project_data').children('.price').text();
         $.ajax({
             url: url,
             type: 'GET',
-            data: {urlspot:urlspot},
+            data: {urlspot:urlspot,provider:provider,price:price},
             success: function (res) {
                 console.log(res);
             }
