@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('sales.layout.app')
 @section('style')
     <style>
         .accordion.accordion-filled .card .card-header a[aria-expanded="true"] {
@@ -347,28 +347,6 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header" role="tab" id="heading-15">
-                                        <h4 class="mb-0">
-                                          <a data-bs-toggle="collapse" href="#collapse-15" aria-expanded="false" aria-controls="collapse-15" class="collapsed">Page generator pro</a>
-                                        </h4>
-                                      </div>
-                                      <div id="collapse-15" class="collapse" role="tabpanel" aria-labelledby="heading-15" data-parent="#accordion-15" style="">
-                                        <div class="card-body">
-                                            <p class="mb-3">Optimisez votre présence sur les moteurs de recherche avec du contenu en masse. Page generator Pro est un outil qui permet de générer automatiquement du contenu comme des pages, des pages et des messages personnalisés. Et même si le contenu est issu d’une programmation, la simulation du texte suit des règles ou des scripts qui auront un impact majeur sur la qualité de l’article. Ensuite, il sera publié sur une URL spécifique.</p>
-                                            <p>Le but de cette technique est de gagner un meilleur positionnement sur Google et augmenter le taux de conversion en utilisant les mots clés longue traîne. Cependant, c’est une technique SEO Black Hat qui est interdite par le moteur de recherche.</p>
-                                            <h4>Les fonctionnalités de Page Generator Pro</h4>
-                                              <p>Générer du contenu automatiquement est une pratique qui ne doit pas être utilisée sur des sites internet qui sont destinés à durer longtemps. Utiliser Page generator pro vous offre plusieurs possibilités avec ses nombreuses fonctionnalités:</p>
-                                              <ul>
-                                                  <li>Créer des pages spécifiques;</li>
-                                                  <li>Répertorier des produits ou des produits;</li>
-                                                  <li>Créer des contenus pour votre blog.</li>
-                                              </ul>
-                                              <p>Pour ce faire, vous devez d’abord définir les mots clés liés à un lieu, un service ou un produit et utilisez-le dans un contenu pour générer un contenu de masse pour vos pages, messages ou types de message en fonction de votre modèle. Les mots clés utilisés et les termes sont différents et uniques pour chaque contenu. Ainsi, vous obtenez un contenu unique et parfait pour les moteurs de recherche.</p>
-                                              <p>De plus, Page Generator Pro fonctionne également avec l’éditeur classique, Gutenberg et la majorité des créateurs de pages comme Elementor, Divi, Visual Composer ou autres.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
                                     <div class="card-header" role="tab" id="heading-16">
                                         <h4 class="mb-0">
                                           <a data-bs-toggle="collapse" href="#collapse-16" aria-expanded="false" aria-controls="collapse-16" class="collapsed">Jérôme Pasquelin</a>
@@ -460,6 +438,335 @@
                                                 <li>Auto publie les produits Amazon, eBay, Walmart et Clickbank.</li>
                                             </ul>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-19">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-19" aria-expanded="false" aria-controls="collapse-19" class="collapsed">Web.editor</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-19" class="collapse" role="tabpanel" aria-labelledby="heading-19" data-parent="#accordion-19" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Considéré comme un éditeur de pages web léger, Web Editor ou éditeur HTML ou éditeur web est un logiciel conçu pour faciliter la préparation et la modification de documents écrits en Hypertext Markup Language (HTML) qui est le principal composant d’une page web. Dans ce cas, il supporte les formats HTML, CSS, JS et bien d’autres.</p>
+                                            <p>Avec WebEditor, vous allez pouvoir : </p>
+                                            <ul>
+                                                <li>Installer un ou plusieurs sites sur l’un de vos hébergements. Vous n’avez qu’à renseigner votre API Internet.bs et Cloudflare, l’outil se chargera de configurer automatiquement vos noms de domaine.</li>
+                                                <li>Optimiser des sites avec le référencement white hat, black hat ou PBN sans aucun footprints mais avec des templates prédéfinis.</li>
+                                                <li>Choisir le degré de personnalisation de vos sites</li>
+                                                <li>Intégrer vos équipes de rédacteurs à votre projet pour qu’ils puissent bénéficier d’une interface personnalisée.</li>
+                                                <li>Calculer vos dépenses en rédaction</li>
+                                                <li>Gérer tous vos contenus. Vous pourrez donc valider et publier 10, 20, 30 000 mots en quelques clics depuis l’outil, et cela vers tous vos sites.</li>
+                                                <li>Commander des contenus sur les plateformes de rédaction : par exemple sur le White.Page.</li>
+                                                <li>Traduire vos contenus.</li>
+                                                <li>Installer et gérer les certificats SSL.</li>
+                                                <li>Surveiller par monitorage tout votre réseau : en cas de problème, vous recevrez une alerte email.</li>
+                                                <li>Rendre populaires vos liens.</li>
+                                                <li>Faire des liens thématiques vers vos MS grâce aux différentes offres de Netlinking.</li>
+                                                <li>Acheter des Web Profils sur des sites d’autorités.</li>
+                                            </ul>
+                                            <p>Il existe deux catégories d’éditeur :</p>
+                                            <h4 class="my-3">Les éditeurs WYSIWYG</h4>
+                                            <p>Cet éditeur permet d’éditer une page Web à peu près telle qu’elle apparaît dans les navigateurs courants. Ayant les mêmes fonctions que le traitement de texte classique, il a pour avantage de faciliter l’utilisation et l’observation immédiate du rendu graphique.</p>
+                                            <h4 class="my-3">Les éditeurs de texte</h4>
+                                            <p>Contrairement à l’éditeur WYSIWYG, ce type d’éditeur se convertit directement en langage HTML. Ainsi, les codes traités vont apparaître comme du texte.</p>
+                                            <p>Pour s’en servir, il est essentiel de disposer des logiciels comme les outils utilisant les technologies PHP, JSP, ASP, Perl ou CGI.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-20">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-20" aria-expanded="false" aria-controls="collapse-20" class="collapsed">Ninjalinking</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-20" class="collapse" role="tabpanel" aria-labelledby="heading-20" data-parent="#accordion-20" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Ninjalinking est un outil conçu pour réaliser des backlinks afin de doubler votre trafic SEO en quelques semaines. Le terme « Link ninja » désigne une méthode de netlinking consistant à mettre en place soi-même des liens vers son site.</p>
+                                            <h4 class="my-3">Les avantages du Ninjalinking</h4>
+                                            <p>Facile et rapide, il vous suffit de de trouver un site sur lequel insérer un lien afin qu’il soit validé par le webmaster qui le gère. Le Ninjalinking est donc en quelque sorte l’art de placer des liens gratuitement sur Internet sur des sites tels que des forums, des webprofils ou des commentaires dans la manière la plus discrète possible comme le Ninja !</p>
+                                            <p>Il faut juste que vous essayiez de vous intégrer au contexte et d’être discret pour que le lien génère potentiellement du trafic. De plus, avec cette technique, vous allez maîtriser facilement l’ancre de votre lien.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-21">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-21" aria-expanded="false" aria-controls="collapse-21" class="collapsed">LinksGarden</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-21" class="collapse" role="tabpanel" aria-labelledby="heading-21" data-parent="#accordion-21" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Lancée par l’agence G2 Edition, LinksGarden n’est autre qu’une plateforme de Netlinking et de gestion de campagne pour gagner en visibilité sur les moteurs de recherches. Elle fournit des milliers de sites thématiques en exclusivité afin que vous puissiez gérer vos campagnes de backlinks en toute autonomie. En effet, celle-ci offre environ 1 800 spots sur différentes thématiques avec des prix attractifs.</p>
+                                            <h4 class="my-3">Comment fonctionne cette plateforme de backlinks ?</h4>
+                                            <p>Vous n’avez rien à craindre sur cette plateforme puisque la confidentialité de ses clients est primordiale. Son tarif varie selon la gamme choisie, à compter jusqu’à 100 € HT rédaction comprise. Les sites sont thématisés, soignés, uniques et privés.</p>
+                                            <p>Ainsi, vous pouvez :</p>
+                                            <ul>
+                                                <li>Générer plus de trafic avec les moteurs de recherche</li>
+                                                <li>Améliorer votre business tout en achetant</li>
+                                                <li>Acheter des liens sur des sites de différents thèmes en toute discrétion</li>
+                                            </ul>
+                                            <p>En outre, ses sites partenaires sont tous sélectionnés manuellement pour assurer la qualité du service. Son service premium de gestion de campagne de Netlinking est facultatif. Vous pouvez solliciter leur aide pour réaliser vos audits ou même demander un reporting mensuel complet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-22">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-22" aria-expanded="false" aria-controls="collapse-22" class="collapsed">Spamdexing</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-22" class="collapse" role="tabpanel" aria-labelledby="heading-22" data-parent="#accordion-22" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Le Spamdexing est l’ensemble des techniques frauduleuses interdites par les moteurs de recherche pour manipuler leurs algorithmes. Cela consiste à créer de faux liens grâce au référencement black hat. Ce terme anglais symbolise donc le référencement abusif puisqu’il vient de l’association de deux mots « spam » et « indexing » qui veut dire indexation.</p>
+                                            <p class="my-3">Ce sont notamment les éditeurs de site Web ainsi que les vendeurs de produit ou service qui l’utilisent fréquemment pour remplir les forums et les réseaux sociaux de liens pointant vers son site. Tout cela dans le but d’améliorer leurs classements dans les moteurs de recherche à partir d’un mot clé prédéfini. Ces professionnels vont tromper les SERP pour afficher une page dans l’index des moteurs pour que vous tombiez dessus lors de vos recherches.</p>
+                                            <h4 class="my-3">Les stratégies les plus connues considérées comme du spamdexing</h4>
+                                            <p>Pour occuper le terrain, les utilisateurs de ce référencement abusif font :</p>
+                                            <ul>
+                                                <li>La mise en place de mots-clés de la même couleur que le fond de page : on parle ici des mots-clés invisibles ou invisible words.</li>
+                                                <li>L’insertion de mots-clés dans les méta-tags sans aucun rapport avec le site.</li>
+                                                <li>La répétition de mots-clés : appelé aussi bourrage de mots-clés ou stuffing.</li>
+                                                <li>Le détournement de pages web : pagejacking.</li>
+                                                <li>L’utilisation abusive d’alias de domaine ou de sous-domaines. La soumission de contenus sous différents noms de domaine n’est pas tolérée par la plupart des moteurs de recherche et des annuaires.</li>
+                                                <li>L’indexation totale des pages auprès des moteurs de recherche.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-23">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-23" aria-expanded="false" aria-controls="collapse-23" class="collapsed">Youdot</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-23" class="collapse" role="tabpanel" aria-labelledby="heading-23" data-parent="#accordion-23" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Youdot est une plateforme créée dans le but d’améliorer le référencement de chaque site en créant des blogs optimisés à partir des noms de domaine expirés. Contrairement aux noms de domaine vierges, les noms de domaine expirés procurent de nombreux avantages en termes de référencement.</p>
+                                            <p class="my-3">La création d’un blog optimisé est une solution pour apporter du jus SEO à une page web et profiter de ses backlinks afin de générer plus de contenu en quelques clics.  Youdot est considérée comme une plateforme de vente de noms de domaine expirés. La vente se fait aux enchères.</p>
+                                            <h4 class="my-3">Les avantages d’utiliser Youdot</h4>
+                                            <p>En optant pour cette solution, vous allez bénéficier des meilleurs indicateurs du marché : Le gros intérêt de YouDot est de travailler sa stratégie SEO. Pour ce faire,  la prestation s’appuie sur un indicateur appelé Dot Rank, qui va de 0 à 100. Plus le score n’est élevé, plus le potentiel SEO est élevé.</p>
+                                            <p>Ainsi, vous pouvez :</p>
+                                            <ul>
+                                                <li>Récupérer des noms de domaine(NDD)  avec du potentiel SEO</li>
+                                                <li>Acheter des noms de domaines expirés</li>
+                                                <li>Bénéficier des backlinks d’autorité</li>
+                                                <li>Le détournement de pages web : pagejacking.</li>
+                                                <li>Créer des sites optimisés pour une stratégie de référencement efficace</li>
+                                                <li>Avoir un positionnement Google déjà existant</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-24">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-24" aria-expanded="false" aria-controls="collapse-24" class="collapsed">Domexpire</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-24" class="collapse" role="tabpanel" aria-labelledby="heading-24" data-parent="#accordion-24" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">DomExpire est le tout nouveau service de récupération des noms de domaine. fr. Il s’agit d’un bureau d’enregistrement approuvé par l’Afnic qui est une organisation qui gère l’extension et la récupération des noms de domaines dès qu’ils expirent ou redeviennent libres.</p>
+                                            <h4 class="my-3">La spécificité du Domexpire</h4>
+                                            <p class="my-3">Ce bureau d’enregistrement (BE) agréé AFNIC a pour objectif de vous proposer des noms de domaines qui vont booster votre SEO. Dans ce cas, vous pouvez solliciter leur expertise pour concevoir vos noms de domaine. fr.</p>
+                                            <p>Son équipe peut aussi récupérer les noms domaine qui vont expirés, c’est notamment leur activité principale. Cela peut être également un nom de domaine expiré et un nom de domaine qui n’a pas été renouvelé et qui retombe parmi les domaines disponibles.</p>
+                                            <p>Vous pouvez acheter sur cette plateforme des noms de domaine nouvellement expirés pour booster votre référencement. Vous pouvez faire usage des metrics disponibles pour trouver facilement le NDD expiré qui vous convient. De ce fait, vous avez la possibilité de l’intégrer dans votre PBN, remonter un site dans une thématique proche ou bien faire une redirection 301.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-25">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-25" aria-expanded="false" aria-controls="collapse-25" class="collapsed">Black Hat Money</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-25" class="collapse" role="tabpanel" aria-labelledby="heading-25" data-parent="#accordion-25" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Black Hat Money est un concept novateur développé par Romain Pirotte, un jeune français expert en SEO. La formation Black Hat Money (BHM) de Romain Pirotte est faite pour ceux qui souhaitent gagner de l’argent plus rapidement en ligne.</p>
+                                            <p class="my-3">Après avoir testé différentes techniques de référencements inefficaces, ce professionnel a réussi à concevoir ses propres techniques en faisant preuve de volonté. Il est à préciser que ce dernier a créé des milliers de sites en Black Hat SEO.</p>
+                                            <p>La formation Black Hat Money permet aux webmasters d’attirer du trafic vers un site dans un court délai tout en générant des revenus grâce à Internet. En revanche, avec cette formation, les risques de pénalités seront réduits.</p>
+                                            <h4 class="my-3">Les modules qui composent la formation Black Hat Money</h4>
+                                            <p>En général, la formation Black Hat Money est composée de plusieurs modules. Ainsi, le stagiaire peut apprendre :</p>
+                                            <ul>
+                                                <li>Les bases du SEO</li>
+                                                <li>Les différentes méthodes pour générer du contenu automatiquement</li>
+                                                <li>Le Spamdexing ou spams pour les moteurs de recherche</li>
+                                                <li>L’automatisation des sites web avec Zennoposter</li>
+                                                <li>Les noms de domaines expirés (expired domain)</li>
+                                                <li>Les méthodes pour suroptimiser son site pour gagner en visibilité…</li>
+                                                <li>La stratégie de Netlinking et Link building</li>
+                                                <li>La monétisation et les différentes stratégies</li>
+                                            </ul>
+                                            <p>En bref, le référenceur aura des vidéos, des forums ainsi que des outils premium mis à sa disposition pour générer du contenu.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-26">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-26" aria-expanded="false" aria-controls="collapse-26" class="collapsed">SEO Camp</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-26" class="collapse" role="tabpanel" aria-labelledby="heading-26" data-parent="#accordion-26" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">SEO Camp est une association française fondée en 2008 rassemblant des spécialistes du référencement, selon la loi 1901. Il s’agit donc d’un événement webmarketing international où sont abordées de nombreuses idées de sujet. Cependant, sachez qu’il est organisé en France depuis 2009 deux journées entièrement dédiées à cet univers.</p>
+                                            <p class="my-3">La SMX rassemble la communauté du référencement francophone depuis 2008 tel que les agences SEO, les chercheurs, les responsables et consultants freelance. Passionnés par le référencement, leur groupe prévoit souvent des conférences et des rencontres en France et à l’étranger pour échanger autour du sujet.</p>
+                                            <p>Cet événement joue un rôle important dans le domaine de la certification SEO qui est notamment la certification CESEO et QuASEO.</p>
+                                            <h4 class="my-3">Pourquoi adhérer à cette association ?</h4>
+                                            <p>L’adhésion à cette coopération fera bénéficier aux participants des avantages exclusifs auprès de ses partenaires :</p>
+                                            <ul>
+                                                <li>Obtenir un prix raisonnable pour tout événement SEO CAMP.</li>
+                                                <li>Passer les certifications QUASEO et CESEO : ces certifications sont utiles pour approuver les compétences en référencement.</li>
+                                                <li>Soutenir l'association dans ses projets durant l’organisation du SEO Camp’us.</li>
+                                                <li>Participer aux ateliers cliniques et participatifs.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-27">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-27" aria-expanded="false" aria-controls="collapse-27" class="collapsed">EMD (exact match domain)</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-27" class="collapse" role="tabpanel" aria-labelledby="heading-27" data-parent="#accordion-27" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">EMD ou Exact Match Domain est une technique SEO pour améliorer le positionnement de son site web sur les moteurs de recherche. C’est l’URL de votre site internet, mais avec des mots clés avec lesquels vous voulez optimiser la page web.</p>
+                                            <h4 class="my-3">Les EMD et SEO</h4>
+                                            <ul>
+                                                <li>Le nombre de mots clés présents;</li>
+                                                <li>L’extension du nom de domaine;</li>
+                                                <li>La page à optimiser doit contenir des contenus pertinents et de qualité;</li>
+                                                <li>Les mots d’arrêt et les tirets.</li>
+                                            </ul>
+                                            <p>De plus, les mots clés dans les EMD ne sont pas forcément nécessaires. Pour obtenir une meilleure position sur le SERP à long terme, optez pour un nom original qui est facile à comprendre par les internautes et bien associé à l’image de marque d’une entreprise</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-28">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-28" aria-expanded="false" aria-controls="collapse-28" class="collapsed">Trust flow</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-28" class="collapse" role="tabpanel" aria-labelledby="heading-28" data-parent="#accordion-28" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Le Trust Flow ou TF est souvent utilisé par les référenceurs spécialistes parce qu’il faut les connaître pour mettre en place une bonne stratégie SEO. C’est un indicateur utilisé pour évaluer l’indice de confiance d’une page web ou d’un site internet. Il est souvent utilisé avec Citation Flow ou CF. Ces deux indicateurs sont des marques déposées par l’outil Majestic SEO.</p>
+                                            <h4 class="my-3">L’utilisation complémentaire de ces deux indicateurs réside sur les backlinks: </h4>
+                                            <ul>
+                                                <li>Trust flow: sur la qualité des backlinks. La valeur numérique est représentée par le nombre de 0 à 100 pour chaque lien;</li>
+                                                <li>Citation flow: sur leur quantité.</li>
+                                            </ul>
+                                            <p>Un lien provenant d’un site internet de confiance ou d’un site d’autorité a la chance de s’attribuer une meilleure note. Contrairement, un lien entrant provenant d’un site considéré comme spam par les moteurs de recherche aura un trust flow faible.</p>
+                                            <h4 class="my-3">L’importance des backlinks en référencement naturel</h4>
+                                            <p>Un site obtenant plusieurs liens entrants ou backlinks de qualité provenant des sites jugés de confiance ou d’autorité est considéré comme un site pertinent. Cela permet d’améliorer le positionnement de votre site internet sur les moteurs de recherche.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-29">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-29" aria-expanded="false" aria-controls="collapse-29" class="collapsed">Domaine expiré</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-29" class="collapse" role="tabpanel" aria-labelledby="heading-29" data-parent="#accordion-29" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Un domaine expiré est le nom de domaine non renouvelé par son propriétaire après la date d’expiration du contrat. Les raisons de cet abandon de nom de domaine peut être la fin du projet ou que le propriétaire n’a plus le moyen d’effectuer un nouvel enregistrement.</p>
+                                            <p>Il est repris par les référenceurs SEO afin de générer du trafic vers un site web, mais il peut également être utilisé dans divers domaines du e-commerce ou du marketing digital. L’usage des noms de domaines expirés sur le domaine du référencement naturel du côté des backlinks ou liens entrants et les mots clés du nom de domaine. </p>
+                                            <h4 class="my-3">Les backlinks</h4>
+                                            <p>Pour les noms de domaines expirés, les liens retour ou les backlinks regroupent tous les liens pointant vers le site quand il était actif et en cours d’utilisation. Cependant, les contenus ne sont pas repris dans la majorité des cas. Mais les liens entrants peuvent être conservés au cas où le propriétaire en a besoin.</p>
+                                            <h4 class="my-3">Les mots clés du nom de domaine</h4>
+                                            <p>Un nom de domaine avec des mots clés est le signe qu’il est pertinent aux yeux des moteurs de recherche. Cela permet de générer des visiteurs potentiels.e.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-30">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-30" aria-expanded="false" aria-controls="collapse-30" class="collapsed">Link Building</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-30" class="collapse" role="tabpanel" aria-labelledby="heading-30" data-parent="#accordion-30" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Le link building est le fait de rechercher et de créer les liens externes ou les backlinks. Le but est d’améliorer le positionnement d’un site web sur les résultats de recherche. L’importance des liens entrants en référencement naturel SEO n’est pas à contester puisque plus un site obtient de liens pointant vers lui, plus il est considéré pertinent aux yeux des moteurs de recherche. Cela permet d’être dans la première page des SERPs.</p>
+                                            <p>Par ailleurs, les liens doivent respecter certains critères:</p>
+                                            <ul>
+                                                <li>Privilégier les liens dofollow, mais les liens nofollow sont également nécessaires pour préserver un bon profil de backlinks;</li>
+                                                <li>Les backlinks doivent être de qualité. Il est vrai que la quantité est importante, mais les moteurs de recherche, notamment Google privilégie la qualité avant cela;</li>
+                                                <li>Les liens provenant d’un site de confiance ou site d’autorité.</li>
+                                            </ul>
+                                            <p>Le link building est une stratégie SEO off-page. De nombreux moyens peuvent être utilisés pour obtenir des liens venant d’autres pages. Voici les méthodes les plus courantes de link building: </p>
+                                            <ul>
+                                                <li>Attendre que les visiteurs recommandent votre contenu. Un contenu de qualité génère souvent des visiteurs satisfaits et ils n'hésitent pas à faire l’éloge;</li>
+                                                <li>Référer une page web à partir des commentaires sur des blogs; </li>
+                                                <li>Effectuer un échange de liens avec d'autres sites web;</li>
+                                                <li>Achat de liens.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-31">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-31" aria-expanded="false" aria-controls="collapse-31" class="collapsed">SEO Garden Party</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-31" class="collapse" role="tabpanel" aria-labelledby="heading-31" data-parent="#accordion-31" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Envie d’améliorer vos positions et d’augmenter votre visibilité sur Google ? Pourquoi ne pas participer au SEO Garden Party. Il s’agit d’un événement accessible gratuitement destiné aux amateurs et experts SEO dans le but de leur apprendre les bases du référencement.</p>
+                                            <p>SEO Garden Party est le tout premier évènement en ligne organisé pour les webmasters ainsi que les e-commerçants. Cet événement est organisé et sponsorisé par la plateforme de backlinks Linksgarden.com. Il est à noter que cette plateforme enregistre des centaines de spots exclusifs avec différentes thématiques et un service de gestion de projet ainsi qu’une équipe professionnelle à votre écoute.</p>
+                                            <h4 class="my-3">Comment se déroule cet événement?</h4>
+                                            <p>Cet événement se déroule chaque année sous la tutelle de 6 experts SEO. Cependant, les intervenants changent également chaque année. Ces experts SEO confirmés vont partager avec vous leur expérience en matière de référencement notamment en Netlinking afin de vous aider à augmenter votre chiffre d’affaires. Chaque conférencier fera une présentation de 10 à 15 minutes pour répondre à vos questions.</p>
+                                            <p>Des programmes à la carte sont à proposer, alors à vous de choisir celle qui répond à vos besoins. Pour participer à l’événement, vous devez réserver votre place sur seogardenparty.com. Un mail vous sera envoyé à la suite de votre réservation. En effet, au vu du nombre de places limitées, l’inscription est obligatoire.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-32">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-32" aria-expanded="false" aria-controls="collapse-32" class="collapsed">SEO By night</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-32" class="collapse" role="tabpanel" aria-labelledby="heading-32" data-parent="#accordion-32" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">SEO By night est un événement marketing digital basé sur les techniques du référencement naturel. Il s’adresse à tous les porteurs de projets, consultants, e-commerçants, créateurs de start-ups, porteurs de projet ou entrepreneurs qui veulent découvrir les toutes dernières tendances en matière de SEO.</p>
+                                            <p>Pendant toute une journée, des conférenciers professionnels exposeront les techniques et stratégies à adopter pour développer votre business.</p>
+                                            <p>Tout cela dans le but de faire profiter à ces professionnels une expérience numérique hors du commun avec les 12 plus grands experts en webmarketing et communication digitale. Si vous n’aviez pas eu l’occasion d’y assister, cet événement survient tous les ans.</p>
+                                            <h4 class="my-3">Des animations intéressantes sont au rendez-vous</h4>
+                                            <p>Grâce aux échanges et aux diverses animations, les participants auront l’opportunité de poser des questions sur les sujets qui les intéressent pendant l’événement afin de d’enrichir leur compétence dans le domaine.</p>
+                                            <h4 class="my-3">Des experts de haut niveau à votre disposition</h4>
+                                            <p>Les organisateurs de SEO by Night ont sélectionné minutieusement les conférenciers qui y seront présents durant l’événement. Que ce soit dans le domaine de la sémantique, du netlinking ou autre lié au référencement naturel, avec les experts qualifiés vous serez servis. Ils seront ravis de partager avec vous leurs savoir-faire et expériences. Après la conférence, devenez-vous aussi, un expert en référencement.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-33">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-33" aria-expanded="false" aria-controls="collapse-33" class="collapsed">Kifdom</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-33" class="collapse" role="tabpanel" aria-labelledby="heading-33" data-parent="#accordion-33" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Vous avez envie de récupérer des noms de domaines expirés en .fr? La meilleure solution est d'utiliser KifDom. Un site qui propose plusieurs noms de domaines expirés. Son fonctionnement est simple: les clients arrivent sur le site et consultent la liste des noms de domaine disponibles qui vont se libérer prochainement ou pré recommandés. Au cas où plus de deux personnes ont réservé un nom de domaine expiré, ce dernier va être mis aux enchères.</p>
+                                            <h4 class="my-3">Les avantages de KifDom</h4>
+                                            <p>Vous avez à votre disposition une longue liste de noms de domaine. Le plus c’est que vous pouvez la filtrer en fonction de métriques SEO. C’est à vous de voir celui qui va propulser votre site web.</p>
+                                            <p>Le rapport qualité-prix est au rendez-vous parce que vous avez la possibilité d’avoir un nom de domaine avec un meilleur métrique SEO à un prix abordable. Alors que les autres sites en proposent à un prix élevé.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="heading-34">
+                                        <h4 class="mb-0">
+                                          <a data-bs-toggle="collapse" href="#collapse-34" aria-expanded="false" aria-controls="collapse-34" class="collapsed">PBN (private blog network)</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse-34" class="collapse" role="tabpanel" aria-labelledby="heading-34" data-parent="#accordion-34" style="">
+                                        <div class="card-body">
+                                            <p class="mb-3">Le PBN ou private network blog est un réseau de blogs reliés à un site web principal. Le but est d’améliorer le positionnement du site principal sur les moteurs de recherche grâce au maillage interne. Même si cela permet d’améliorer la visibilité d’un site sur le web, le PBN est une pratique SEO Black hat et interdite par Google. Cependant, de nombreux référenceurs ont quand même recours à cette technique. Il existe deux types de PBN qui sont PBN pauvre en contenus et PBN riche en contenus.</p>
+                                            <h4 class="my-3">PBN pauvre en contenus</h4>
+                                            <p>C’est le type de site utilisé par les référenceurs Black Hat qui sont à la recherche d’un résultat à court terme. L’objectif est d’augmenter le trafic vers le site principal cible même si les contenus sont de mauvaise qualité.</p>
+                                            <p>Les sites PBN proviennent parfois d’un système d’automatisation ou à partir d’un nom de domaine expiré et de même pour les contenus. Les référenceurs ont un seul et unique but, obtenir le link juice.</p>
+                                            <h4 class="my-3">PBN riche en contenus</h4>
+                                            <p>Ce type de site contient des contenus de qualité qui vont plaire aux visiteurs et non pas aux robots des moteurs de recherche. Le site PBN peut provenir même d’un nouveau nom de domaine.</p>
                                     </div>
                                 </div>
                             </div>

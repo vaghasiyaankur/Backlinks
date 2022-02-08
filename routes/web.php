@@ -3,10 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Client\DashboardController;
-use App\Http\Controllers\Client\TeamController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Client\CreditController;
-use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------

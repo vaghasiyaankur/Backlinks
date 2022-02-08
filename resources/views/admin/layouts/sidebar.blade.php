@@ -76,12 +76,6 @@
                 <span class="menu-title" >Diagnostic</span>
               </a>
             </li>
-            <li class="nav-item" id="dictionnaire_tab">
-              <a class="nav-link" href="{{ route('admin.sales.dictionnaire') }}">
-                <i class="icon-cog menu-icon"></i>
-                <span class="menu-title" >Dictionnaire SEO</span>
-              </a>
-            </li>
           </ul>
       </li>
     </ul>
