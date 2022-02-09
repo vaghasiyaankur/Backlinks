@@ -296,14 +296,15 @@ class ProjectController extends Controller
     public function savedDataMonthVise(Request $request, $dataid, $month)
     {
         $projectdata = ProjectData::where('project_id',$dataid)->where('month', $month)->first();
-
-        if($projectdata->saved == 0){
-            $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 1]);
-            return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
-        }else{
-            $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 0]);
+        if (isset($projectdata)) {
+            if($projectdata->saved == 0){
+                $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 1]);
+            }else{
+                $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 0]);
+            }
             return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
         }
+        return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
 
     }
 
@@ -591,13 +592,14 @@ class ProjectController extends Controller
     public function deliverDataMonthVise($id,$month)
     {
         $projectdata = ProjectData::where('project_id',$id)->where('month', $month)->first();
-
-        if($projectdata->deliver == 0){
-            $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 1]);
-            return Redirect::back();
-        }else{
-            $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 0]);
+        if (isset($projectdata)) {
+            if($projectdata->deliver == 0){
+                $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 1]);
+            }else{
+                $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 0]);
+            }
             return Redirect::back();
         }
+        return Redirect::back();
     }
 }

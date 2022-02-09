@@ -45,7 +45,7 @@
                       <th>
                         Ancre
                       </th>
-                      @if ($projectdata[0]->deliver == 1)
+                      @if (!empty($projectdata) && ($projectdata[0]->deliver == 1))
                         <th @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
                             Url Spot
                         </th>

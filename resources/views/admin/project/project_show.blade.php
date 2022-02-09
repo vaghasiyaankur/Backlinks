@@ -54,7 +54,7 @@ a:focus, input:focus{
                 <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
                 <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
                 <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
-                <a class="btn @if($projectdata[0]->deliver == 1) btn-success @else btn-danger @endif" href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
+                <a class="btn @if(!empty($projectdata->toarray()) && ($projectdata[0]->deliver == 1)) btn-success @else btn-danger @endif" href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
                 <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
                 <span>Budget: {{number_format($project->price/$datamonths->months, 2)}}</span>
 
