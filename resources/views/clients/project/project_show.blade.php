@@ -28,7 +28,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body project__list" style="min-height: 550px">
-            <div class="project-list-head d-flex align-items-center">
+            <div class="project-list-head d-flex align-items-center justify-content-between">
               <h4 class="card-title title_project mb-0">Project List</h4>
               <a class="btn btn-success" href="{{ route('client.project.csv', [$id, $month])}}">Download Csv File</a>
             </div>
@@ -36,7 +36,7 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>
+                      <th class="text-center">
                         #
                       </th>
                       <th>
@@ -45,7 +45,7 @@
                       <th>
                         Ancre
                       </th>
-                      <th @if($notexitsdomain == '0') style="background-color:red" @endif>
+                      <th @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
                         Url Spot
                       </th>
                     </tr>
@@ -54,7 +54,7 @@
 
                     @forelse($projectdata as $pd)
                     <tr>
-                      <td>
+                      <td class="text-center">
                         {{$pd->id}}
                       </td>
                       <td>
@@ -63,7 +63,7 @@
                       <td>
                       {{$pd->ancre}}
                       </td>
-                      <td  @if($notexitsdomain == '0') style="background-color:red" @endif>
+                      <td  @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
                        {{$pd->url_spot}}
                       </td>
                     </tr>
@@ -77,12 +77,16 @@
                 </table>
               </div>
             </div>
-            <div class="col-lg-12 float-start">
-                @if($datamonths != '')
-                    @for ($i = 1; $i <= $datamonths->months; $i++)
-                            <a href="{{ route('client.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
-                    @endfor
-                @endif
+            <div class="row mt-3 justify-content-center">
+                <div class="col-lg-12 text-center mb-5">
+                    <div class="d-inline-block">
+                      @if($datamonths != '')
+                        @for ($i = 1; $i <= $datamonths->months; $i++)
+                                <a href="{{ route('client.project.show', [$id, $i])}}" class="btn btn-primary">{{$i}}</a>
+                        @endfor
+                      @endif
+                    </div>
+                  </div>
             </div>
 
           </div>

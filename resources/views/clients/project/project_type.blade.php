@@ -12,20 +12,26 @@
                             @forelse ($data_project as $project_data)
                                 <div class="col-3 mb-5">
                                     <div class="single-audit">
-                                    <a href="{{ url('template/images/uploads/'.$project_data->project_file) }}" __target="blank" class="text-decoration-none">
+                                    <a href="{{ url('template/images/uploads/'.$project_data->project_file) }}" __target="blank" class="text-decoration-none d-inline-block">
                                         @php
                                             $allowed = array('gif', 'png', 'jpg','jpeg');
                                             $filename = $project_data->project_file;
                                             $ext = pathinfo($filename, PATHINFO_EXTENSION);
                                         @endphp
                                         @if (!in_array($ext, $allowed))
+                                        <div class="audit-image">
                                             <img src="{{ asset('template/images/noimage.png') }}" alt="" width="300px" class="border">
-                                        @else
-                                            <img src="{{ asset('template/images/uploads/'.$project_data->project_file) }}" alt="" width="300px">
-                                        @endif
-                                        <div>
-                                            <button class="btn btn-primary mt-2">{{ $project_data->project_file }}</button>
                                         </div>
+                                        @else
+                                        
+                                        <div class="audit-image">
+                                            <img src="{{ asset('template/images/uploads/'.$project_data->project_file) }}" alt="" width="300px">
+                                        </div>
+                                        @endif
+                                        <div class="image-info position-relative">
+                                                <button class="btn btn-primary mt-2">{{ $project_data->project_file }}</button>
+                                                <img src="{{ asset('template/images/icons/audit-image.png')}}" alt="">
+                                            </div>
                                     </a>
                                     </div>
                                 </div>
@@ -40,7 +46,7 @@
                                      <a href="{{ route('client.project.type', [$id,$i,$type])}}" class="btn btn-primary">{{$i}}</a>
                                     @endfor
                                 </div>
-                            </div>
+                              </div>
                         </div>
                     </div>
                 </div>

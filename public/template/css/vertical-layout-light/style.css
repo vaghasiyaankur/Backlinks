@@ -30808,3 +30808,27 @@ div.tagsinput span.tag a {
 .card-body .page---head h3, .content-head .page---head h3 {
   margin-bottom: 0;
 }
+
+.project__list .project-list-head h4 {
+  color: #C5C8CE;
+}
+.project__list .project-list-head a {
+  background: #F5F7F9;
+  border: 0;
+  padding: 20px 30px;
+}
+.project__list tr {
+  border: 0;
+}
+.project__list table {
+  border-bottom: 1px solid #CED4DA;
+  border-top: 1px solid #CED4DA !important;
+  border-radius: 50px;
+}
+.project__list table tr th {
+  border-bottom: 1px solid #d5d5d5 !important;
+}
+.project__list table tr td, .project__list table tr th {
+  border-left: 1px solid #d5d5d5;
+  border-right: 1px solid #d5d5d5;
+}
