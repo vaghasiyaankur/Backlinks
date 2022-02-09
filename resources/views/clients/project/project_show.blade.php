@@ -18,17 +18,21 @@
 
       <div class="row">
 
-          <div class="col-lg-10 col-md-10">
-            <h3> Project </h3>
+          <div class="col-lg-12 col-md-12 mb-5 content-head">
+            <div class="page---head">
+              <h3> Project </h3>
+            </div>
           </div>
 
           {{-- @if() --}}
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
-            <div class="card-body" style="min-height: 550px">
-              <h4 class="card-title title_project">Project List</h4>
+            <div class="card-body project__list" style="min-height: 550px">
+            <div class="project-list-head d-flex align-items-center">
+              <h4 class="card-title title_project mb-0">Project List</h4>
               <a class="btn btn-success" href="{{ route('client.project.csv', [$id, $month])}}">Download Csv File</a>
-              <div class="table-responsive pt-3 table-div">
+            </div>
+              <div class="table-responsive pt-3 table-div ">
                 <table class="table table-bordered">
                   <thead>
                     <tr>

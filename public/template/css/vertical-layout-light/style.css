@@ -19996,6 +19996,38 @@ code {
   min-width: 100%;
 }
 
+.stretch-card .card.card-tale a {
+  font-size: 20px;
+}
+
+.stretch-card.card--1 .card.card-tale, .stretch-card.card--5 .card.card-tale, .stretch-card.card--9 .card.card-tale {
+  background: #ECFBF4;
+}
+.stretch-card.card--1 .card.card-tale a, .stretch-card.card--5 .card.card-tale a, .stretch-card.card--9 .card.card-tale a {
+  color: #65CF6F;
+}
+
+.stretch-card.card--2 .card.card-tale, .stretch-card.card--6 .card.card-tale, .stretch-card.card--10 .card.card-tale {
+  background: #FFF9EA;
+}
+.stretch-card.card--2 .card.card-tale a, .stretch-card.card--6 .card.card-tale a, .stretch-card.card--10 .card.card-tale a {
+  color: #F8C46E;
+}
+.stretch-card.card--3 .card.card-tale, .stretch-card.card--7 .card.card-tale, .stretch-card.card--11 .card.card-tale {
+  background: #F3F7FF;
+}
+.stretch-card.card--3 .card.card-tale a, .stretch-card.card--7 .card.card-tale a, .stretch-card.card--11 .card.card-tale a {
+  color: #5090FD;
+}
+.stretch-card.card--4 .card.card-tale, .stretch-card.card--8 .card.card-tale, .stretch-card.card--12 .card.card-tale {
+  background: #FEF5F6;
+}
+.stretch-card.card--4 .card.card-tale a, .stretch-card.card--8 .card.card-tale a, .stretch-card.card--12 .card.card-tale a {
+  color: #F8818D;
+}
+
+
+
 @media (min-width: 576px) {
   .border-right-sm {
     border-right: 1px solid #CED4DA;
@@ -28510,7 +28542,7 @@ div.tagsinput span.tag a {
 
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
-  width: calc(100% - 235px);
+  width: calc(100% - 300px);
   min-height: calc(100vh - 60px);
   display: -webkit-flex;
   display: flex;
@@ -28546,7 +28578,7 @@ div.tagsinput span.tag a {
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   padding: 0;
-  width: 235px;
+  width: 300px;
   z-index: 11;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
@@ -28579,7 +28611,7 @@ div.tagsinput span.tag a {
   display: flex;
   -webkit-align-items: center;
   align-items: center;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding: 0.8125rem 1.937rem 0.8125rem 1rem;
   color: #6C7383;
   border-radius: 8px;
@@ -28602,6 +28634,27 @@ div.tagsinput span.tag a {
   color: #6C7383;
 }
 
+.sidebar .nav .nav-item .nav-link img {
+  margin-right: 16px;
+  height: 30px;
+  width: 30px;
+}
+
+.sidebar .nav .nav-item .nav-link img.light-image {
+  display: none;
+}
+.sidebar .nav .nav-item.active .nav-link img.light-image {
+  display: block;
+}
+.sidebar .nav .nav-item.active .nav-link img.dark-image {
+  display : none;
+}
+.sidebar .nav .nav-item:hover .nav-link img.dark-image {
+  display: none;
+}
+.sidebar .nav .nav-item:hover .nav-link img.light-image {
+  display: block;
+} 
 .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
   margin-left: 2rem;
   margin-right: 0;
@@ -28641,7 +28694,8 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item .nav-link .menu-title {
   color: inherit;
   display: inline-block;
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
+  font-size: 15px;
   line-height: 1;
   vertical-align: middle;
 }
@@ -28666,9 +28720,11 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item.active {
   border-radius: 8px;
 }
-
+.sidebar .nav .nav-item > .nav-link {
+  background: #F4F4F4;
+}
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #4B49AC;
+  background: #5D5BE0;
   position: relative;
 }
 
@@ -28695,11 +28751,12 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item {
-  margin-top: .2rem;
+  /* margin-top: .2rem; */
+  margin-bottom: 10px;
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
-  background: #4B49AC;
+  background: #5D5BE0;
   color: #fff;
 }
 
@@ -28871,7 +28928,8 @@ div.tagsinput span.tag a {
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
-  width: 235px;
+  /* width: 235px; */
+  width: 300px;
   height: 60px;
   padding-left: 1rem;
 }
@@ -28897,7 +28955,8 @@ div.tagsinput span.tag a {
 
 .navbar .navbar-brand-wrapper .navbar-brand img {
   max-width: 100%;
-  height: 34px;
+  /* height: 34px; */
+  height: auto;
   margin: auto;
   vertical-align: middle;
 }
@@ -28922,7 +28981,8 @@ div.tagsinput span.tag a {
   color: #6C7383;
   padding-right: 2.375rem;
   padding-left: 2.375rem;
-  width: calc(100% - 235px);
+  /* width: calc(100% - 235px); */
+  width: calc(100% - 300px);
   height: 60px;
 }
 
@@ -30675,3 +30735,76 @@ div.tagsinput span.tag a {
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+
+
+.card-body .single-card {
+  max-width: 250px;
+  margin: 0 auto;
+  background: #F4F4F4;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 14px 13px 1px #efefef;
+}
+.card-body .single-card .left-side h4 {
+  font-size: 21px;
+}
+.card-body .single-card .left-side h5 {
+  margin-bottom: 0 !important;
+}
+.card-body .single-card .left-side p {
+  font-size: 12px;
+}
+
+.card-body .our-team-head {
+  max-width: 82%;
+  margin: 0 auto;
+  background: #F4F4F4;
+  border-radius: 10px;
+  padding: 40px 10px;
+}
+.card-body .our-team-head h2 {
+  margin-bottom: 10px;
+}
+.card-body .our-team-head p {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.single-audit a {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.single-audit a .image-info img {
+  width: 60px;
+  position: absolute;
+  right: 0;
+  top: -22px;
+}
+.single-audit a .image-info button {
+  width: 100%;
+  border-radius: 0;
+  margin: 0 !important;
+  background: #F4F4F4;
+  border: 0;
+  color: red;
+  text-align: left;
+}
+.card-body .page---head  {
+  text-align: center;
+  background: #f4f4f4;
+  padding: 30px 0;
+  border-radius: 15px;
+  box-shadow: 0px 9px 14px -7px #8f8f8f;
+  margin-top: 15px;
+}
+.content-head .page---head {
+  text-align: center;
+  background: #fff;
+  padding: 30px 0;
+  border-radius: 15px;
+  box-shadow: 0px 9px 14px -7px #8f8f8f;
+  margin-top: 15px;
+}
+.card-body .page---head h3, .content-head .page---head h3 {
+  margin-bottom: 0;
+}

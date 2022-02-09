@@ -2,7 +2,8 @@
 	font-family: 'themify';
 	src:url('https://www.bootstrapdash.com/demo/skydash/template/vendors/ti-icons/fonts/themify.eot');
 	src:url('https://www.bootstrapdash.com/demo/skydash/template/vendors/ti-icons/fonts/themify.eot?#iefix') format('embedded-opentype'),
-		url('https://www.bootstrapdash.com/demo/skydash/template/vendors/ti-icons/fonts/themify.woff') format('woff'),
+		url('../../../fonts/themify.woff2') format('woff2'),
+		url('../../../fonts/themify.woff') format('woff'),
 		url('https://www.bootstrapdash.com/demo/skydash/template/vendors/ti-icons/fonts/themify.ttf') format('truetype'),
 		url('https://www.bootstrapdash.com/demo/skydash/template/vendors/ti-icons/fonts/themify.svg') format('svg');
 	font-weight: normal;

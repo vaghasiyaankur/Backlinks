@@ -31,10 +31,10 @@
                         $project_type = explode(",",$project->project_type_checkbox);
                     @endphp
                     @foreach ($project_type as $service)
-                        <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="col-md-3 mb-4 stretch-card transparent card--{{ $loop->iteration }}">
                             <div class="card card-tale">
                                 <a href="@if($service == 'Backlinks'){{ route('client.project.show', [$project->id, '1']) }}@else{{ route('client.project.type',[$project->id,'1',$service]) }}@endif" class="card-body text-center py-5  text-decoration-none">
-                                    <span class="mb-4 text-white">{{ $service }}</span>
+                                    <span class="mb-4">{{ $service }}</span>
                                 </a>
                             </div>
                         </div>
