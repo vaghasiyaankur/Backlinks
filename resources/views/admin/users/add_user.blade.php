@@ -50,9 +50,17 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label"></label>
-                                        <div class="form-check col-sm-10 px-3">
-                                            <input type="checkbox" class="form-check-input m-0" name="administrator" id="administrator" value="administrator" @if((isset($user_data)) && ($user == 'admin')) checked @endif>
+                                        <div class="form-check col-sm-2 px-3">
+                                            <input type="checkbox" class="form-check-input m-0" name="user_type" id="administrator" value="administrator" @if((isset($user_data)) && ($user == 'admin')) checked @endif>
                                             <label class="form-check-label" for="administrator">Administrator</label>
+                                        </div>
+                                        <div class="form-check col-sm-1 px-3">
+                                            <input type="checkbox" class="form-check-input m-0" name="user_type" id="user" value="user" @if((isset($user_data)) && ($user == 'user')) checked @endif>
+                                            <label class="form-check-label" for="user">User</label>
+                                        </div>
+                                        <div class="form-check col-sm-1 px-3">
+                                            <input type="checkbox" class="form-check-input m-0" name="user_type" id="sales" value="sales" @if((isset($user_data)) && ($user == 'sales')) checked @endif>
+                                            <label class="form-check-label" for="sales">Sales</label>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>

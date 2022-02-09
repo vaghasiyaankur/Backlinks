@@ -51,7 +51,6 @@
                     </tr>
                   </thead>
                   <tbody>
-
                     @forelse($projectdata as $pd)
                     <tr>
                       <td class="text-center">
