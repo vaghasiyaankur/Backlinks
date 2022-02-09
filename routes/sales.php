@@ -17,6 +17,7 @@ Route::namespace('Sales')->group(function () {
     Route::middleware('saleslogin')->group(function (){
         Route::view('/dashboard', 'sales.welcome')->name('sales.dashboard');
         Route::view('dictionnaire','sales.dictionnaire.index')->name('sales.dictionnaire');
+        Route::post('logout',[AuthController::class, 'logout'])->name('sales.logout');
     });
 
 });

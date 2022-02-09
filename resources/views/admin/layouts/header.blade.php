@@ -68,7 +68,7 @@
             </a>
           </div>
         </li>
-        {{-- <li class="nav-item nav-profile dropdown">
+        <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
             <img src="{{ asset('template/images/faces/face28.jpg') }}" alt="profile"/>
           </a>
@@ -94,7 +94,7 @@
           <a class="nav-link" href="#">
             <i class="icon-ellipsis"></i>
           </a>
-        </li> --}}
+        </li>
       </ul>
       <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
         <span class="icon-menu"></span>
