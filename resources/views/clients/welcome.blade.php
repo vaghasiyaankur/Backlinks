@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-12 col-xl-12">
              <div class="justify-content-end d-flex">
-              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+              <div class="dropdown flex-md-grow-1 flex-xl-grow-0 filter-dropdown">
                 <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                  <i class="mdi mdi-calendar"></i> Today ({{ Carbon\Carbon::now()->format('d M Y') }})
                 </button>
