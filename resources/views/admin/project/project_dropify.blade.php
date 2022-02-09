@@ -24,7 +24,16 @@
                             @forelse ($dropify as $data_drop)
                                 <div class="col-4">
                                     <a href="{{ url('template/images/uploads/'.$data_drop->project_file) }}" __target="blank" class="text-decoration-none">
-                                        <img src="{{ asset('template/images/uploads/'.$data_drop->project_file) }}" alt="" width="300px">
+                                        @php
+                                            $allowed = array('gif', 'png', 'jpg','jpeg');
+                                            $filename = $data_drop->project_file;
+                                            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                                        @endphp
+                                        @if (!in_array($ext, $allowed))
+                                            <img src="{{ asset('template/images/noimage.png') }}" alt="" width="300px" class="border">
+                                        @else
+                                            <img src="{{ asset('template/images/uploads/'.$data_drop->project_file) }}" alt="" width="300px">
+                                        @endif
                                         <div>
                                             <button class="btn btn-primary mt-2">{{ $data_drop->project_file }}</button>
                                             <a href="{{ route('dropify.delete',[$data_drop->id]) }}" class="btn btn-danger mt-2">Delete</a>

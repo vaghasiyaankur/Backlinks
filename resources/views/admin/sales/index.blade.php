@@ -30,3 +30,11 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $(".nav-item").removeClass('active');
+            $("#diagnostic_tab").addClass('active');
+        });
+    </script>
+@endsection

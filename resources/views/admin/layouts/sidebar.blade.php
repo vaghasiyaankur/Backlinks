@@ -24,7 +24,7 @@
         </a>
       </li>
       <li class="dropdown nav-item sidebar-tab">
-          <a class="nav-link dropdown-toggle" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if ((Request::segment(2) == 'project') || (Request::segment(2) == 'spot-list') || (Request::segment(2) == 'chart') || (Request::segment(2) == 'currentorder') || (Request::segment(2) == 'old-project')) aria-expanded="true" @else aria-expanded="false" @endif>
+          <a class="nav-link dropdown-toggle @if ((Request::segment(2) == 'project') || (Request::segment(2) == 'spot-list') || (Request::segment(2) == 'chart') || (Request::segment(2) == 'currentorder') || (Request::segment(2) == 'old-project')) show @endif" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if ((Request::segment(2) == 'project') || (Request::segment(2) == 'spot-list') || (Request::segment(2) == 'chart') || (Request::segment(2) == 'currentorder') || (Request::segment(2) == 'old-project')) aria-expanded="true" @else aria-expanded="false" @endif>
             <i class="icon-grid menu-icon"></i>
             <span class="menu-title" >Prod</span>
           </a>
@@ -64,11 +64,19 @@
             </li>
           </ul>
       </li>
-      <li class="nav-item" id="sales_tab">
-        <a class="nav-link" href="{{ route('admin.sales') }}">
-          <i class="icon-grid menu-icon"></i>
-          <span class="menu-title" >Sales</span>
-        </a>
+      <li class="dropdown nav-item sidebar-tab">
+          <a class="nav-link dropdown-toggle @if (Request::segment(2) == 'sales') show @endif" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if (Request::segment(2) == 'sales') aria-expanded="true" @else aria-expanded="false" @endif>
+            <i class="icon-grid menu-icon"></i>
+            <span class="menu-title" >Sales</span>
+          </a>
+          <ul class="dropdown-menu nav @if (Request::segment(2) == 'sales') show @endif" aria-labelledby="dropdownMenuprod" role="menu">
+            <li class="nav-item" id="diagnostic_tab">
+              <a class="nav-link" href="{{ route('admin.sales.diagnostic') }}">
+                <i class="icon-cog menu-icon"></i>
+                <span class="menu-title" >Diagnostic</span>
+              </a>
+            </li>
+          </ul>
       </li>
     </ul>
   </nav>
