@@ -186,7 +186,12 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="form-group row">
+                                            <label for="notes" class="col-sm-3 col-form-label">Notes</label>
+                                            <div class="col-sm-9">
+                                                <textarea type="number" class="form-control" id="notes" rows="4" placeholder="Notes" name="note" value="{{ $project->note ?: ''}}">{{ $project->note ?: ''}}</textarea>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group row">
                                             <label for="number_of_backlinks" class="col-sm-3 col-form-label">Number Of Backlinks</label>

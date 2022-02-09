@@ -59,6 +59,7 @@ class ProjectController extends Controller
         $project->project_type_checkbox = $projCheck ? $projCheck : '';
         // $project->refonte = $request->refonte;
         $project->total_price = $request->total_price;
+        $project->note = $request->note ? $request->note : NULL;
         $project->save();
 
 
@@ -398,6 +399,7 @@ class ProjectController extends Controller
             // 'refonte' => $request->refonte,
             'total_price' => $request->total_price,
             'project_type_checkbox' => $projCheck ? $projCheck : '',
+            'note' => $request->note ? $request->note : NULL,
         ];
         $project = Project::where('id', $id)->update($update_array);
 
@@ -448,33 +450,6 @@ class ProjectController extends Controller
 
     public function filter(Request $request)
     {
-        // $projectdata = ProjectData::orderBy('id','ASC');
-        // if ($req->url) {
-        //     $projectdata->where('url', 'like', '%' . $req->url . '%');
-        // }
-        // if ($req->ancre) {
-        //     $projectdata->where('ancre', 'like', '%' . $req->ancre . '%');
-        // }
-        // if ($req->urlspot) {
-        //     $projectdata->where('url_spot', 'like', '%' . $req->urlspot . '%');
-        // }
-        // if ($req->prestataire) {
-        //     $projectdata->where('prestataire', 'like', '%' . $req->prestataire . '%');
-        // }
-        // if ($req->pricefrom) {
-        //     $projectdata->where('price', '>=', $req->pricefrom);
-        // }
-        // if ($req->priceto) {
-        //     $projectdata->where('price', '<=', $req->priceto);
-        // }
-        // $projectdata = $projectdata->where('project_id', $req->id)->where('month', $req->month)->get();
-
-        // $id = $req->id;
-        // $month = $req->month;
-
-        // $table = view('admin.project.table', compact('projectdata','id','month'))->render();
-
-        // return $table;
         $url_spot = ProjectData::pluck('url_spot');
         $list = SpotList::whereNotIn('spot', $url_spot);
 
@@ -613,4 +588,16 @@ class ProjectController extends Controller
         ProjectData::where('project_id',$id)->where('month',$month)->where('id',$valid_data)->update(['url_spot'=>$req->urlspot,'price'=>$req->price,'prestataire'=>$req->provider]);
     }
 
+    public function deliverDataMonthVise($id,$month)
+    {
+        $projectdata = ProjectData::where('project_id',$id)->where('month', $month)->first();
+
+        if($projectdata->deliver == 0){
+            $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 1]);
+            return Redirect::back();
+        }else{
+            $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 0]);
+            return Redirect::back();
+        }
+    }
 }

@@ -45,9 +45,11 @@
                       <th>
                         Ancre
                       </th>
-                      <th @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
-                        Url Spot
-                      </th>
+                      @if ($projectdata[0]->deliver == 1)
+                        <th @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
+                            Url Spot
+                        </th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -62,9 +64,11 @@
                       <td>
                       {{$pd->ancre}}
                       </td>
-                      <td  @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
-                       {{$pd->url_spot}}
-                      </td>
+                      @if ($pd->deliver == 1)
+                        <td  @if($notexitsdomain == '0') style="background-color:#F5F7F9" @endif>
+                        {{$pd->url_spot}}
+                        </td>
+                      @endif
                     </tr>
                     @empty
                         <tr>

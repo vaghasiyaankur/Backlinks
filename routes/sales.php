@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Sales\Auth\AuthController;
+use App\Http\Controllers\Sales\DiagnosticController;
 
 Route::namespace('Sales')->group(function () {
 
@@ -16,8 +17,12 @@ Route::namespace('Sales')->group(function () {
 
     Route::middleware('saleslogin')->group(function (){
         Route::view('/dashboard', 'sales.welcome')->name('sales.dashboard');
+
         Route::view('dictionnaire','sales.dictionnaire.index')->name('sales.dictionnaire');
         Route::post('logout',[AuthController::class, 'logout'])->name('sales.logout');
+
+        Route::view('diagnostic','sales.diagnostic.index')->name('sales.diagostic');
+        Route::post('diagnostic',[DiagnosticController::class,'index'])->name('sales.api.call');
     });
 
 });

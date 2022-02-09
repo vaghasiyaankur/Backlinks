@@ -2,7 +2,7 @@
 @section('style')
     <style>
         .modal-dialog {
-            max-width: 70%;
+            max-width: 60%;
         }
         .model-close {
             text-align: end;

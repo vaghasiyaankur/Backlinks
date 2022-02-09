@@ -78,6 +78,7 @@ Route::namespace('Admin')->group(function () {
         Route::get('/project/status/{id}',[ProjectController::class,'project_status'])->name('admin.project.status');
         Route::get('/dropify/delete/{id}',[ProjectController::class,'dropify_delete'])->name('dropify.delete');
         Route::get('/project/validate/{id}/{month}/{valid_id}',[ProjectController::class,'check_valid_data'])->name('admin.show.validate');
+        Route::get('/project/data/deliver/{id}/{month}',[ProjectController::class,'deliverDataMonthVise'])->name('admin.project.deliver');
 
         //  spot list
         Route::get('/spot-list', [SpotListController::class, 'index'])->name('admin.list.spot');

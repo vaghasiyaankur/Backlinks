@@ -17,6 +17,12 @@
           <span class="menu-title" >Dashboard</span>
         </a>
       </li>
+      <li class="nav-item" id="dashboard_tab">
+        <a class="nav-link" href="{{ route('sales.diagostic') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title" >Diagostic</span>
+        </a>
+      </li>
       <li class="nav-item" id="dictionnaire_tab">
         <a class="nav-link" href="{{ route('sales.dictionnaire') }}">
           <i class="icon-cog menu-icon"></i>

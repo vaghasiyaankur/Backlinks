@@ -195,6 +195,13 @@
                                         </div>
 
                                         <div class="form-group row">
+                                            <label for="notes" class="col-sm-3 col-form-label">Notes</label>
+                                            <div class="col-sm-9">
+                                                <textarea type="number" class="form-control" id="notes" rows="4" placeholder="Notes" name="notes"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
                                             <label for="price" class="col-sm-3 col-form-label">Budget Backlinks</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="price" placeholder="Budget Backlinks"
