@@ -108,5 +108,6 @@ Route::namespace('Admin')->group(function () {
 
         Route::view('sales/diagnostic','admin.sales.index')->name('admin.sales.diagnostic');
         Route::post('sales',[SalesController::class,'index'])->name('sales.api.call');
+        Route::view('sales/dictionnaire','admin.sales.dictionnaire')->name('admin.sales.dictionnaire');
     });
 });

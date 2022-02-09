@@ -26,7 +26,7 @@ class ProjectController extends Controller
 
         if (isset($project)) {
 
-        $projectdata = ProjectData::where('month',$month)->where('project_id',$project->id)->get();
+        $projectdata = [];
 
         $datamonths = ProjectMonth::where('project_id',$project->id)->first();
 
@@ -53,6 +53,7 @@ class ProjectController extends Controller
 
             if($projectdatasaved->saved == '1'){
                 $saved = 1;
+                $projectdata = ProjectData::where('month',$month)->where('project_id',$project->id)->get();
             }else{
                 $saved = 0;
             }
@@ -60,8 +61,8 @@ class ProjectController extends Controller
             $saved = 0;
         }
         }else{
-            $projectdata = '';
-            $datamonths = '';
+            $projectdata = [];
+            $datamonths = [];
             $notexitsdomain = '';
             $saved = '';
         }

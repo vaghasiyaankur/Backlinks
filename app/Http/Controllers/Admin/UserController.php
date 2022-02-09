@@ -10,6 +10,7 @@ use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Project;
+use App\Models\Sale;
 
 class UserController extends Controller
 {
@@ -18,16 +19,19 @@ class UserController extends Controller
         $users['user'] = User::select('id','name','email')->get()->toarray();
         $project['project'] = Project::select('id','name','email')->get()->toarray();
         $admin['admin'] = Admin::select('id','name','email')->get()->toarray();
-        $users = array_merge($users,$project,$admin);
+        $sales['sales'] = Sale::select('id','name','email')->get()->toarray();
+        $users = array_merge($users,$project,$admin,$sales);
         return view('admin.users.index',compact('users'));
     }
 
     public function add_user(Request $req)
     {
-        if ($req->administrator) {
+        if ($req->user_type == 'administrator') {
             $unique = 'unique:admins';
-        }else{
+        }elseif($req->user_type == 'user'){
             $unique = 'unique:users';
+        }else{
+            $unique = 'unique:sales';
         }
         $rules = [
             'name' => 'required',
@@ -40,10 +44,12 @@ class UserController extends Controller
             $messages = $validator->messages();
             return redirect()->back()->withErrors($validator);
         }
-        if ($req->administrator) {
+        if ($req->user_type == 'administrator') {
             $user = new Admin;
-        }else{
+        }elseif($req->user_type == 'user'){
             $user = new User;
+        }else{
+            $user = new Sale;
         }
         $user->name = $req->name;
         $user->email = $req->email;
@@ -54,10 +60,12 @@ class UserController extends Controller
 
     public function changePassword(Request $req)
     {
-        if ($req->user == 'user') {
+        if ($req->user_type == 'administrator') {
+            $user = Admin::find($req->id);
+        }elseif($req->user_type == 'user'){
             $user = User::find($req->id);
         }else{
-            $user = Admin::find($req->id);
+            $user = Sale::find($req->id);
         }
         $password = ['password' => Hash::make($req->password)];
         $user->update($password);
@@ -79,8 +87,10 @@ class UserController extends Controller
             $user_data = User::find($id);
         }elseif ($user == 'project') {
             $user_data = Project::find($id);
-        }else{
+        }elseif($user == 'admin'){
             $user_data = Admin::find($id);
+        }else{
+            $user_data = Sale::find($id);
         }
         return view('admin.users.add_user',compact('user','user_data'));
     }
@@ -88,11 +98,12 @@ class UserController extends Controller
     public function update_user(Request $req)
     {
         if ($req->user == 'project') {
-
-            if ($req->administrator) {
+            if ($req->user_type == 'administrator') {
                 $unique = 'unique:admins';
-            }else{
+            }elseif($req->user_type == 'user'){
                 $unique = 'unique:users';
+            }else{
+                $unique = 'unique:sales';
             }
             $rules = [
                 'name' => 'required',
@@ -116,11 +127,12 @@ class UserController extends Controller
             $user->save();
             return redirect()->route('admin.user');
         }else{
-
-            if ($req->administrator) {
+            if ($req->user_type == 'administrator') {
                 $unique = 'unique:admins,email,'.$req->id.',id';
-            }else{
+            }elseif($req->user_type == 'user'){
                 $unique = 'unique:users,email,'.$req->id.',id';
+            }else{
+                $unique = 'unique:sales,email,'.$req->id.',id';
             }
             $rules = [
                 'name' => 'required',
