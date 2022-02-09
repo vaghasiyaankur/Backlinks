@@ -68,7 +68,7 @@
             </a>
           </div>
         </li>
-        {{-- <li class="nav-item nav-profile dropdown">
+        <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
             <img src="{{ asset('template/images/faces/face28.jpg') }}" alt="profile"/>
           </a>
@@ -77,7 +77,7 @@
               <i class="ti-settings text-primary"></i>
               Settings
             </a>
-            <a class="dropdown-item" href="{{ route('admin.logout') }}"
+            <a class="dropdown-item" href="{{ route('sales.logout') }}"
             onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
             <i class="ti-power-off text-primary"></i>
@@ -85,7 +85,7 @@
              {{ __('Logout') }}
             </a>
 
-            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('sales.logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
           </div>
@@ -94,7 +94,7 @@
           <a class="nav-link" href="#">
             <i class="icon-ellipsis"></i>
           </a>
-        </li> --}}
+        </li>
       </ul>
       <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
         <span class="icon-menu"></span>

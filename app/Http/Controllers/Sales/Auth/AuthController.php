@@ -74,4 +74,12 @@ class AuthController extends Controller
         return redirect()->route('sales.login.show')->with('msg', 'Your password has been changed!');
     }
 
+    public function logout()
+    {
+        if (session()->has('saleslogin')) {
+            session()->forget('saleslogin');
+            return redirect()->back();
+        }
+    }
+
 }
