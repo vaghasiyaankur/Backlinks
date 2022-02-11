@@ -71,13 +71,13 @@
           </a>
           <ul class="dropdown-menu nav @if ((Request::segment(3) == 'diagnostic') || (Request::segment(3) == 'dictionnaire')) show @endif" aria-labelledby="dropdownMenuprod" role="menu">
             <li class="nav-item" id="diagnostic_tab">
-              <a class="nav-link" href="{{ route('admin.sales.diagnostic') }}">
+              <a class="nav-link" href="{{ route('admin.diagnostic') }}">
                 <i class="icon-cog menu-icon"></i>
                 <span class="menu-title" >Diagnostic</span>
               </a>
             </li>
             <li class="nav-item" id="dictionnaire_tab">
-              <a class="nav-link" href="{{ route('admin.sales.dictionnaire') }}">
+              <a class="nav-link" href="{{ route('admin.dictionnaire') }}">
                 <i class="icon-cog menu-icon"></i>
                 <span class="menu-title" >Dictionnaire SEO</span>
               </a>

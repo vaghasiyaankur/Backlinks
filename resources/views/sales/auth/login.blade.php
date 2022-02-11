@@ -22,11 +22,74 @@
     .invalid-feedback {
         display: block;
     }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0);
+        }
+        to{
+            transform: rotate(359deg);
+        }
+    }
+
+    @keyframes rotateY-anim {
+        0% {
+            transform: rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+
+    /* GRID STYLING */
+
+    * {
+        box-sizing: border-box;
+    }
+    .spining-content {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .spinner-box {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    .loader{
+        position: relative;
+    }
+
+    .logo-spin img {
+        width: 150px;
+        height: 150px;
+        animation: spin 2.5s linear 0s infinite;
+    }
+
+    .logo-text{
+        position: absolute;
+        top: 46px;
+        right: 45px;
+    }
+
+    .logo-text img{
+        width: 60px;
+        height: 60px;
+        animation: rotateY-anim 2s linear infinite;
+    }
 </style>
 </head>
 
 <body>
-  <div class="container-scroller">
+  <div class="container-scroller d-none">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
         <div class="row flex-grow">
@@ -80,6 +143,20 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+
+  <div class="spining-content">
+    <div class="spinner-box">
+      <div class="loader">
+          <div class="logo-spin">
+              <img src="{{ asset('template/images/impulsion_border.png') }}" alt="">
+          </div>
+          <div class="logo-text">
+              <img src="{{ asset('template/images/impulsion_text.png') }}" alt="">
+          </div>
+      </div>
+    </div>
+</div>
+
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{ asset('template/vendors/js/vendor.bundle.base.js') }}"></script>
@@ -87,6 +164,14 @@
   <!-- Plugin js for this page -->
   <!-- End plugin js for this page -->
   <!-- inject:js -->
+  <script>
+    $(document).ready(function(){
+        setTimeout(() => {
+            $('.container-scroller').removeClass('d-none');
+            $('.spining-content').addClass('d-none');
+        }, 3000);
+    });
+  </script>
   <script src="{{ asset('template/js/off-canvas.js') }}"></script>
   <script src="{{ asset('template/js/hoverable-collapse.js') }}"></script>
   <script src="{{ asset('template/js/template.js') }}"></script>

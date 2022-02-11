@@ -9,7 +9,7 @@
                             <div class="col-12">
                                 <h3>Sales</h3>
                             </div>
-                            <form action="{{ route('sales.api.call') }}" method="post">
+                            <form action="{{ route('admin.api.call') }}" method="post">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Domain Name</label>

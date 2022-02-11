@@ -25,11 +25,88 @@
   <link rel="shortcut icon" href="{{ asset('template/images/impulsion_seo.png') }}" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+        /* KEYFRAMES */
 
+        @keyframes spin {
+            from {
+                transform: rotate(0);
+            }
+            to{
+                transform: rotate(359deg);
+            }
+        }
+
+        @keyframes rotateY-anim {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        /* GRID STYLING */
+
+        * {
+            box-sizing: border-box;
+        }
+        .spining-content {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .spinner-box {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        .loader{
+            position: relative;
+        }
+
+        .logo-spin img {
+            width: 150px;
+            height: 150px;
+            animation: spin 2.5s linear 0s infinite;
+        }
+
+        .logo-text{
+            position: absolute;
+            top: 46px;
+            right: 45px;
+        }
+
+        .logo-text img{
+            width: 60px;
+            height: 60px;
+            animation: rotateY-anim 2s linear infinite;
+        }
+    </style>
   @yield('style')
 </head>
 <body>
-  <div class="container-scroller">
+    <div class="spining-content">
+        <div class="spinner-box">
+            <div class="loader">
+                <div class="logo-spin">
+                    <img src="{{ asset('template/images/impulsion_border.png') }}" alt="">
+                </div>
+                <div class="logo-text">
+                    <img src="{{ asset('template/images/impulsion_text.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="container-scroller d-none">
     <!-- partial:partials/_navbar.html -->
     @include('sales.layout.header')
     <!-- partial -->
@@ -236,6 +313,14 @@
   <script src="{{ asset('template/js/dashboard.js') }}"></script>
   <script src="{{ asset('template/js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
+  <script>
+    $(document).ready(function(){
+        setTimeout(() => {
+            $('.container-scroller').removeClass('d-none');
+            $('.spining-content').addClass('d-none');
+        }, 2000);
+    });
+  </script>
   @yield('script')
 </body>
 
