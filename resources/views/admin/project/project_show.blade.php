@@ -2,10 +2,8 @@
 @section('style')
 <style>
 .title_project{
-
   float: left;
-  width: 30%;
-
+  width:12%;
 }
 .card .card-body .table-div{
   min-height: 550px;
@@ -47,17 +45,21 @@ a:focus, input:focus{
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-                <h4 class="card-title title_project">Project Data List</h4>
-                {{-- <a href="{{ route('admin.list.spot') }}" class="btn btn-primary">Spot List</a> --}}
-                <button class="btn btn-primary update_url_spot">Update Url Spot</button>
-                <button class="btn btn-primary show_filter">Show Filter</button>
-                <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
-                <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
-                <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
-                <a class="btn @if(!empty($projectdata->toarray()) && ($projectdata[0]->deliver == 1)) btn-success @else btn-danger @endif" href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
-                <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
-                <span>Budget: {{number_format($project->price/$datamonths->months, 2)}}</span>
-
+                <div class="row">
+                    <h4 class="card-title title_project">Project Data List</h4>
+                    <div class="col-2">{{ $project->note }}</div>
+                    {{-- <a href="{{ route('admin.list.spot') }}" class="btn btn-primary">Spot List</a> --}}
+                    <div class="col-8">
+                        <button class="btn btn-primary update_url_spot">Update Url Spot</button>
+                        <button class="btn btn-primary show_filter">Show Filter</button>
+                        <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
+                        <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
+                        <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
+                        <a class="btn @if(!empty($projectdata->toarray()) && ($projectdata[0]->deliver == 1)) btn-success @else btn-danger @endif" href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
+                        <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
+                        <span>Budget: {{number_format($project->price/$datamonths->months, 2)}}</span>
+                    </div>
+                </div>
                 {{-- <div class="filter row mt-4 d-none">
                      <div class="col-4">
                         <label for="url">Url : </label>
