@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 .title_project{
   float: left;
@@ -54,41 +56,12 @@ a:focus, input:focus{
                         <button class="btn btn-primary show_filter">Show Filter</button>
                         <button class="btn btn-primary d-none hide_filter">Hide Filter</button>
                         <button class="btn btn-primary check_website" data-website="{{ $project->website}}">Check Refering Domains</button>
-                        <a class="btn @if($saved == '1') btn-success @else btn-danger @endif" href="{{ route('admin.project.saved', [$id, $month])}}">save</a>
-                        <a class="btn @if(!empty($projectdata->toarray()) && ($projectdata[0]->deliver == 1)) btn-success @else btn-danger @endif" href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
+                        <a class="project_save btn @if($saved == '1') btn-success @else btn-danger @endif" data-href="{{ route('admin.project.saved', [$id, $month])}}" >save</a>
+                        <a class="project_deliver btn @if(!empty($projectdata->toarray()) && ($projectdata[0]->deliver == 1)) btn-success @else btn-danger @endif" data-href="{{ route('admin.project.deliver', [$id, $month])}}">Deliver</a>
                         <a class="btn btn-primary" href="{{ route('admin.add.data', [$id, $month])}}">Add Project Data</a>
                         <span>Budget: {{number_format($project->price/$datamonths->months, 2)}}</span>
                     </div>
                 </div>
-                {{-- <div class="filter row mt-4 d-none">
-                     <div class="col-4">
-                        <label for="url">Url : </label>
-                        <input type="text" name="url" id="url" class="filters">
-                    </div>
-                    <div class="col-4">
-                        <label for="ancre">Ancre : </label>
-                        <input type="text" name="ancre" id="ancre" class="filters">
-                    </div>
-                    <div class="col-4">
-                        <label for="urlspot">Url Spot : </label>
-                        <input type="text" name="urlspot" id="urlspot" class="filters">
-                    </div>
-                </div>
-                <div class="filter row mt-4 d-none">
-                    <div class="col-4">
-                        <label for="prestataire">Prestataire : </label>
-                        <input type="text" name="prestataire" id="prestataire" class="filters">
-                    </div>
-                    <div class="col-4">
-                        <label for="pricefrom">Price : </label>
-                        <label for="pricefrom">From : </label>
-                        <input type="number" name="pricefrom" id="pricefrom" class="filters">
-                        <label for="priceto">To : </label>
-                        <input type="number" name="priceto" id="priceto" class="filters">
-                        <input type="hidden" name="id" id="id" value="{{ Request::segment(4) }}">
-                        <input type="hidden" name="month" id="month" value="{{ Request::segment(5) }}">
-                    </div>
-                </div> --}}
 
                 <input type="hidden" name="id" id="id" value="{{$id}}">
                 <input type="hidden" name="month" id="month" value="{{$month}}">
@@ -197,15 +170,24 @@ a:focus, input:focus{
       </div>
     </div>
     <!-- content-wrapper ends -->
-
+    <div class="jq-toast-wrap top-right">
+        <div class="jq-toast-single jq-has-icon jq-icon-success" style="text-align: left; display: none;">
+            <span class="jq-toast-loader jq-toast-loaded"></span>
+            <span class="close-jq-toast-single">×</span>
+            <h2 class="jq-toast-heading">Success</h2>And these were just the basic demos! Scroll down to check further details on how to customize the output.
+        </div>
+    </div>
   </div>
 
   @endsection
 
   @section('script')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-$(".nav-item").removeClass('active');
-$("#propject_tab").addClass('active');
+
+    $(".nav-item").removeClass('active');
+    $("#propject_tab").addClass('active');
 
 
   $(".check_website").click(function(){
@@ -216,7 +198,7 @@ $("#propject_tab").addClass('active');
     spot_url = spot_url.toString();
     var website = $(this).data('website');
     var token = $('html').find('meta[name="csrf-token"]')
-// console.log(token);
+
     $.ajax({
       type:'POST',
       url:'{{route("admin.project.checkwebsite")}}',
@@ -248,54 +230,13 @@ $("#propject_tab").addClass('active');
         $(this).addClass('d-none');
     });
 
-    // $(document).on('keyup change','.filters',function(){
-    //     var url = $("#url").val();
-    //     var ancre = $("#ancre").val();
-    //     var urlspot = $("#urlspot").val();
-    //     var prestataire = $("#prestataire").val();
-    //     var pricefrom = $("#pricefrom").val();
-    //     var priceto = $("#priceto").val();
-    //     var id = $("#id").val();
-    //     var month = $("#month").val();
-    //     var token = $('html').find('meta[name="csrf-token"]');
-
-    //     $.ajax({
-    //         type:'POST',
-    //         url:'{{route("admin.project.show.filters")}}',
-    //         data: {
-    //             "_token": "{{ csrf_token() }}",
-    //             "url": url,
-    //             "ancre": ancre,
-    //             "urlspot": urlspot,
-    //             "prestataire": prestataire,
-    //             "pricefrom": pricefrom,
-    //             "priceto": priceto,
-    //             "id": id,
-    //             "month": month,
-    //         },
-    //         success: function(res) {
-    //             $("#table").remove();
-    //             $(".table-responsive").append(res);
-    //         },
-    //     });
-    // });
-
-    // $(document).on('keyup change', '.fromfilter, .tofilter, #spot', function(){
-    //     datatable()
-    // });
-
     $(document).on('click', '.dropdown-item', function(){
       $('.dropdown-item').removeClass('select_theme');
       $(this).addClass('select_theme');
 
       var curr_val = $(this).text();
       $(".dropdown-toggle.thematic").text(curr_val);
-
-    //   datatable();
     });
-
-    // $(document).on('change', '#gnews', function(){
-    // });
 
     function datatable(){
         var prixFrom = $("#prixFrom").val();
@@ -398,6 +339,87 @@ $("#propject_tab").addClass('active');
             data: {urlspot:urlspot,provider:provider,price:price},
             success: function (res) {
                 console.log(res);
+            }
+        });
+    });
+
+    resetToastPosition = function() {
+        $('.jq-toast-wrap').removeClass('bottom-left bottom-right top-left top-right mid-center'); // to remove previous position class
+        $(".jq-toast-wrap").css({
+            "top": "",
+            "left": "",
+            "bottom": "",
+            "right": ""
+        }); //to remove previous position style
+    }
+
+    successalert = function() {
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: 'Project Data successfully updated.',
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
+            position: 'top-right'
+        })
+    }
+
+    dangeralert = function(){
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Danger',
+            text: 'Can not find any project data.',
+            showHideTransition: 'slide',
+            icon: 'error',
+            loaderBg: '#f2a654',
+            position: 'top-right'
+        })
+    }
+
+    $(document).on('click','.project_save',function(){
+        var url = $(this).data('href');
+        $.ajax({
+            url:url,
+            type:'GET',
+            success:function(res){
+                if (res == 1) {
+                    'use strict';
+                    if ($('.project_save').hasClass('btn-success')) {
+                        $('.project_save').removeClass('btn-success');
+                        $('.project_save').addClass('btn-danger');
+                    }else{
+                        $('.project_save').removeClass('btn-danger');
+                        $('.project_save').addClass('btn-success');
+                    }
+                    successalert();
+                }else{
+                    dangeralert();
+                }
+            }
+        });
+    });
+
+    $(document).on('click','.project_deliver',function(){
+        var url = $(this).data('href');
+        $.ajax({
+            url:url,
+            type:'GET',
+            success:function(res){
+                if (res == 1) {
+                    'use strict';
+                    if ($('.project_deliver').hasClass('btn-success')) {
+                        $('.project_deliver').removeClass('btn-success');
+                        $('.project_deliver').addClass('btn-danger');
+                    }else{
+                        $('.project_deliver').removeClass('btn-danger');
+                        $('.project_deliver').addClass('btn-success');
+                    }
+                    successalert();
+                }else{
+                    dangeralert();
+                }
             }
         });
     });

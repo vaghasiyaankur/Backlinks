@@ -85,6 +85,7 @@
 	 font-size: 13px;
 	 font-weight: bold;
 	 text-align: center;
+     cursor: pointer;
 }
  .gantt__row-bars {
 	 list-style: none;
@@ -241,9 +242,7 @@ $next_year = date('Y') + 1;
         {{-- {{dd($ProjectList)}} --}}
         @foreach($ProjectList as $pl)
         <div class="gantt__row">
-			<div class="gantt__row-first">
-				{{$pl->name}}
-			</div>
+			<a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="gantt__row-first position-relative text-dark text-decoration-none">{{$pl->name}}</a>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
 				$begining_month = @$data[$prev_year][$pl->id][0];
@@ -326,9 +325,7 @@ $next_year = date('Y') + 1;
 
         @foreach($ProjectList as $pl)
         <div class="gantt__row">
-			<div class="gantt__row-first">
-				{{$pl->name}}
-			</div>
+            <a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="gantt__row-first position-relative text-dark text-decoration-none">{{$pl->name}}</a>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
 				$begining_month = @$data[$currnet_year][$pl->id][0];
@@ -418,9 +415,7 @@ $next_year = date('Y') + 1;
 
         @foreach($ProjectList as $pl)
         <div class="gantt__row">
-			<div class="gantt__row-first">
-				{{$pl->name}}
-			</div>
+			<a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="gantt__row-first position-relative text-dark text-decoration-none">{{$pl->name}}</a>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
 

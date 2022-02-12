@@ -302,9 +302,9 @@ class ProjectController extends Controller
             }else{
                 $projectdatas = ProjectData::where('project_id',$dataid)->where('month', $month)->update(['saved'=> 0]);
             }
-            return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
+            return 1;
         }
-        return Redirect::to('admin/project/show/'.$dataid.'/'.$month);
+        return 0;
 
     }
 
@@ -598,8 +598,8 @@ class ProjectController extends Controller
             }else{
                 $projectdatas = ProjectData::where('project_id',$id)->where('month', $month)->update(['deliver'=> 0]);
             }
-            return Redirect::back();
+            return 1;
         }
-        return Redirect::back();
+        return 0;
     }
 }

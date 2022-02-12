@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @stop
 @section('content')
     <div class="main-panel">
@@ -14,7 +16,7 @@
                             <input type="hidden" name="project_type" value="{{ $type }}">
                             <input type="hidden" name="id" value="{{ $id }}">
                             <input type="hidden" name="month" value="{{ $month }}">
-                            <input type="submit" class="btn btn-primary mt-3"/>
+                            <input type="submit" class="btn btn-primary mt-3" onclick="showsuccessatert()"/>
                         </form>
                     </div>
                 </div>
@@ -60,11 +62,33 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function () {
             $('.dropify').dropify();
-        })
-        $(".nav-item").removeClass('active');
-        $("#propject_tab").addClass('active');
+            $(".nav-item").removeClass('active');
+            $("#propject_tab").addClass('active');
+        });
+        resetToastPosition = function() {
+            $('.jq-toast-wrap').removeClass('bottom-left bottom-right top-left top-right mid-center'); // to remove previous position class
+            $(".jq-toast-wrap").css({
+                "top": "",
+                "left": "",
+                "bottom": "",
+                "right": ""
+            }); //to remove previous position style
+        }
+        showsuccessatert = function(){
+            resetToastPosition();
+            $.toast({
+                heading: 'Success',
+                text: 'Project Data successfully updated.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                loaderBg: '#f96868',
+                position: 'top-right'
+            })
+        }
     </script>
 @stop
