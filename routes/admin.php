@@ -98,6 +98,8 @@ Route::namespace('Admin')->group(function () {
         // gantt chart
         Route::get('/chart', [ChartController::class, 'index'])->name('admin.chart.list');
         Route::post('/chart/change-color', [ChartController::class, 'changecolor'])->name('admin.chart.changecolor');
+        Route::get('/chart/notes', [ChartController::class, 'notes_show'])->name('admin.show.notes');
+        Route::post('/chart/add-notes', [ChartController::class, 'add_notes'])->name('admin.add.notes.project');
 
 
         //  curretn BL Order

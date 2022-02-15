@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Carbon\Carbon;
@@ -11,7 +12,6 @@ class ChartController extends Controller
 {
     public function index(Request $request)
     {
-
         $ProjectList = Project::where('status',0)->get();
         $current = Carbon::now();
         $data = [];
@@ -138,4 +138,17 @@ class ChartController extends Controller
         }
         return 1;
     }
+
+    public function add_notes(Request $req)
+    {
+        Note::create(['notes'=>$req->notes,'project_id'=>$req->id]);
+        return 1;
+    }
+
+    public function notes_show(Request $req)
+    {
+        $note = Note::where('project_id',$req->id)->select('notes')->get();
+        return response()->json($note);
+    }
+
 }

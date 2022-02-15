@@ -3,7 +3,26 @@
 @section('style')
 <style>
     @import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700");
-
+    .modal-dialog {
+        max-width: 60%;
+    }
+    .model-close {
+        text-align: end;
+        margin: -10px;
+    }
+    .modal .modal-dialog .modal-content .modal-body {
+        padding: 30px 26px;
+    }
+    button.close {
+        border-radius: 50%;
+        color: white;
+        background: #3d3c68;
+        border: 0;
+        padding: 5px 10px;
+    }
+    .modal-body p{
+        font-size: 16px;
+    }
  .gantt {
 	 display: grid;
 	 border: 0;
@@ -160,6 +179,18 @@
  .gantt__row-bars li:after {
 	 right: 0;
 }
+.notes {
+    margin: 15px 26px;
+    box-shadow: 0 0 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.notes div{
+    box-shadow: 0 0 5px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
 
 </style>
 @endsection
@@ -185,6 +216,33 @@ $next_year = date('Y') + 1;
 	<button class="btn color2" value="{{$next_year }}">Task Number :  <span id="orangetask">40</span></button>
 	<button class="btn color3" value="{{$next_year }}">Task Number :  <span id="greentask">40</span></button>
 </div> --}}
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="model-header">
+                <div class="model-close">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <h3 class="my-2 mx-4">Notes</h3>
+            </div>
+            <div class="notes_add"></div>
+            <div class="add_notes">
+                <form action="" method="post" id="notes_form">
+                    @csrf
+                    <div class="form-group mx-4 my-2">
+                        <textarea name="notes" rows="4" class="form-control" placeholder="Add Your Notes ..."></textarea>
+                        <input type="hidden" name="id" id="notes_id">
+                    </div>
+                    <div class="form-group mx-4 my-3">
+                        <input type="submit" value="Save" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @php
     foreach ($ProjectList as $pl){
@@ -244,6 +302,9 @@ $next_year = date('Y') + 1;
         <div class="gantt__row">
             <div class="gantt__row-first">
                 <a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="position-relative text-dark text-decoration-none">{{$pl->name}}</a>
+                <div class="mt-2">
+                    <button class="badge badge-lg bg-primary text-color border-primary show_popup position-relative" data-id="{{$pl->id}}">Notes</button>
+                </div>
             </div>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
@@ -329,6 +390,9 @@ $next_year = date('Y') + 1;
         <div class="gantt__row">
             <div class="gantt__row-first">
                 <a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="position-relative text-dark text-decoration-none">{{$pl->name}}</a>
+                <div class="mt-2">
+                    <button class="badge badge-lg bg-primary text-color border-primary show_popup position-relative" data-id="{{$pl->id}}">Notes</button>
+                </div>
             </div>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
@@ -421,6 +485,9 @@ $next_year = date('Y') + 1;
         <div class="gantt__row">
 			<div class="gantt__row-first">
                 <a href="{{ route('admin.project.show.dashboard', [$pl->id, '1']) }}" class="position-relative text-dark text-decoration-none">{{$pl->name}}</a>
+                <div class="mt-2">
+                    <button class="badge badge-lg bg-primary text-color border-primary show_popup position-relative" data-id="{{$pl->id}}">Notes</button>
+                </div>
             </div>
             @php
                 $project_type = explode(',', $pl->project_type_checkbox);
@@ -483,9 +550,49 @@ $next_year = date('Y') + 1;
 <input type="hidden" name="currentgreentaskno" id="currentgreentaskno" value="{{$currentgreentask}}">
 <input type="hidden" name="currentredtaskno" id="currentredtaskno" value="{{$currentredtask}}">
 </div>
-  @endsection
-  @section('script')
+@endsection
+@section('script')
   <script>
+
+    $(document).on('click','.show_popup',function(){
+        var id = $(this).data('id');
+        $('#notes_id').val(id);
+        $.ajax({
+            url:'{{ route("admin.show.notes") }}',
+            type: 'GET',
+            data: {id:id},
+            success: function(res){
+                if (res != '') {
+                    var notes = '<div class="notes">';
+                    $(res).each(function(data){
+                        notes += '<div>'+this.notes+'</div>';
+                    });
+                    notes += '</div>';
+                    $('.notes_add').html(notes);
+                }else
+                $('.notes_add').html('');
+                $('#myModal').modal('show');
+            }
+        });
+    });
+
+    $(document).on('submit','#notes_form',function(e){
+        e.preventDefault();
+        var form = $(this).serialize();
+        $.ajax({
+            url: "{{ route('admin.add.notes.project') }}",
+            type: 'POST',
+            data:form,
+            success:function(res){
+                $('textarea[name="notes"]').val('');
+                $('#myModal').modal('hide');
+            }
+        });
+    })
+
+    $(document).on('click','.close',function(){
+        $('#myModal').modal('hide');
+    });
 
 	$(document).ready(function() {
         $(".nav-item").removeClass('active');
@@ -515,10 +622,7 @@ $next_year = date('Y') + 1;
                 }
             });
         });
-	}
-
-);
-
+	});
 	  $(document).on('click','.year_button', function(){
 		  var value = $(this).val();
 		  $('.content-wrapper').hide();
