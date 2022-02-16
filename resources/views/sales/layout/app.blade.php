@@ -25,6 +25,7 @@
   <link rel="shortcut icon" href="{{ asset('template/images/impulsion_seo.png') }}" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <style>
         /* KEYFRAMES */
 
@@ -106,7 +107,7 @@
             </div>
         </div>
     </div>
-  <div class="container-scroller d-none">
+  <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     @include('sales.layout.header')
     <!-- partial -->
@@ -293,6 +294,15 @@
 
   <!-- plugins:js -->
   <script src="{{ asset('template/vendors/js/vendor.bundle.base.js') }}"></script>
+  <script>
+      $(document).ready(function(){
+        $('.container-scroller').css('display','none');
+          setTimeout(() => {
+              $('.container-scroller').css('display','');
+              $('.spining-content').hide();
+          }, 2000);
+      });
+  </script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="{{ asset('template/vendors/chart.js/Chart.min.js') }}"></script>
@@ -313,15 +323,8 @@
   <script src="{{ asset('template/js/dashboard.js') }}"></script>
   <script src="{{ asset('template/js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
-  <script>
-    $(document).ready(function(){
-        setTimeout(() => {
-            $('.container-scroller').removeClass('d-none');
-            $('.spining-content').addClass('d-none');
-        }, 2000);
-    });
-  </script>
   @yield('script')
+
 </body>
 
 

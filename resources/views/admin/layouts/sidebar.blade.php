@@ -65,11 +65,11 @@
           </ul>
       </li>
       <li class="dropdown nav-item sidebar-tab">
-          <a class="nav-link dropdown-toggle @if ((Request::segment(3) == 'diagnostic') || (Request::segment(3) == 'dictionnaire')) show @endif" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if ((Request::segment(3) == 'diagnostic') || (Request::segment(3) == 'dictionnaire')) aria-expanded="true" @else aria-expanded="false" @endif>
+          <a class="nav-link dropdown-toggle @if ((Request::segment(2) == 'diagnostic') || (Request::segment(2) == 'dictionnaire')) show @endif" id="dropdownMenuprod" href="#" data-bs-toggle="dropdown" aria-haspopup="true" @if ((Request::segment(2) == 'diagnostic') || (Request::segment(2) == 'dictionnaire')) aria-expanded="true" @else aria-expanded="false" @endif>
             <i class="icon-grid menu-icon"></i>
             <span class="menu-title" >Sales</span>
           </a>
-          <ul class="dropdown-menu nav @if ((Request::segment(3) == 'diagnostic') || (Request::segment(3) == 'dictionnaire')) show @endif" aria-labelledby="dropdownMenuprod" role="menu">
+          <ul class="dropdown-menu nav @if ((Request::segment(2) == 'diagnostic') || (Request::segment(2) == 'dictionnaire')) show @endif" aria-labelledby="dropdownMenuprod" role="menu">
             <li class="nav-item" id="diagnostic_tab">
               <a class="nav-link" href="{{ route('admin.diagnostic') }}">
                 <i class="icon-cog menu-icon"></i>
