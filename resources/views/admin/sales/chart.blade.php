@@ -10,17 +10,11 @@
                             <input type="hidden" id="traffic_data" value="{{ $traffic }}">
                         </div>
                     </div>
-                    <div class="row mb-5">
-                        <h4 class="my-3">How many Traffic & keyword consumed</h4>
-                        <div class="col s-12 m-6">
-                            <canvas id="traffic" width="1550" height="500"></canvas>
-                        </div>
-                    </div>
                     <div class="row">
                         <h4 class="my-3">How many TrustFlow ,CitationFlow & Domaines référents</h4>
                         <div class="col-12">
                             @php
-                                $data = $responseBody['data'][3]
+                                $data = $responseBody['data'][0]
                             @endphp
                             <table class="table table-bordered" id="table">
                                 <thead>
@@ -34,6 +28,12 @@
                                     <td>{{ $data['CitationFlow'] }}</td>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <h4 class="my-3">How many Traffic & keyword consumed</h4>
+                        <div class="col s-12 m-6">
+                            <canvas id="traffic" width="1550" height="500"></canvas>
                         </div>
                     </div>
                 </div>

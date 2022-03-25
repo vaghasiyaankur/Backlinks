@@ -43,10 +43,11 @@ class SalesController extends Controller
                 $traffic[] = $server;
             }
         }
+        // dd($traffic);
         $traffic = implode(",",$traffic);
 
         $apiURL = 'https://api1.seobserver.com/backlinks/metrics.json';
-        $postInput = [["item_type"=>"domain", "item_value"=>"seobserver.com"], ["item_type"=>"domain", "item_value"=>"seobserver.com"], ["item_type"=>"subdomain", "item_value"=>"www.seobserver.com"], ["item_type"=>"url", "item_value"=>$domain_name]];
+        $postInput = [["item_type"=>"domain", "item_value"=>$domain_name], ["item_type"=>"domain", "item_value"=>$domain_name], ["item_type"=>"subdomain", "item_value"=>$domain_name], ["item_type"=>"url", "item_value"=>$domain_name]];
 
         $headers = [
             'X-SEObserver-key' => '61fd06df5f469a815b8b4598L1b7fbb560184b55a799be51baadc0386'
@@ -56,7 +57,7 @@ class SalesController extends Controller
 
         $statusCode = $response->status();
         $responseBody = json_decode($response->getBody(), true);
-
+        // dd($responseBody);
         return view('admin.sales.chart',compact('traffic','domain_name','responseBody'));
     }
 }
