@@ -8,12 +8,7 @@
                         <div class="col-12">
                             <h3 class="card_header">{{ $domain_name }}</h3  >
                             <input type="hidden" id="traffic_data" value="{{ $traffic }}">
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <h4 class="my-3">How many Traffic & keyword consumed</h4>
-                        <div class="col s-12 m-6">
-                            <canvas id="traffic" width="1550" height="500"></canvas>
+                            <input type="hidden" id="keyword_data" value="{{ $keyword }}">
                         </div>
                     </div>
                     <div class="row">
@@ -36,6 +31,12 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row mb-5">
+                        <h4 class="my-3">How many Traffic & keyword consumed</h4>
+                        <div class="col s-12 m-6">
+                            <canvas id="traffic" width="1550" height="500"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +51,9 @@
         });
 
         var traffic = $("#traffic_data").val();
+        var keyword = $("#keyword_data").val();
         traffic = traffic.split(',');
+        keyword = keyword.split(',');
         Chart.defaults.global = {
             animation: true,
             animationSteps: 60,
@@ -98,14 +101,24 @@
             labels: ["January", "February", "March", "April", "May", "June", "July","August","september","october","november","December"],
             datasets: [
                 {
-                    label: "My First dataset",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
+                    label: "traffic",
+                    fillColor: "#90ee9059",
+                    strokeColor: "green",
+                    pointColor: "green",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    pointHighlightStroke: "green",
                     data: traffic
+                },
+                {
+                    label: "keyword",
+                    fillColor: "#cbe6e88f",
+                    strokeColor: "#45dde9",
+                    pointColor: "#45dde9",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "#45dde9",
+                    data: keyword
                 }
             ]
         };
