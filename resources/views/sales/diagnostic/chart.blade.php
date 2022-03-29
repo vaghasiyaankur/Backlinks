@@ -112,7 +112,7 @@
                 },
                 {
                     label: "keyword",
-                    fillColor: "#cbe6e88f",
+                    fillColor: "#cbf5f8bf",
                     strokeColor: "#45dde9",
                     pointColor: "#45dde9",
                     pointStrokeColor: "#fff",
