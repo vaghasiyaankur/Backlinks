@@ -5,6 +5,7 @@ use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Client\CreditController;
+use App\Http\Controllers\Client\NetlinkingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::middleware(['auth','web'])->group(function () {
     Route::get('/credit',[CreditController::class, 'index'])->name('client.credit');
     Route::post('/add/credit',[CreditController::class, 'credit_add'])->name('client.add.credit');
     Route::get('/purchase/credit',[CreditController::class, 'parchese_credit'])->name('purchase.credit');
+
+    Route::get('/netlinking',[NetlinkingController::class, 'index'])->name('client.netlinking');
 
 });
 

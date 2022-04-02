@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fa4d6290a676c691b10bc44aebf3bd3",
+    "content-hash": "6550c2163d37b48164dc8dfc5c4f535a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3236,6 +3236,55 @@
                 }
             ],
             "time": "2021-08-11T01:06:55+00:00"
+        },
+        {
+            "name": "reeska/semrush",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Reeska/semrush.git",
+                "reference": "79bcd26856e89eb488574e6e21cf77c33a79ea08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Reeska/semrush/zipball/79bcd26856e89eb488574e6e21cf77c33a79ea08",
+                "reference": "79bcd26856e89eb488574e6e21cf77c33a79ea08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reeska": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Reeska",
+                    "email": "thchampi@gmail.com",
+                    "homepage": "https://github.com/Reeska",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Semrush API PHP client",
+            "homepage": "https://github.com/Reeska/semrush",
+            "keywords": [
+                "SEMRush",
+                "semrush api",
+                "seo"
+            ],
+            "support": {
+                "issues": "https://github.com/Reeska/semrush/issues",
+                "source": "https://github.com/Reeska/semrush/tree/master"
+            },
+            "time": "2018-05-10T18:01:21+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -8337,12 +8386,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "reeska/semrush": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

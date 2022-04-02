@@ -60,9 +60,9 @@ class UserController extends Controller
 
     public function changePassword(Request $req)
     {
-        if ($req->user_type == 'administrator') {
+        if ($req->user == 'administrator') {
             $user = Admin::find($req->id);
-        }elseif($req->user_type == 'user'){
+        }elseif($req->user == 'user'){
             $user = User::find($req->id);
         }else{
             $user = Sale::find($req->id);

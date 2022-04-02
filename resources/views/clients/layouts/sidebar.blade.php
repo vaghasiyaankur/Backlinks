@@ -24,7 +24,7 @@
             @endforeach
         @endisset
 
-      <li class="nav-item" id="credit_tab">
+      <li class="nav-item" id="purchase_tab">
         <a class="nav-link" href="{{ route('client.credit.add') }}">
           <!-- <i class="icon-grid menu-icon"></i> -->
           <img src="{{ asset('template/images/icons/Mes-performances-SEO.png')}}" alt="" class="dark-image">
@@ -46,6 +46,14 @@
           <img src="{{ asset('template/images/icons/credit.png')}}" alt="" class="dark-image">
           <img src="{{ asset('template/images/icons/credit-white.png')}}" alt=""  class="light-image">
           <span class="menu-title" >Credit</span>
+        </a>
+      </li>
+      <li class="nav-item" id="Netlinking_tab">
+        <a class="nav-link" href="{{ route('client.netlinking') }}">
+          <!-- <i class="icon-grid menu-icon"></i> -->
+          <img src="{{ asset('template/images/icons/credit.png')}}" alt="" class="dark-image">
+          <img src="{{ asset('template/images/icons/credit-white.png')}}" alt=""  class="light-image">
+          <span class="menu-title" >Netlinking Campaign</span>
         </a>
       </li>
     </ul>
